@@ -7,7 +7,7 @@ class Moves < Database
 
   COLUMNS = {
     ID: "serial not null",
-    POKEMON_ID: "integer REFERENCES pokemons (id)",
+    POKEMON_NO: "integer REFERENCES pokemons (pokemon_no)",
     MOVE_TYPE: "text not null",
     NAME: "text not null"
   }
@@ -19,6 +19,11 @@ class Moves < Database
   end
 end
 
+# 使用例:
+# レコードの検索
+#   ruby database/moves.rb select
+# テーブルの作り直し
+#   ruby database/moves.rb drop create
 if $0 == __FILE__
   def exec(args)
     moves = Moves.new
@@ -41,5 +46,4 @@ if $0 == __FILE__
   end
 
   pp exec(ARGV)
-
 end

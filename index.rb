@@ -1,18 +1,3 @@
-=begin
-  pokemon["*"] => string
-    no
-    name
-    stage
-    abilities
-    types
-
-  pokemon["*"] => Array
-    level_up_moves
-    tms
-    trs
-=end
-
-
 require "json"
 require_relative "database/pokemons"
 require_relative "database/moves"
@@ -45,6 +30,7 @@ parsed_pokemon_list_1.each do |pokemon|
   move_types.each do |type|
     pokemon[type].each do |move_name|
       (index, move_name) = move_name
+      pp move_name
       if !move_name.nil?
         moves.insert(
           params: [
@@ -56,9 +42,11 @@ parsed_pokemon_list_1.each do |pokemon|
       end
     end
   end
-
 end
 
 pp "Processing #{count}/#{parsed_pokemon_list_1.length}"
-count += 1
 puts "ぽけもんげっとだぜ！"
+
+
+#検証用 SQL
+# select pokemons.name, pokemons.pokemon_no, count(moves.name) from pokemons inner join moves on pokemons.pokemon_no = moves.pokemon_no group by pokemons.name, pokemons.pokemon_no;

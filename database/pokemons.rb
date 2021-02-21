@@ -21,8 +21,12 @@ class Pokemons < Database
   end
 end
 
+# 使用例:
+# レコードの検索
+#   ruby database/moves.rb select
+# テーブルの作り直し
+#   ruby database/moves.rb drop create
 if $0 == __FILE__
-
   def exec(args)
     pokemons = Pokemons.new
     results = {}
