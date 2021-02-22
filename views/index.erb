@@ -7,13 +7,13 @@
       <img class="image" loading="lazy" src="images/<%= "#{pokemon["pokemon_no"].rjust(3, "0")}.png" %>">
       <div class="content">
         <div class="name"><%= pokemon["name"] %></div>
-        <div class="ability">
-          <span class="ability-header">のうりょく：</span>
-          <span class="ability-value"><%= pokemon["abilities"].to_s %></span>
-        </div>
-        <div class="type">
-          <span class="type-header">タイプ：</span>
-          <span class="type-value"><%= pokemon["types"].to_s %></span>
+        <div class="attributes">
+          <hr>
+          <span class="attribute-header">のうりょく：</span>
+          <span class="attribute-value"><%= eval(pokemon["abilities"]).join "<br>" %></span>
+          <hr>
+          <span class="attribute-header">タイプ：</span>
+          <span class="attribute-value"><%= eval(pokemon["types"]).join "<br>" %></span>
         </div>
       </div>
     </a>

@@ -58,6 +58,7 @@ header {
   box-shadow: 0 0 1rem black;
   color: #E5E5E5;
   text-align: center;
+  font-size: 1rem;
   border-radius: 5%;
 }
 @media (min-width: 87.5em) {
@@ -84,8 +85,19 @@ header {
   font-size: 2rem;
   letter-spacing: 0.4rem;
 }
-.cards .card .ability, .cards .card .type {
+.cards .card .attributes {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   padding-bottom: 1rem;
+}
+.cards .card .attributes .attribute-header {
+  grid-column: 1/2;
+}
+.cards .card .attributes hr {
+  grid-column: 1/3;
+  border-bottom: solid 1px black;
+  max-width: 170px;
+  width: 100%;
 }
 @media (min-width: 56em) {
   .cards .card:hover > .overlay {
