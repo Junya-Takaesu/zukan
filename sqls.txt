@@ -1,0 +1,31 @@
+-- ポケモンの名前と、そのポケモンが持っている技の数を列挙する
+select
+  pokemons.name,
+  pokemons.pokemon_no,
+  count(moves.name)
+from
+  pokemons inner join moves
+on
+  pokemons.pokemon_no = moves.pokemon_no
+group by
+  pokemons.name,
+  pokemons.pokemon_no;
+
+
+-- ポケモンの名前と、そのポケモンが持っている技の数を列挙する。技のタイプ毎に集計する。
+select
+  pokemons.name,
+  moves.pokemon_no,
+  moves.move_type,
+  count(moves.name) move_count
+from
+  moves inner join pokemons
+on
+  moves.pokemon_no = pokemons.pokemon_no
+group by
+  pokemons.name,
+  moves.pokemon_no,
+  moves.move_type
+order by
+  moves.pokemon_no,
+  moves.move_type;
