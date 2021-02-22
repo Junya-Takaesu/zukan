@@ -1,0 +1,15 @@
+<section class="cards">
+  <% @pokemons.each do |pokemon| %>
+    <a href="#" class="card">
+      <div class="overlay">
+        <span>くわしくみる</span>
+      </div>
+      <img class="image" loading="lazy" src="images/<%= "#{pokemon["pokemon_no"].rjust(3, "0")}.png" %>">
+      <div class="content">
+        <div class="name"><%= pokemon["name"] %></div>
+        <div class="ability"><%= pokemon["abilities"].to_s %></div>
+        <div class="type"><%= pokemon["types"].to_s %></div>
+      </div>
+    </a>
+  <% end %>
+</section>
