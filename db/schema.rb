@@ -3,7 +3,7 @@ require_relative 'database'
 
 class Schema < ActiveRecord::Migration[6.0]
   include Database
-  Database.establish_connection
+  # Database.establish_connection
   def up
     unless table_exists?(:pokemons)
       create_table :pokemons, force: :cascade do |t|
