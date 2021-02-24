@@ -1,16 +1,144 @@
+@charset "UTF-8";
 html {
   font-size: 100%;
   box-sizing: border-box;
+  height: 100%;
 }
 
 *, *::befere, *::after {
   box-sizing: inherit;
 }
 
+#monster-ball-1 {
+  background: linear-gradient(to right, #f60002, rgba(246, 0, 2, 0.4));
+  height: 10rem;
+  width: 10rem;
+  position: fixed;
+  border-radius: 50%;
+  overflow: hidden;
+  top: 10%;
+  left: 67%;
+  transform: rotate(10deg);
+}
+#monster-ball-1::before {
+  content: "";
+  border: #1b1a1a 10px solid;
+  background: linear-gradient(to right bottom, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.1));
+  position: absolute;
+  top: 50%;
+  left: -10%;
+  height: 20vh;
+  width: 100vw;
+}
+#monster-ball-1 .monster-ball-button {
+  background: #1b1a1a;
+  height: 2rem;
+  width: 2rem;
+  border-radius: 50%;
+  position: absolute;
+  top: 42%;
+  left: 42%;
+}
+@media (min-width: 41em) {
+  #monster-ball-1 {
+    height: 20rem;
+    width: 20rem;
+  }
+  #monster-ball-1 .monster-ball-button {
+    height: 4rem;
+    width: 4rem;
+  }
+}
+
+#monster-ball-2 {
+  background: linear-gradient(to right, #f60002, rgba(246, 0, 2, 0.4));
+  height: 10rem;
+  width: 10rem;
+  position: fixed;
+  border-radius: 50%;
+  overflow: hidden;
+  top: 40%;
+  left: 7%;
+  transform: rotate(-20deg);
+}
+#monster-ball-2::before {
+  content: "";
+  border: #1b1a1a 10px solid;
+  background: linear-gradient(to right bottom, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.1));
+  position: absolute;
+  top: 50%;
+  left: -10%;
+  height: 20vh;
+  width: 100vw;
+}
+#monster-ball-2 .monster-ball-button {
+  background: #1b1a1a;
+  height: 2rem;
+  width: 2rem;
+  border-radius: 50%;
+  position: absolute;
+  top: 42%;
+  left: 42%;
+}
+@media (min-width: 41em) {
+  #monster-ball-2 {
+    height: 20rem;
+    width: 20rem;
+  }
+  #monster-ball-2 .monster-ball-button {
+    height: 4rem;
+    width: 4rem;
+  }
+}
+
+#monster-ball-3 {
+  background: linear-gradient(to right, #f60002, rgba(246, 0, 2, 0.4));
+  height: 10rem;
+  width: 10rem;
+  position: fixed;
+  border-radius: 50%;
+  overflow: hidden;
+  top: 70%;
+  left: 50%;
+  transform: rotate(24deg);
+}
+#monster-ball-3::before {
+  content: "";
+  border: #1b1a1a 10px solid;
+  background: linear-gradient(to right bottom, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.1));
+  position: absolute;
+  top: 50%;
+  left: -10%;
+  height: 20vh;
+  width: 100vw;
+}
+#monster-ball-3 .monster-ball-button {
+  background: #1b1a1a;
+  height: 2rem;
+  width: 2rem;
+  border-radius: 50%;
+  position: absolute;
+  top: 42%;
+  left: 42%;
+}
+@media (min-width: 41em) {
+  #monster-ball-3 {
+    height: 20rem;
+    width: 20rem;
+  }
+  #monster-ball-3 .monster-ball-button {
+    height: 4rem;
+    width: 4rem;
+  }
+}
+
 body {
+  height: 100%;
   margin: 0;
   padding: 0;
-  background: #FF8383;
+  background: linear-gradient(to right bottom, rgba(255, 131, 131, 0.3), #ff8383);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
   color: #ffffff;
   font-family: "Noto Sans JP", Arial, Helvetica, sans-serif;
   font-size: 1.25rem;
@@ -22,19 +150,38 @@ a, a:visited {
 }
 
 header {
+  position: fixed;
+  top: 0;
+  left: 13%;
+  z-index: 10;
+}
+header .appname {
+  color: #ffffff;
+  /* 文字の色 */
+  font-size: 3rem;
+  /* 文字のサイズ */
+  letter-spacing: 4px;
+  /* 文字間 */
+  text-shadow: 2px 2px 1px #003366, -2px 2px 1px #003366, 2px -2px 1px #003366, -2px -2px 1px #003366, 2px 0px 1px #003366, 0px 2px 1px #003366, -2px 0px 1px #003366, 0px -2px 1px #003366;
+  /* 文字の影 */
+}
+
+footer {
+  background: black;
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
 }
 
 .cards {
   display: grid;
   gap: 2rem;
   max-width: 1000px;
-  margin: 0 auto;
+  margin: 20% auto 0;
   padding: 2rem;
 }
 @media (min-width: 41em) {
   .cards {
+    margin: 5% auto 0;
     grid-template-columns: 300px;
     justify-content: center;
   }
@@ -54,11 +201,13 @@ header {
   grid-template-columns: 1fr;
   grid-template-rows: 120px 1fr;
   position: relative;
-  background: linear-gradient(to left top, rgba(0, 77, 149, 0.8), rgba(0, 133, 255, 0.3));
-  box-shadow: 0 0 1rem black;
-  color: #E5E5E5;
+  background: linear-gradient(to right bottom, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.9));
+  background-repeat: no-repeat;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+  color: #1d1818;
   text-align: center;
   font-size: 1rem;
+  font-weight: 700;
   border-radius: 5%;
 }
 @media (min-width: 87.5em) {
@@ -84,6 +233,7 @@ header {
   padding-bottom: 1rem;
   font-size: 2rem;
   letter-spacing: 0.4rem;
+  text-shadow: 1px 1px rgba(255, 255, 255, 0.6);
 }
 .cards .card .attributes {
   display: grid;
@@ -114,7 +264,7 @@ header {
     left: 0;
     border-radius: 5%;
     opacity: 0;
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(0, 0, 0, 0.1);
     transition: opacity 200ms ease-in-out;
   }
   .cards .card .overlay span {
