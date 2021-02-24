@@ -29,6 +29,10 @@ get "/" do
   erb :index
 end
 
+get "/quiz" do
+  erb :quiz
+end
+
 get "/:pokemon_no" do
   erb :detail
 end
