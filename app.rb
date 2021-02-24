@@ -25,7 +25,9 @@ end
 set :static_cache_control, [:public, :max_age => 31536000]
 
 get "/" do
-  @pokemons = Pokemon.all
+  # @pokemons = [Pokemon.first]
+  # @pokemons = Pokemon.all
+  @pokemons = Pokemon.take(10)
   erb :index
 end
 
