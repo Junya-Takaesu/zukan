@@ -10,8 +10,6 @@ class Schema < ActiveRecord::Migration[6.0]
         t.integer :pokemon_no, null: false
         t.string  :name,       null: false
         t.integer :stage
-        t.string  :abilities
-        t.string  :types
       end
       add_index :pokemons, :pokemon_no, unique: true
     end
@@ -19,22 +17,22 @@ class Schema < ActiveRecord::Migration[6.0]
     unless table_exists?(:moves)
       create_table :moves, force: :cascade do |t|
         t.integer :pokemon_no
-        t.string  :type
-        t.string  :name
+        t.string  :move_type
+        t.string  :move_name
       end
     end
 
     unless table_exists?(:abilities)
       create_table :abilities, force: :cascade do |t|
         t.integer :pokemon_no
-        t.string  :ability
+        t.string  :ability_name
       end
     end
 
     unless table_exists?(:types)
       create_table :types, force: :cascade do |t|
         t.integer :pokemon_no
-        t.string  :type
+        t.string  :type_name
       end
     end
 

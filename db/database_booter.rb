@@ -36,14 +36,14 @@ class DatabaseBooter
         pokemon["abilities"].each do |ability|
           abilities.push({
             pokemon_no: pokemon["no"],
-            ability: ability
+            ability_name: ability
           })
         end
 
         pokemon["types"].each do |type|
           types.push({
             pokemon_no: pokemon["no"],
-            type: type
+            type_name: type
           })
         end
 
@@ -52,8 +52,8 @@ class DatabaseBooter
             (index, move_name) = move
             moves.push({
               pokemon_no: pokemon["no"],
-              type: type,
-              name: move_name
+              move_type: type,
+              move_name: move_name
             })
           end
         end
