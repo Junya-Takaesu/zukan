@@ -2,18 +2,28 @@
   <% @pokemons.each do |pokemon| %>
     <a href="#" class="card">
       <div class="overlay">
-        <span>ゲットする</span>
+        <span>しらべる</span>
       </div>
-      <img class="image" loading="lazy" src="images/<%= "#{pokemon["pokemon_no"].rjust(3, "0")}.png" %>">
+      <img class="image" loading="lazy" src="images/<%= "#{pokemon["pokemon_no"].to_s.rjust(3, "0")}.png" %>">
       <div class="content">
         <div class="name"><%= pokemon["name"] %></div>
         <div class="attributes">
           <hr>
           <span class="attribute-header">のうりょく：</span>
-          <span class="attribute-value"><%= eval(pokemon["abilities"]).join "<br>" %></span>
+          <span class="attribute-value">
+            <% pokemon.abilities.each do |ability| %>
+              <%= ability.ability_name %>
+              <br>
+            <% end %>
+          </span>
           <hr>
           <span class="attribute-header">タイプ：</span>
-          <span class="attribute-value"><%= eval(pokemon["types"]).join "<br>" %></span>
+          <span class="attribute-value">
+            <% pokemon.types.each do |type| %>
+              <%= type.type_name %>
+              <br>
+            <% end %>
+          </span>
         </div>
       </div>
     </a>
