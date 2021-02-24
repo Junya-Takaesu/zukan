@@ -13,6 +13,10 @@ unless ENV["PORT"].nil?
   set :port, ENV["PORT"]
 end
 
+unless ENV['DATABASE_URL'].nil?
+  ActiveRecord::Base.establish_connection(ENV['DATABASE_URL'] || 'postgres://localhost/mydb')
+end
+
 db_booter = DatabaseBooter.new
 if Pokemon.all.count == 0 && Ability.all.count == 0 && Type.all.count == 0 && Move.all.count == 0
   db_booter.migrate
