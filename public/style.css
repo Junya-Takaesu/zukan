@@ -213,15 +213,24 @@ footer {
 }
 footer .button {
   color: #fff;
-  font-size: 1.5rem;
+  font-size: 0.9rem;
   font-weight: 700;
   letter-spacing: 2px;
   text-shadow: 0 0 2px #003366, 0 0 2px #003366, 0 0 2px #003366, 0 0 2px #003366, 0 0 2px #003366, 0 0 2px #003366, 0 0 2px #003366;
   width: 100%;
   margin-left: 0.5rem;
   margin-right: 0.5rem;
-  line-height: 100%;
   padding-top: 1rem;
+  display: flex;
+  justify-content: center;
+}
+footer .button img {
+  height: auto;
+  align-self: start;
+  margin-right: 1rem;
+}
+footer .button div {
+  padding-top: 0.4rem;
 }
 footer .button.quiz-button {
   background-color: #c8ffcb;
