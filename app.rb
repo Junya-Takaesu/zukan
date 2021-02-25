@@ -25,6 +25,7 @@ end
 set :static_cache_control, [:public, :max_age => 31536000]
 
 get "/" do
+  @page_title = "ポケモンずかん"
   # @pokemons = [Pokemon.first]
   # @pokemons = Pokemon.all
   @pokemons = Pokemon.take(10)
@@ -32,6 +33,7 @@ get "/" do
 end
 
 get "/quiz" do
+  @page_title = "クイズ"
   erb :quiz
 end
 
