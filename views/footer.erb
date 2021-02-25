@@ -1,0 +1,17 @@
+<footer>
+  <% if request.path_info == "/" %>
+    <a class="button quiz-button" href="quiz">
+      <img src="icons/gamepad.svg" id="quiz-icon" alt="">
+      <div>クイズ</div>
+    </a>
+    <a class="button collection-button" href="my_pokemon">
+      <img src="icons/book.svg" id="collection-icon" alt="">
+      <div>てもちポケモン</div>
+    </a>
+  <% else %>
+    <a class="button collection-button" href="/">
+      <img src="icons/return.svg" id="collection-icon" alt="">
+      <div>トップにもどる</div>
+    </a>
+  <% end %>
+</footer>

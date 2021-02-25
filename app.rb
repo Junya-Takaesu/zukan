@@ -1,20 +1,21 @@
 require "sinatra"
+require 'sinatra/cookies'
 require_relative "models/pokemon"
 require_relative "models/ability"
 require_relative "models/type"
 require_relative "models/move"
 require_relative "db/database_booter.rb"
 
+# heroku 環境と、ローカル環境で設定を変える
 if development?
   require "sinatra/reloader"
-end
-
-unless ENV["PORT"].nil?
-  set :port, ENV["PORT"]
-end
-
-unless ENV['DATABASE_URL'].nil?
-  ActiveRecord::Base.establish_connection(ENV['DATABASE_URL'] || 'postgres://localhost/mydb')
+else
+  unless ENV["PORT"].nil?
+    set :port, ENV["PORT"]
+  end
+  unless ENV['DATABASE_URL'].nil?
+    ActiveRecord::Base.establish_connection(ENV['DATABASE_URL'] || 'postgres://localhost/mydb')
+  end
 end
 
 db_booter = DatabaseBooter.new
@@ -23,6 +24,7 @@ if Pokemon.all.count == 0 && Ability.all.count == 0 && Type.all.count == 0 && Mo
 end
 
 set :static_cache_control, [:public, :max_age => 31536000]
+enable :sessions
 
 get "/" do
   @page_title = "ポケモンずかん"
@@ -32,11 +34,21 @@ get "/" do
   erb :index
 end
 
+get "/detail/:pokemon_no" do
+  erb :detail
+end
+
 get "/quiz" do
   @page_title = "クイズ"
+  # pokemon_no
+  # 選択肢の x 4
+  # 遊び方
+  # ポケモンの名前を当てるクイズ
+  # クイズは３問
+  # ３問すべて正解すると、３匹をマイポケモンにできる
   erb :quiz
 end
 
-get "/:pokemon_no" do
-  erb :detail
+get "/my_pokemon" do
+  erb :my_pokemon
 end
