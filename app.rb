@@ -40,12 +40,6 @@ end
 
 get "/quiz" do
   @page_title = "クイズ"
-  # pokemon_no
-  # 選択肢の x 4
-  # 遊び方
-  # ポケモンの名前を当てるクイズ
-  # クイズは３問
-  # ３問すべて正解すると、３匹をマイポケモンにできる
   erb :quiz
 end
 

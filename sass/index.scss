@@ -321,11 +321,9 @@ footer {
   position: relative;
 
   grid-template-columns: 1fr;
-  grid-template-rows: auto auto;
+  grid-template-rows: 60vh auto;
 
   justify-items: center;
-
-  height: 100%;
 
   .image {
     max-height: 16rem;
@@ -338,10 +336,9 @@ footer {
     grid-row: 2 / 3;
 
     display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: repeat(4, 1fr);
-    align-self: end;
-    margin-bottom: 30%;
+    grid-template-rows: repeat(4, auto);
+
+    margin-top: 3vh;
 
     background: linear-gradient(to bottom right, rgba(0,0,0,0.8), rgba(0,0,0,0.5));
 
@@ -350,7 +347,7 @@ footer {
 
     font-family: DotGothic16;
     .option {
-      padding: 1.2rem 0 1.2rem 3rem;
+      padding: 1.2vh 0 1.2vh 3vh;
       color: white;
       letter-spacing: 2px;
       &:active {
@@ -361,6 +358,9 @@ footer {
   }
 }
 
+.bread-crumbs {
+  color: rgb(27, 26, 26);
+}
 
 #result-modal {
   color: #000;

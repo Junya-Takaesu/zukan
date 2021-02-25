@@ -1,6 +1,6 @@
 (() => {
   serverQuizJson = {
-    "quiz_pokemons": [
+    "pokemons": [
         [
           {pokemon_no: 12, name: "バタフリー", isAnswer: true},
           {pokemon_no: 13, name: "ビードル", isAnswer: false},
@@ -20,16 +20,20 @@
           {pokemon_no: 486, name: "レジギガス", isAnswer: true},
         ],
     ],
-    "quiz_status": [
+    "status": [
       "yet", "yet", "yet"
     ]
   }
 
   const quizSection = document.querySelector(".quiz");
   const resultModal = document.createElement("form");
-  let answerPokemonObj = {};
-  let optionsArray = [];
-  let quizJson = {};
+  let answerPokemonObj;
+  let optionsArray;
+  let quizJson;
+  let quizResult;
+  let currentQuizIndex;
+  let currentQuizObj;
+  let imageSrc;
 
   const storageAvailable = (type) => {
     try {
@@ -61,6 +65,38 @@
     localStorage.setItem("quizJson", JSON.stringify(serverQuizJson));
   }
 
+  const getLocalStorage = () => {
+    if (!localStorage.getItem("quizJson")) {
+      populateStorage();
+    }
+
+    quizJson = JSON.parse(localStorage.getItem("quizJson"));
+    [answerPokemonObj, optionsArray] = getCurrentQuiz();
+  }
+
+  const setBreadCrumbs = (statuses, denominator) => {
+    const breadCrumbsDiv = document.createElement("div");
+    const headerTag = document.querySelector("div");
+    headerTag.innerHTML = "";
+    let yetCount = countYet(statuses);
+    breadCrumbsDiv.classList.add("bread-crumbs");
+    breadCrumbsDiv.innerText = `だい ${(denominator - yetCount)+1} もんめ`;
+
+    if (0 < yetCount) {
+      headerTag.append(breadCrumbsDiv);
+    }
+  }
+
+  const countYet = (status) => {
+    let count = 0;
+    status.forEach((element) =>{
+      if (element == "yet") {
+        count++;
+      }
+    });
+    return count;
+  }
+
   const setImage = (src) => {
     const img = document.createElement("img");
     img.classList.add("image");
@@ -72,6 +108,7 @@
   const setOptions = (options) => {
     const optionsDiv = document.createElement("div");
     optionsDiv.classList.add("options");
+
     options.forEach((value) => {
       const optionAnchor = document.createElement("a");
       optionAnchor.classList.add("option");
@@ -81,8 +118,17 @@
 
       optionAnchor.addEventListener("click", (event) => {
         event.preventDefault;
-        const userInput = event.target.innerText
-        updateModal((userInput == answerPokemonObj.name), userInput);
+        const userInput = event.target.innerText;
+        quizResult = (userInput == answerPokemonObj.name);
+        quizJson.status[currentQuizIndex] = quizResult;
+        localStorage.setItem("quizJson", JSON.stringify(quizJson));
+        updateModal(quizResult, userInput);
+
+        if (0 < countYet(quizJson.status)) {
+          render();
+        } else {
+          finishQuiz();
+        }
       })
 
       optionsDiv.append(optionAnchor);
@@ -93,7 +139,6 @@
 
   const setResultModal = () =>{
     resultModal.id = "result-modal";
-    resultModal.classList.add("modal");
     return resultModal;
   }
 
@@ -124,14 +169,15 @@
   }
 
   const generateQuizUI = (domArray) => {
+    quizSection.innerHTML = "";
     domArray.forEach((dom) => {
       quizSection.append(dom);
     });
   }
 
   const getCurrentQuiz = () => {
-    const currentQuizIndex = quizJson.quiz_status.findIndex((status, index) => status == "yet");
-    const currentQuizObj = quizJson.quiz_pokemons[currentQuizIndex];
+    currentQuizIndex = quizJson.status.findIndex((status, index) => status == "yet");
+    currentQuizObj = quizJson.pokemons[currentQuizIndex];
     let answerPokemonObj = currentQuizObj.find(pokemon => pokemon.isAnswer);
     const optionsArray = [];
     currentQuizObj.forEach((obj) => {
@@ -140,21 +186,32 @@
     return [answerPokemonObj, optionsArray]
   }
 
-  if (storageAvailable) {
-    if (!localStorage.getItem("quizJson")) {
-      populateStorage();
-    }
+  const initialSetup = () => {
+    render();
+  }
 
-    quizJson = JSON.parse(localStorage.getItem("quizJson"));
-    [answerPokemonObj, optionsArray] = getCurrentQuiz();
-
-    const imageSrc = `images/${String(answerPokemonObj.pokemon_no).padStart(3, "0")}.png`;
-
+  const render = () => {
+    getLocalStorage();
+    setBreadCrumbs(quizJson.status, quizJson.status.length);
+    imageSrc = `images/${String(answerPokemonObj.pokemon_no).padStart(3, "0")}.png`;
     generateQuizUI([
       setImage(imageSrc),
       setOptions(optionsArray),
       setResultModal()
     ]);
+  }
+
+  const finishQuiz = () => {
+    const summaryDiv = document.createElement("div");
+    summaryDiv.classList.add("summaryDiv");
+    summaryDiv.innerHTML = "<h1>おしまい</h1>";
+
+    document.querySelector("header").innerHTML = "";
+    generateQuizUI([summaryDiv]);
+  }
+
+  if (storageAvailable) {
+    initialSetup();
   } else {
     alert("ローカルストレージを有効にしてください。(※一部のブラウザではローカルストレージ使用不可");
   }
