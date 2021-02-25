@@ -28,9 +28,7 @@ enable :sessions
 
 get "/" do
   @page_title = "ポケモンずかん"
-  # @pokemons = [Pokemon.first]
-  # @pokemons = Pokemon.all
-  @pokemons = Pokemon.take(10)
+  @pokemons = Pokemon.order("random()").take(30);
   erb :index
 end
 
