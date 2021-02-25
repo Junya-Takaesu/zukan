@@ -414,3 +414,8 @@ footer .button.collection-button:active {
   background: linear-gradient(to bottom right, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.5));
   color: black;
 }
+
+#result-modal {
+  color: #000;
+  font-family: DotGothic16;
+}
