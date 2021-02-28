@@ -1,5 +1,7 @@
 require "sinatra"
-require 'sinatra/cookies'
+require "sinatra/cookies"
+require "sinatra/namespace"
+require "json"
 require_relative "models/pokemon"
 require_relative "models/ability"
 require_relative "models/type"
@@ -9,6 +11,7 @@ require_relative "db/database_booter.rb"
 # heroku 環境と、ローカル環境で設定を変える
 if development?
   require "sinatra/reloader"
+  require "pry"
 else
   unless ENV["PORT"].nil?
     set :port, ENV["PORT"]
@@ -28,7 +31,7 @@ enable :sessions
 
 get "/" do
   @page_title = "ポケモンずかん"
-  @pokemons = Pokemon.order("random()").take(30);
+  @pokemons = Pokemon.order("random()").take(30)
   erb :index
 end
 
@@ -43,4 +46,36 @@ end
 
 get "/my_pokemon" do
   erb :my_pokemon
+end
+
+namespace "/api/v1" do
+  before do
+    content_type "application/json"
+  end
+
+  helpers do
+    def shuffle(n)
+      (rand()*n).floor
+    end
+  end
+
+  get "/quiz_json" do
+    options_limit = 4
+    turn_limit = 3
+    quiz_hash = {
+      pokemons: [],
+      status: []
+    }
+
+    pokemon_options = Pokemon.order("random()").take(options_limit*turn_limit).as_json
+
+    pokemon_options.each_slice(options_limit) do |options|
+      options.map {|option| option["isAnswer"] = false}
+      options[shuffle(options_limit)]["isAnswer"] = true
+      quiz_hash[:pokemons].push options
+    end
+
+    turn_limit.times {quiz_hash[:status].push "yet"}
+    quiz_hash.to_json
+  end
 end
