@@ -1,219 +1,140 @@
 (() => {
-  serverQuizJson = {
-    "pokemons": [
-        [
-          {pokemon_no: 12, name: "バタフリー", isAnswer: true},
-          {pokemon_no: 13, name: "ビードル", isAnswer: false},
-          {pokemon_no: 14, name: "コクーン", isAnswer: false},
-          {pokemon_no: 98, name: "クラブ", isAnswer: false}
-        ],
-        [
-          {pokemon_no: 512, name: "ヤナッキー", isAnswer: false},
-          {pokemon_no: 40, name: "プクリン", isAnswer: true},
-          {pokemon_no: 1155, name: "パンプジン-3", isAnswer: false},
-          {pokemon_no: 222, name: "サニーゴ", isAnswer: false},
-        ],
-        [
-          {pokemon_no: 402, name: "コロトック", isAnswer: false},
-          {pokemon_no: 16, name: "ポッポ", isAnswer: false},
-          {pokemon_no: 542, name: "ハハコモリ", isAnswer: false},
-          {pokemon_no: 486, name: "レジギガス", isAnswer: true},
-        ],
-    ],
-    "status": [
-      "yet", "yet", "yet"
-    ]
+class Quiz {
+  constructor() {
+    this.pokemons = []
+    this.results = []
+    this.currentSet = []
   }
-
-  const quizSection = document.querySelector(".quiz");
-  const resultModal = document.createElement("form");
-  let answerPokemonObj;
-  let optionsArray;
-  let quizJson;
-  let quizResult;
-  let currentQuizIndex;
-  let currentQuizObj;
-  let imageSrc;
-
-  const storageAvailable = (type) => {
+  async fetch() {
     try {
-        const storage = window[type];
-        const x = '__storage_test__';
-        storage.setItem(x, x);
-        storage.removeItem(x);
-        return true;
-    }
-    catch(e) {
-      return e instanceof DOMException && (
-        // everything except Firefox
-        e.code === 22 ||
-        // Firefox
-        e.code === 1014 ||
-        // test name field too, because code might not be present
-        // everything except Firefox
-        e.name === 'QuotaExceededError' ||
-        // Firefox
-        e.name === 'NS_ERROR_DOM_QUOTA_REACHED') &&
-        // acknowledge QuotaExceededError only if there's something already stored
-        (storage && storage.length !== 0);
+      let response = await fetch("http://localhost:4567/api/v1/quiz_json");
+      let quizJson = await response.json();
+      const {pokemons, quiz_results} = quizJson;
+
+      this.pokemons = pokemons
+      this.results = quiz_results
+    } catch(error) {
+      console.log(error);
     }
   }
+  filterOptions(n = this.currentIndex()) {
+    this.currentSet = this.pokemons[n];
+    return this;
+  }
+  getQuizImageURL() {
+    const imgDir = "images";
+    let answerPokemonObj = this.currentSet.find(pokemon => pokemon.isAnswer);
+    return `${imgDir}/${String(answerPokemonObj.pokemon_no).padStart(3, "0")}.png`;
+  }
+  currentIndex(){
+    return this.results.findIndex(result => result === null);
+  }
+  names(){
+    return this.currentSet.map(pokemon => pokemon.name);
+  }
+}
 
-  const populateStorage = () => {
-    // サーバーから json を取得して、ローカルストレージに保存する
-
-    localStorage.setItem("quizJson", JSON.stringify(serverQuizJson));
+class UI {
+  constructor() {
+    this.quizSection = document.querySelector('.quiz');
+    this.breadCrumbsDiv = document.querySelector('.bread-crumbs');
+    this.updatableDOMs = [];
   }
 
-  const getLocalStorage = () => {
-    if (!localStorage.getItem("quizJson")) {
-      populateStorage();
-    }
-
-    quizJson = JSON.parse(localStorage.getItem("quizJson"));
-    [answerPokemonObj, optionsArray] = getCurrentQuiz();
+  setup() {
+    const loadingImgSrc = "icons/loading.svg"
+    const classNames = ["image"]
+    const initialOptions = ["loading...", "loading...", "loading...", "loading..."];
+    const anchorDisabled = true;
+    this.renderQuizImage(loadingImgSrc, classNames);
+    this.renderOptions(initialOptions, anchorDisabled)
+    this.renderResultModal();
+    this.update();
   }
 
-  const setBreadCrumbs = (statuses, denominator) => {
-    const breadCrumbsDiv = document.createElement("div");
-    const headerTag = document.querySelector("div");
-    headerTag.innerHTML = "";
-    let yetCount = countYet(statuses);
-    breadCrumbsDiv.classList.add("bread-crumbs");
-    breadCrumbsDiv.innerText = `だい ${(denominator - yetCount)+1} もんめ`;
-
-    if (0 < yetCount) {
-      headerTag.append(breadCrumbsDiv);
-    }
+  displayQuiz(quiz) {
+    this.quizSection.innerHTML = "";
+    const filteredOptions = quiz.filterOptions();
+    const quizImageSrc = filteredOptions.getQuizImageURL();
+    const classNames = ["image"];
+    const quizOptions = filteredOptions.names();
+    this.renderQuizImage(quizImageSrc, classNames);
+    this.renderOptions(quizOptions);
+    this.renderResultModal();
+    this.update();
   }
 
-  const countYet = (status) => {
-    let count = 0;
-    status.forEach((element) =>{
-      if (element == "yet") {
-        count++;
-      }
-    });
-    return count;
+  update() {
+    this.updatableDOMs.forEach(dom => {
+      this.quizSection.append(dom);
+    })
+    this.updatableDOMs = [];
   }
 
-  const setImage = (src) => {
-    const img = document.createElement("img");
-    img.classList.add("image");
-    img.src = src;
+  renderBreadCrumbs() {
 
-    return img;
   }
 
-  const setOptions = (options) => {
+  renderQuizImage(src, classNames = [], width = "", height = "") {
+    const quizImage = document.createElement("img");
+    classNames.forEach(className => {
+      quizImage.classList.add(className);
+    })
+    quizImage.src = src;
+    quizImage.setAttribute("width", width);
+    quizImage.setAttribute("height", width);
+
+    this.updatableDOMs.push(quizImage);
+  }
+
+  renderOptions(options, disabled = false) {
     const optionsDiv = document.createElement("div");
     optionsDiv.classList.add("options");
 
-    options.forEach((value) => {
-      const optionAnchor = document.createElement("a");
-      optionAnchor.classList.add("option");
-      optionAnchor.setAttribute("rel","modal:open");
-      optionAnchor.href = "#result-modal";
-      optionAnchor.innerText = value;
-
-      optionAnchor.addEventListener("click", (event) => {
-        event.preventDefault;
-        const userInput = event.target.innerText;
-        quizResult = (userInput == answerPokemonObj.name);
-        quizJson.status[currentQuizIndex] = quizResult;
-        localStorage.setItem("quizJson", JSON.stringify(quizJson));
-        updateModal(quizResult, userInput);
-
-        if (0 < countYet(quizJson.status)) {
-          render();
-        } else {
-          finishQuiz();
-        }
-      })
-
+    options.forEach((option) => {
+      const optionAnchor = this.createOptionAnchor(option);
+      if(disabled) {
+        optionAnchor.style.pointerEvents="none";
+        optionAnchor.style.cursor="default";
+      }
       optionsDiv.append(optionAnchor);
     });
 
-    return optionsDiv;
+    this.updatableDOMs.push(optionsDiv);
   }
 
-  const setResultModal = () =>{
+  createOptionAnchor(text) {
+    const optionAnchor = document.createElement("a");
+    optionAnchor.classList.add("option");
+    optionAnchor.setAttribute("rel","modal:open");
+    optionAnchor.href = "#result-modal";
+    optionAnchor.innerText = text;
+
+    return optionAnchor;
+  }
+
+  renderResultModal() {
+    const resultModal = document.createElement("form");
     resultModal.id = "result-modal";
-    return resultModal;
+
+    this.updatableDOMs.push(resultModal);
   }
+}
 
-  const updateModal = (result, userInput) => {
+class Storage {
 
-    let resultDiv = document.querySelector('.result');
-    if(resultDiv) {
-      resultDiv.remove();
-    }
+}
 
-    resultDiv = document.createElement("div");
-    const messageDiv = document.createElement("div");
-    const detailDiv = document.createElement("div");
-    resultDiv.classList.add("result");
+document.addEventListener("DOMContentLoaded", ()=>{
+  const ui = new UI();
+  const quiz = new Quiz();
 
-    if (result) {
-      messageDiv.innerText = "せいかい！"
-    } else {
-      messageDiv.innerText = "ざんねん..."
-    }
-    detailDiv.innerHTML = `
-      こたえは 「<strong>${answerPokemonObj.name}</strong>」<br>
-      あなたがえらんだのは「${userInput}」でした
-    `;
-    resultDiv.append(messageDiv);
-    resultDiv.append(detailDiv);
-    resultModal.append(resultDiv);
-  }
+  ui.setup()
 
-  const generateQuizUI = (domArray) => {
-    quizSection.innerHTML = "";
-    domArray.forEach((dom) => {
-      quizSection.append(dom);
-    });
-  }
-
-  const getCurrentQuiz = () => {
-    currentQuizIndex = quizJson.status.findIndex((status, index) => status == "yet");
-    currentQuizObj = quizJson.pokemons[currentQuizIndex];
-    let answerPokemonObj = currentQuizObj.find(pokemon => pokemon.isAnswer);
-    const optionsArray = [];
-    currentQuizObj.forEach((obj) => {
-      optionsArray.push(obj.name);
+  quiz.fetch()
+    .then(() => {
+      ui.displayQuiz(quiz);
     })
-    return [answerPokemonObj, optionsArray]
-  }
+});
 
-  const initialSetup = () => {
-    render();
-  }
-
-  const render = () => {
-    getLocalStorage();
-    setBreadCrumbs(quizJson.status, quizJson.status.length);
-    imageSrc = `images/${String(answerPokemonObj.pokemon_no).padStart(3, "0")}.png`;
-    generateQuizUI([
-      setImage(imageSrc),
-      setOptions(optionsArray),
-      setResultModal()
-    ]);
-  }
-
-  const finishQuiz = () => {
-    const summaryDiv = document.createElement("div");
-    summaryDiv.classList.add("summaryDiv");
-    summaryDiv.innerHTML = "<h1>おしまい</h1>";
-
-    localStorage.removeItem("quizJson");
-    document.querySelector("header").innerHTML = "";
-    generateQuizUI([summaryDiv]);
-  }
-
-  if (storageAvailable) {
-    initialSetup();
-  } else {
-    alert("ローカルストレージを有効にしてください。(※一部のブラウザではローカルストレージ使用不可");
-  }
 })()
