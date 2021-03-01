@@ -64,7 +64,7 @@ namespace "/api/v1" do
     turn_limit = 3
     quiz_hash = {
       pokemons: [],
-      status: []
+      quiz_results: []
     }
 
     pokemon_options = Pokemon.order("random()").take(options_limit*turn_limit).as_json
@@ -75,7 +75,7 @@ namespace "/api/v1" do
       quiz_hash[:pokemons].push options
     end
 
-    turn_limit.times {quiz_hash[:status].push "yet"}
+    turn_limit.times {quiz_hash[:quiz_results].push nil}
     quiz_hash.to_json
   end
 end
