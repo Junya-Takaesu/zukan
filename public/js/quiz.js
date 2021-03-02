@@ -49,7 +49,7 @@ class Quiz {
   }
 
   getLastResult(){
-    return this.results[this.currentIndex()]
+    return this.results[this.currentIndex()-1]
   }
 
   countCorrectAnswers() {
