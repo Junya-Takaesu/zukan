@@ -44,6 +44,16 @@ html {
   top: 42%;
   left: 42%;
 }
+#monster-ball-1 .monster-ball-button::before {
+  content: "";
+  background: linear-gradient(to right bottom, #f60002, rgba(246, 0, 2, 0.1));
+  border-radius: 50%;
+  position: absolute;
+  top: 30%;
+  left: 30%;
+  height: 1rem;
+  width: 1rem;
+}
 @media (min-width: 56em) {
   #monster-ball-1 {
     height: 15rem;
@@ -52,6 +62,10 @@ html {
   #monster-ball-1 .monster-ball-button {
     height: 3rem;
     width: 3rem;
+  }
+  #monster-ball-1 .monster-ball-button::before {
+    height: 1.3rem;
+    width: 1.3rem;
   }
 }
 @media (min-width: 67em) {
@@ -62,6 +76,10 @@ html {
   #monster-ball-1 .monster-ball-button {
     height: 4rem;
     width: 4rem;
+  }
+  #monster-ball-1 .monster-ball-button::before {
+    height: 1.7rem;
+    width: 1.7rem;
   }
 }
 
@@ -95,6 +113,16 @@ html {
   top: 42%;
   left: 42%;
 }
+#monster-ball-2 .monster-ball-button::before {
+  content: "";
+  background: linear-gradient(to right bottom, #f60002, rgba(246, 0, 2, 0.1));
+  border-radius: 50%;
+  position: absolute;
+  top: 30%;
+  left: 30%;
+  height: 1rem;
+  width: 1rem;
+}
 @media (min-width: 56em) {
   #monster-ball-2 {
     height: 15rem;
@@ -103,6 +131,10 @@ html {
   #monster-ball-2 .monster-ball-button {
     height: 3rem;
     width: 3rem;
+  }
+  #monster-ball-2 .monster-ball-button::before {
+    height: 1.3rem;
+    width: 1.3rem;
   }
 }
 @media (min-width: 67em) {
@@ -113,6 +145,10 @@ html {
   #monster-ball-2 .monster-ball-button {
     height: 4rem;
     width: 4rem;
+  }
+  #monster-ball-2 .monster-ball-button::before {
+    height: 1.7rem;
+    width: 1.7rem;
   }
 }
 
@@ -146,6 +182,16 @@ html {
   top: 42%;
   left: 42%;
 }
+#monster-ball-3 .monster-ball-button::before {
+  content: "";
+  background: linear-gradient(to right bottom, #f60002, rgba(246, 0, 2, 0.1));
+  border-radius: 50%;
+  position: absolute;
+  top: 30%;
+  left: 30%;
+  height: 1rem;
+  width: 1rem;
+}
 @media (min-width: 56em) {
   #monster-ball-3 {
     height: 15rem;
@@ -154,6 +200,10 @@ html {
   #monster-ball-3 .monster-ball-button {
     height: 3rem;
     width: 3rem;
+  }
+  #monster-ball-3 .monster-ball-button::before {
+    height: 1.3rem;
+    width: 1.3rem;
   }
 }
 @media (min-width: 67em) {
@@ -164,6 +214,10 @@ html {
   #monster-ball-3 .monster-ball-button {
     height: 4rem;
     width: 4rem;
+  }
+  #monster-ball-3 .monster-ball-button::before {
+    height: 1.7rem;
+    width: 1.7rem;
   }
 }
 
