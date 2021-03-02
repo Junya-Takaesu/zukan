@@ -341,6 +341,7 @@ footer {
     margin-top: 3vh;
 
     background: linear-gradient(to bottom right, rgba(0,0,0,0.8), rgba(0,0,0,0.5));
+    backdrop-filter: blur(10px);
 
     border-radius: 10px;
     width: 90%;
@@ -354,6 +355,26 @@ footer {
         background: linear-gradient(to bottom right, rgba(255,255,255,0.8), rgba(255,255,255,0.5));;
         color: black;
       }
+    }
+  }
+
+  .summary {
+    background: linear-gradient(to bottom right, rgba(0,0,0,0.8), rgba(0,0,0,0.5));
+    border-radius: 10px;
+    width: 90%;
+    margin-top: 30%;
+    font-family: DotGothic16;
+    letter-spacing: 2px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    .result-lost {
+      color: #5477e7;
+    }
+    .result-won {
+      color: rgb(97, 226, 97);
     }
   }
 }

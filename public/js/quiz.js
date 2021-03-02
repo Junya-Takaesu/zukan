@@ -51,6 +51,14 @@ class Quiz {
   getLastResult(){
     return this.results[this.currentIndex()]
   }
+
+  countCorrectAnswers() {
+    let count = 0;
+    this.results.forEach(result => {
+      count += result? 1 : 0;
+    });
+    return count;
+  }
 }
 
 class UI {
@@ -71,17 +79,60 @@ class UI {
 
   displayQuiz() {
     this.quizSection.innerHTML = "";
+
+    const currentTurn = this.quiz.currentIndex();
+    const IndexOutOfBounds = -1;
+    if (currentTurn === IndexOutOfBounds) {
+      this.renderSummary();
+      localStorage.removeItem("quizJson");
+      return;
+    }
+
     const quizImageSrc = this.quiz.nextSet().getQuizImageURL();
     const quizOptions = this.quiz.nextSet().getNames();
-    const currentTurn = this.quiz.currentIndex();
     const classNames = ["image"];
     this.renderBreadCrumbs(currentTurn);
     this.renderQuizImage(quizImageSrc, classNames);
     this.renderOptions(quizOptions);
   }
 
+  renderSummary() {
+    this.renderBreadCrumbs();
+
+    const correctAnswerCount = this.quiz.countCorrectAnswers();
+    const summaryDiv = document.createElement("div");
+    summaryDiv.classList.add("summary");
+
+    let icon;
+    let messageText;
+    let cssClass;
+
+    if (correctAnswerCount < 3) {
+      icon = "😥";
+      messageText = "ポケモンゲットならず・・・";
+      cssClass = "result-lost";
+    } else {
+      icon = "😎"
+      messageText = `${correctAnswerCount} 匹のポケモンをゲット！`;
+      cssClass = "result-won";
+    }
+
+    summaryDiv.innerHTML = `
+      <h1>おしまい</h1>
+      <p>けっか</p>
+      <p class="${cssClass}"> ${correctAnswerCount} / ${this.quiz.results.length} </p>
+    `
+
+    const messageParagrah = document.createElement("p");
+    messageParagrah.innerText = icon + messageText;
+
+    summaryDiv.append(messageParagrah);
+
+    this.quizSection.append(summaryDiv);
+  }
+
   renderBreadCrumbs(index) {
-    const message = `だい　${index+1}　もん`;
+    const message = index ? `だい　${index+1}　もん` : "";
     this.breadCrumbsDiv.innerText = message;
   }
 
