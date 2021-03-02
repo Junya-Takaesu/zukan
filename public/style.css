@@ -414,6 +414,7 @@ footer .button.collection-button:active {
 
 .bread-crumbs {
   color: #1b1a1a;
+  text-align: center;
 }
 
 .modal {

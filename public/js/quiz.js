@@ -73,14 +73,16 @@ class UI {
     this.quizSection.innerHTML = "";
     const quizImageSrc = this.quiz.nextSet().getQuizImageURL();
     const quizOptions = this.quiz.nextSet().getNames();
+    const currentTurn = this.quiz.currentIndex();
     const classNames = ["image"];
+    this.renderBreadCrumbs(currentTurn);
     this.renderQuizImage(quizImageSrc, classNames);
     this.renderOptions(quizOptions);
   }
 
-
-
-  
+  renderBreadCrumbs(index) {
+    const message = `だい　${index+1}　もん`;
+    this.breadCrumbsDiv.innerText = message;
   }
 
   renderQuizImage(src, classNames = [], width = "", height = "") {
