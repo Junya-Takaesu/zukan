@@ -11,7 +11,7 @@ class Quiz {
     this.answerPokemonObj = this.currentSet.find(pokemon => pokemon.isAnswer)
   }
 
-  static async fetch() {
+  static async fetchJson() {
     try {
       let response = await fetch("http://localhost:4567/api/v1/quiz_json");
       let json = await response.json();
@@ -23,7 +23,17 @@ class Quiz {
 
   getQuizImageURL() {
     const imgDir = "images";
-    return `${imgDir}/${String(this.answerPokemonObj.pokemon_no).padStart(3, "0")}.png`;
+    return `${imgDir}/${String(this.getAnswerPokemonObj().pokemon_no).padStart(3, "0")}.png`;
+  }
+
+  nextSet() {
+    this.currentSet = this.pokemons[this.currentIndex()];
+    return this;
+  }
+
+  getAnswerPokemonObj() {
+    this.answerPokemonObj = this.currentSet.find(pokemon => pokemon.isAnswer)
+    return this.answerPokemonObj
   }
 
   currentIndex(){
@@ -35,7 +45,7 @@ class Quiz {
   }
 
   evaluate(userPick){
-    this.results[this.currentIndex()] = (userPick === this.answerPokemonObj.name);
+    this.results[this.currentIndex()] = (userPick === this.getAnswerPokemonObj().name);
   }
 
   getLastResult(){
@@ -44,10 +54,11 @@ class Quiz {
 }
 
 class UI {
-  constructor() {
+  constructor(quiz) {
     this.quizSection = document.querySelector('.quiz');
     this.breadCrumbsDiv = document.querySelector('.bread-crumbs');
     this.updatableDOMs = [];
+    this.quiz = quiz;
   }
 
   setup() {
@@ -57,27 +68,21 @@ class UI {
     const anchorDisabled = true;
     this.renderQuizImage(loadingImgSrc, classNames);
     this.renderOptions(initialOptions, anchorDisabled)
-    this.renderResultModal();
-    this.update();
   }
 
-  displayQuiz(quiz) {
+  displayQuiz() {
     this.quizSection.innerHTML = "";
-    const quizImageSrc = quiz.getQuizImageURL();
-    const quizOptions = quiz.getNames();
+    const quizImageSrc = this.quiz.nextSet().getQuizImageURL();
+    const quizOptions = this.quiz.nextSet().getNames();
     const classNames = ["image"];
     this.renderQuizImage(quizImageSrc, classNames);
     this.renderOptions(quizOptions);
-    this.renderResultModal();
-    this.update();
-
-    this.initializeEventListeners(quiz);
   }
 
   update() {
     this.updatableDOMs.forEach(dom => {
       this.quizSection.append(dom);
-    })
+    });
     this.updatableDOMs = [];
   }
 
@@ -92,9 +97,9 @@ class UI {
     })
     quizImage.src = src;
     quizImage.setAttribute("width", width);
-    quizImage.setAttribute("height", width);
+    quizImage.setAttribute("height", height);
 
-    this.updatableDOMs.push(quizImage);
+    this.quizSection.append(quizImage)
   }
 
   renderOptions(options, disabled = false) {
@@ -110,79 +115,56 @@ class UI {
       optionsDiv.append(optionAnchor);
     });
 
-    this.updatableDOMs.push(optionsDiv);
+    this.quizSection.append(optionsDiv);
   }
 
   createOptionAnchor(text) {
     const optionAnchor = document.createElement("a");
     optionAnchor.classList.add("option");
-    optionAnchor.setAttribute("rel","modal:open");
-    optionAnchor.href = "#result-modal";
     optionAnchor.innerText = text;
+
+    optionAnchor.addEventListener("click", (event)=>{
+      event.preventDefault;
+      this.quiz.evaluate(event.target.innerText);
+      $(this.createResultDiv(event.target.innerText)).modal();
+
+      const quizJson = JSON.stringify(this.quiz.json);
+      localStorage.setItem("quizJson", quizJson);
+
+      const ui = new UI(this.quiz);
+      ui.displayQuiz();
+    });
 
     return optionAnchor;
   }
 
-  renderResultModal() {
-    const resultModal = document.createElement("form");
-    resultModal.id = "result-modal";
-
-    this.updatableDOMs.push(resultModal);
-  }
-
-  updateModalContent(quiz, userPick) {
-    const resultModal = document.querySelector("#result-modal");
-    const resultContainer = document.createElement("div");
+  createResultDiv(userPick){
+    const resultDiv = document.createElement("div");
     const messageDiv = document.createElement("div");
     const detailDiv = document.createElement("div");
 
-    resultModal.innerText = "";
-    messageDiv.innerText = quiz.getLastResult() ? "せいかい！" : "ざんねん...";
+    messageDiv.innerText = this.quiz.getLastResult() ? "せいかい！" : "ざんねん...";
     detailDiv.innerHTML = `
-      こたえは「<strong>${quiz.answerPokemonObj.name}</strong>」です。<br>
+      こたえは「<strong>${this.quiz.getAnswerPokemonObj().name}</strong>」です。<br>
       あなたは「<strong>${userPick}</strong>」をえらびました。
     `
-    resultContainer.append(messageDiv);
-    resultContainer.append(detailDiv);
-    resultContainer.classList.add("result-container")
-    resultModal.append(resultContainer);
-  }
-
-  initializeEventListeners(quiz) {
-    const optionAnchors = document.querySelectorAll(".option");
-    optionAnchors.forEach(anchor => {
-      anchor.addEventListener("click", (event)=>{
-        event.preventDefault;
-        quiz.evaluate(event.target.innerText);
-        this.updateModalContent(quiz, event.target.innerText);
-
-        const quizJson = JSON.stringify(quiz.json);
-        localStorage.setItem("quizJson", quizJson);
-
-        const ui = new UI();
-        ui.displayQuiz(new Quiz(quiz.json));
-      });
-    });
+    resultDiv.append(messageDiv);
+    resultDiv.append(detailDiv);
+    return resultDiv
   }
 }
 
-class Storage {
-
-}
-
-document.addEventListener("DOMContentLoaded", ()=>{
-  const ui = new UI();
-  ui.setup()
-
+document.addEventListener("DOMContentLoaded", async ()=>{
   if(!localStorage.getItem("quizJson")) {
-    Quiz.fetch()
-      .then((quizJson) => {
-        const quiz = new Quiz(quizJson);
-        ui.displayQuiz(quiz);
-      })
+    const quizJson = await Quiz.fetchJson();
+    const quiz = new Quiz(quizJson);
+    const ui = new UI(quiz);
+    ui.displayQuiz();
   } else {
-    const quiz = new Quiz(JSON.parse(localStorage.getItem("quizJson")));
-    ui.displayQuiz(quiz);
+    const quizJson = new Quiz(JSON.parse(localStorage.getItem("quizJson")));
+    const quiz = new Quiz(quizJson);
+    const ui = new UI(quiz);
+    ui.displayQuiz();
   }
 });
 

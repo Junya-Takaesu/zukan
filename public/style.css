@@ -416,7 +416,7 @@ footer .button.collection-button:active {
   color: #1b1a1a;
 }
 
-#result-modal {
+.modal {
   color: #000;
   font-family: DotGothic16;
 }
