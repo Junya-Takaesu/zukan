@@ -31,7 +31,7 @@ enable :sessions
 
 get "/" do
   @page_title = "ポケモンずかん"
-  @pokemons = Pokemon.order("random()").take(30)
+  @pokemons = Pokemon.where("pokemon_no < 809").order("random()").take(30)
   erb :index
 end
 
@@ -67,7 +67,7 @@ namespace "/api/v1" do
       quiz_results: []
     }
 
-    pokemon_options = Pokemon.order("random()").take(options_limit*turn_limit).as_json
+    pokemon_options = Pokemon.where("pokemon_no < 809").order("random()").take(options_limit*turn_limit).as_json
 
     pokemon_options.each_slice(options_limit) do |options|
       options.map {|option| option["isAnswer"] = false}
