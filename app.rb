@@ -29,9 +29,11 @@ end
 set :static_cache_control, [:public, :max_age => 31536000]
 enable :sessions
 
+POKEMON_NO_LIMIT = 809;
+
 get "/" do
   @page_title = "ポケモンずかん"
-  @pokemons = Pokemon.where("pokemon_no < 809").order("random()").take(30)
+  @pokemons = Pokemon.where("pokemon_no < #{POKEMON_NO_LIMIT}").order("random()").take(30)
   erb :index
 end
 
@@ -45,6 +47,8 @@ get "/quiz" do
 end
 
 get "/my_pokemon" do
+  @page_title = "てもちポケモン"
+  @pokemon_count = POKEMON_NO_LIMIT;
   erb :my_pokemon
 end
 

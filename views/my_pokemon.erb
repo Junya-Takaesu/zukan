@@ -1,1 +1,14 @@
+<section class="my-pokemon-stats">
+  <h2>これまでにゲットしたポケモンの数</h2>
+  <p>??? / <%= @pokemon_count %></p>
+</section>
+<section class="my-pokemons">
+  <% @pokemon_count.times do |index| %>
+    <%= next if index == 0 %>
+    <div class="pokemon">
+      <img src="icons/unknown.svg" alt="pokemon image">
+      <h2><%= index %></h2>
+    </div>
+  <% end %>
+</section>
 <%= erb :footer %>

@@ -246,9 +246,10 @@ header {
 }
 header .page-title {
   color: #ffffff;
-  font-size: 2.4rem;
   letter-spacing: 4px;
   text-shadow: -2px 2px 1px #003366, 2px -2px 1px #003366, -2px -2px 1px #003366, 0px -2px 1px #003366;
+  font-size: 2.4rem;
+  margin: 1.1rem 0;
 }
 
 footer {
@@ -495,4 +496,56 @@ footer .button.collection-button:active {
 .modal {
   color: #000;
   font-family: DotGothic16;
+}
+
+.my-pokemon-stats {
+  width: 90vw;
+  margin: 5rem auto 2rem;
+  text-align: center;
+  background: linear-gradient(to bottom right, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.5));
+  backdrop-filter: blur(10px);
+  border-radius: 10px;
+}
+.my-pokemon-stats * {
+  margin: 0;
+}
+.my-pokemon-stats h2 {
+  font-size: 1.2rem;
+}
+.my-pokemon-stats p {
+  font-size: 2rem;
+}
+
+.my-pokemons {
+  width: 100vw;
+  margin: 0 auto 15%;
+  max-width: 1170px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+}
+.my-pokemons .pokemon {
+  position: relative;
+  text-align: center;
+}
+.my-pokemons .pokemon img {
+  height: 90px;
+  width: auto;
+  background: linear-gradient(to right bottom, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.9));
+  backdrop-filter: blur(3px);
+  border-radius: 50%;
+  padding: 1rem;
+}
+.my-pokemons .pokemon h2 {
+  color: #ffffff;
+  letter-spacing: 4px;
+  text-shadow: -2px 2px 1px #003366, 2px -2px 1px #003366, -2px -2px 1px #003366, 0px -2px 1px #003366;
+  position: absolute;
+  bottom: 10%;
+  right: 20%;
+  margin: 0;
+}
+@media (min-width: 56em) {
+  .my-pokemons {
+    width: 70vw;
+  }
 }
