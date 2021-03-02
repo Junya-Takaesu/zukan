@@ -217,6 +217,7 @@ footer {
     position: relative;
 
     background: linear-gradient(to right bottom, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.9));
+    backdrop-filter: blur(3px);
     background-repeat: no-repeat;
     box-shadow: 0 0 10px rgba(0,0,0, 0.4);
     color: #1d1818;
@@ -360,6 +361,7 @@ footer {
 
   .summary {
     background: linear-gradient(to bottom right, rgba(0,0,0,0.8), rgba(0,0,0,0.5));
+    backdrop-filter: blur(10px);
     border-radius: 10px;
     width: 90%;
     margin-top: 30%;
