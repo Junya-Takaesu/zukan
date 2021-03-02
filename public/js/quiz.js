@@ -57,7 +57,6 @@ class UI {
   constructor(quiz) {
     this.quizSection = document.querySelector('.quiz');
     this.breadCrumbsDiv = document.querySelector('.bread-crumbs');
-    this.updatableDOMs = [];
     this.quiz = quiz;
   }
 
@@ -79,15 +78,9 @@ class UI {
     this.renderOptions(quizOptions);
   }
 
-  update() {
-    this.updatableDOMs.forEach(dom => {
-      this.quizSection.append(dom);
-    });
-    this.updatableDOMs = [];
-  }
 
-  renderBreadCrumbs() {
 
+  
   }
 
   renderQuizImage(src, classNames = [], width = "", height = "") {
