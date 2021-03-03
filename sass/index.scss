@@ -402,13 +402,14 @@ footer {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    .result-lost {
-      color: #5477e7;
-    }
-    .result-won {
-      color: rgb(97, 226, 97);
-    }
   }
+}
+
+#result-lost {
+  color: #5477e7;
+}
+#result-won {
+  color: rgb(97, 226, 97);
 }
 
 .bread-crumbs {

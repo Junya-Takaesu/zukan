@@ -105,22 +105,22 @@ class UI {
 
     let icon;
     let messageText;
-    let cssClass;
+    let cssId;
 
     if (correctAnswerCount < 3) {
       icon = "😥";
       messageText = "ポケモンゲットならず・・・";
-      cssClass = "result-lost";
+      cssId = "result-lost";
     } else {
       icon = "😎"
       messageText = `${correctAnswerCount} 匹のポケモンをゲット！`;
-      cssClass = "result-won";
+      cssId = "result-won";
     }
 
     summaryDiv.innerHTML = `
       <h1>おしまい</h1>
       <p>けっか</p>
-      <p class="${cssClass}"> ${correctAnswerCount} / ${this.quiz.results.length} </p>
+      <p id="${cssId}"> ${correctAnswerCount} / ${this.quiz.results.length} </p>
     `
 
     const messageParagrah = document.createElement("p");

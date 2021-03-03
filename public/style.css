@@ -481,10 +481,12 @@ footer .button.collection-button:active {
   align-items: center;
   flex-direction: column;
 }
-.quiz .summary .result-lost {
+
+#result-lost {
   color: #5477e7;
 }
-.quiz .summary .result-won {
+
+#result-won {
   color: #61e261;
 }
 
@@ -496,6 +498,7 @@ footer .button.collection-button:active {
 .modal {
   color: #000;
   font-family: DotGothic16;
+  letter-spacing: 1px;
 }
 
 .my-pokemon-stats {
