@@ -61,8 +61,6 @@ end
 namespace "/api/v1" do
   before do
     content_type "application/json"
-    headers \
-      "Access-Control-Allow-Origin" => "http://localhost:4567"
   end
 
   helpers do
@@ -80,6 +78,8 @@ namespace "/api/v1" do
   end
 
   get "/quiz_json" do
+    headers \
+      "Access-Control-Allow-Origin" => "http://localhost:4567"
     options_limit = 4
     turn_limit = 3
     quiz_hash = {
@@ -100,6 +100,8 @@ namespace "/api/v1" do
   end
 
   put "/update_my_pokemons" do
+    headers \
+      "Access-Control-Allow-Origin" => "http://localhost:4567"
     session[:my_pokemons] = json_params["my_pokemons"] if json_params["my_pokemons"]
     status 204
   end
