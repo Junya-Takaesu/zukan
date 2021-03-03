@@ -61,19 +61,25 @@ end
 namespace "/api/v1" do
   before do
     content_type "application/json"
+    headers \
+      "Access-Control-Allow-Origin" => "http://localhost:4567"
   end
 
   helpers do
     def shuffle(n)
       (rand()*n).floor
     end
+
+    def json_params
+      begin
+        JSON.parse request.body.read
+      rescue
+        halt 400, { message: "Invalid JSON" }.to_json
+      end
+    end
   end
 
   get "/quiz_json" do
-
-    headers \
-      "Access-Control-Allow-Origin" => "http://localhost:4567"
-
     options_limit = 4
     turn_limit = 3
     quiz_hash = {
@@ -91,5 +97,10 @@ namespace "/api/v1" do
 
     turn_limit.times {quiz_hash[:quiz_results].push nil}
     quiz_hash.to_json
+  end
+
+  put "/update_my_pokemons" do
+    session[:my_pokemons] = json_params["my_pokemons"] if json_params["my_pokemons"]
+    status 204
   end
 end
