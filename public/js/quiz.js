@@ -186,16 +186,23 @@ class UI {
 
   createResultDiv(userPick){
     const resultDiv = document.createElement("div");
-    const messageDiv = document.createElement("div");
-    const detailDiv = document.createElement("div");
+    const messageHeader = document.createElement("h2");
+    const detailParagraph = document.createElement("p");
 
-    messageDiv.innerText = this.quiz.getLastResult() ? "せいかい！" : "ざんねん...";
-    detailDiv.innerHTML = `
+    if(this.quiz.getLastResult()) {
+      messageHeader.innerText = "せいかい！";
+      messageHeader.id = "result-won";
+    } else {
+      messageHeader.innerText = "ざんねん...";
+      messageHeader.id = "result-lost";
+    }
+
+    detailParagraph.innerHTML = `
       こたえは「<strong>${this.quiz.getAnswerPokemonObj().name}</strong>」です。<br>
       あなたは「<strong>${userPick}</strong>」をえらびました。
     `
-    resultDiv.append(messageDiv);
-    resultDiv.append(detailDiv);
+    resultDiv.append(messageHeader);
+    resultDiv.append(detailParagraph);
     return resultDiv
   }
 }
