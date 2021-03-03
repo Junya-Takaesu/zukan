@@ -13,7 +13,7 @@ class Quiz {
 
   static async fetchJson() {
     try {
-      let response = await fetch("http://localhost:4567/api/v1/quiz_json");
+      let response = await fetch("https://thawing-mountain-93514.herokuapp.com/api/v1/quiz_json");
       let json = await response.json();
       return json;
     } catch(error) {
