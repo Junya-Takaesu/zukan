@@ -48,7 +48,7 @@ end
 
 get "/my_pokemon" do
   @page_title = "てもちポケモン"
-  @pokemon_count = POKEMON_NO_LIMIT;
+  @pokemon_count = POKEMON_NO_LIMIT
   erb :my_pokemon
 end
 
