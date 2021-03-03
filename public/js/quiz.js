@@ -37,7 +37,9 @@ class Quiz {
   }
 
   currentIndex(){
-    return this.results.findIndex(result => result === null);
+    const index = this.results.findIndex(result => result === null);
+    const noIndex = -1;
+    return (index === noIndex ? this.results.length : index);
   }
 
   getNames(){
@@ -81,8 +83,7 @@ class UI {
     this.quizSection.innerHTML = "";
 
     const currentTurn = this.quiz.currentIndex();
-    const IndexOutOfBounds = -1;
-    if (currentTurn === IndexOutOfBounds) {
+    if (currentTurn === this.quiz.results.length) {
       this.renderSummary();
       localStorage.removeItem("quizJson");
       return;
