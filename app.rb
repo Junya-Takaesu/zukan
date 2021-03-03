@@ -31,6 +31,10 @@ enable :sessions
 
 POKEMON_NO_LIMIT = 809;
 
+before do
+  session[:my_pokemons] = [] unless session[:my_pokemons]
+end
+
 get "/" do
   @page_title = "ポケモンずかん"
   @pokemons = Pokemon.where("pokemon_no < #{POKEMON_NO_LIMIT}").order("random()").take(30)
@@ -49,6 +53,8 @@ end
 get "/my_pokemon" do
   @page_title = "てもちポケモン"
   @pokemon_count = POKEMON_NO_LIMIT
+  @my_pokemons = session[:my_pokemons]
+  @my_pokemon_count = @my_pokemons.size
   erb :my_pokemon
 end
 
