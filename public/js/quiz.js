@@ -201,6 +201,10 @@ class UI {
 }
 
 document.addEventListener("DOMContentLoaded", async ()=>{
+
+  const ui = new UI();
+  ui.setup();
+
   if(!localStorage.getItem("quizJson")) {
     const quizJson = await Quiz.fetchJson();
     const quiz = new Quiz(quizJson);
