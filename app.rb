@@ -64,6 +64,10 @@ namespace "/api/v1" do
   end
 
   get "/quiz_json" do
+
+    headers \
+      "Access-Control-Allow-Origin" => "http://localhost:4567"
+
     options_limit = 4
     turn_limit = 3
     quiz_hash = {
