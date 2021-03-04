@@ -104,9 +104,9 @@ class UI {
 
     const quizImageSrc = this.quiz.nextSet().getQuizImageURL();
     const quizOptions = this.quiz.nextSet().getNames();
-    const classNames = ["image"];
+    const dataSets = {"data-utterable-text": this.quiz.answerPokemonObj.name};
     this.renderBreadCrumbs(currentTurn);
-    this.renderQuizImage(quizImageSrc, classNames);
+    this.renderQuizImage(quizImageSrc, classNames, dataSets);
     this.renderOptions(quizOptions);
   }
 
@@ -153,7 +153,7 @@ class UI {
     this.breadCrumbsDiv.innerText = message;
   }
 
-  renderQuizImage(src, classNames = [], width = "", height = "") {
+  renderQuizImage(src, classNames = [], dataSet = {}, width = "", height = "") {
     const quizImage = document.createElement("img");
     classNames.forEach(className => {
       quizImage.classList.add(className);
@@ -161,6 +161,10 @@ class UI {
     quizImage.src = src;
     quizImage.setAttribute("width", width);
     quizImage.setAttribute("height", height);
+
+    for (let key in dataSet) {
+      quizImage.setAttribute(key, dataSet[key]);
+    }
 
     this.quizSection.append(quizImage)
   }
