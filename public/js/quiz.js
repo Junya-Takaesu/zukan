@@ -146,7 +146,10 @@ class UI {
   }
 
   renderBreadCrumbs(index) {
-    const message = index ? `だい　${index+1}　もん` : "";
+    if (!index) {
+      index = 0;
+    }
+    const message = `だい　${index+1}　もん`;
     this.breadCrumbsDiv.innerText = message;
   }
 
