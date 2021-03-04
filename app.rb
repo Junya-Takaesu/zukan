@@ -53,8 +53,6 @@ end
 get "/my_pokemon" do
   @page_title = "てもちポケモン"
   @pokemon_count = POKEMON_NO_LIMIT
-  @my_pokemons = session[:my_pokemons]
-  @my_pokemon_count = @my_pokemons.size
   erb :my_pokemon
 end
 
@@ -97,15 +95,5 @@ namespace "/api/v1" do
 
     turn_limit.times {quiz_hash[:quiz_results].push nil}
     quiz_hash.to_json
-  end
-
-  put "/update_my_pokemons" do
-    headers ({
-      "Access-Control-Allow-Origin" => "http://localhost:4567",
-      "Acces-Control-Allow-Methods" => "PUT"
-    })
-
-    session[:my_pokemons] = json_params["my_pokemons"] if json_params["my_pokemons"]
-    status 204
   end
 end
