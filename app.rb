@@ -100,8 +100,11 @@ namespace "/api/v1" do
   end
 
   put "/update_my_pokemons" do
-    headers \
-      "Access-Control-Allow-Origin" => "http://localhost:4567"
+    headers ({
+      "Access-Control-Allow-Origin" => "http://localhost:4567",
+      "Acces-Control-Allow-Methods" => "PUT"
+    })
+
     session[:my_pokemons] = json_params["my_pokemons"] if json_params["my_pokemons"]
     status 204
   end
