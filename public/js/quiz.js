@@ -9,6 +9,7 @@ class Quiz {
     this.results = quiz_results;
     this.currentSet = this.pokemons[this.currentIndex()];
     this.answerPokemonObj = this.currentSet.find(pokemon => pokemon.isAnswer)
+    this.myPokemons = [];
   }
 
   static async fetchJson() {
@@ -48,6 +49,7 @@ class Quiz {
 
   evaluate(userPick){
     this.results[this.currentIndex()] = (userPick === this.getAnswerPokemonObj().name);
+    this.myPokemons.push(this.getAnswerPokemonObj().pokemon_no);
   }
 
   getLastResult(){
@@ -60,6 +62,10 @@ class Quiz {
       count += result? 1 : 0;
     });
     return count;
+  }
+
+  isPerfect() {
+    return this.countCorrectAnswers() === this.results.length
   }
 }
 
@@ -86,6 +92,13 @@ class UI {
     if (currentTurn === this.quiz.results.length) {
       this.renderSummary();
       localStorage.removeItem("quizJson");
+      if(this.quiz.isPerfect()) {
+        let myPokemons = JSON.parse(localStorage.getItem("myPokemons"));
+        if (myPokemons) {
+          this.quiz.myPokemons = this.quiz.myPokemons.concat(myPokemons);
+        }
+        localStorage.setItem("myPokemons", JSON.stringify(this.quiz.myPokemons));
+      }
       return;
     }
 
