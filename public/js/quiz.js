@@ -104,6 +104,7 @@ class UI {
 
     const quizImageSrc = this.quiz.nextSet().getQuizImageURL();
     const quizOptions = this.quiz.nextSet().getNames();
+    const classNames = ["image", "utterable"];
     const dataSets = {"data-utterable-text": this.quiz.answerPokemonObj.name};
     this.renderBreadCrumbs(currentTurn);
     this.renderQuizImage(quizImageSrc, classNames, dataSets);

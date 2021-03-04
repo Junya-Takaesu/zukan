@@ -6,7 +6,7 @@
       </div>
       <img class="image" loading="lazy" src="images/<%= "#{pokemon["pokemon_no"].to_s.rjust(3, "0")}.png" %>">
       <div class="content">
-        <div class="name"><%= pokemon["name"] %></div>
+        <div class="name utterable" data-utterable-text="<%= pokemon["name"] %>"><%= pokemon["name"] %></div>
         <div class="attributes">
           <hr>
           <span class="attribute-header">のうりょく：</span>
@@ -29,4 +29,5 @@
     </div>
   <% end %>
 </section>
+<script src="js/utterance.js"></script>
 <%= erb :footer %>
