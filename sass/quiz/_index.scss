@@ -1,0 +1,82 @@
+.quiz {
+  display: grid;
+  position: relative;
+
+  grid-template-columns: 1fr;
+  grid-template-rows: 60vh auto;
+
+  justify-items: center;
+
+  .image-container {
+    grid-row: 1 / 2;
+    margin-top: 27%;
+    align-self: center;
+    position: relative;
+    .image {
+      max-height: 16rem;
+      max-width: 16rem;
+    }
+    .audio-indicator {
+      position: absolute;
+      top: -10%;
+      left: -10%;
+    }
+  }
+
+  .options {
+    grid-row: 2 / 3;
+
+    display: grid;
+    grid-template-rows: repeat(4, auto);
+
+    margin-top: 3vh;
+
+    @include glass-background-dark;
+
+    border-radius: 10px;
+    width: 90%;
+
+    font-family: DotGothic16;
+    .option {
+      padding: 1.2vh 0 1.2vh 3vh;
+      color: white;
+      letter-spacing: 2px;
+      &:active {
+        background: linear-gradient(to bottom right, rgba(255,255,255,0.8), rgba(255,255,255,0.5));;
+        color: black;
+      }
+    }
+  }
+
+  .summary {
+    @include glass-background-dark;
+    border-radius: 10px;
+    width: 90%;
+    margin-top: 30%;
+    font-family: DotGothic16;
+    letter-spacing: 2px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+}
+
+#result-lost {
+  color: #5477e7;
+}
+#result-won {
+  color: rgb(97, 226, 97);
+}
+
+.bread-crumbs {
+  color: rgb(27, 26, 26);
+  text-align: center;
+}
+
+.modal {
+  color: #000;
+  font-family: DotGothic16;
+  letter-spacing: 1px;
+}

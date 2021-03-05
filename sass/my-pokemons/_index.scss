@@ -1,0 +1,47 @@
+.my-pokemon-stats {
+  width: 90vw;
+  margin: 5rem auto 2rem;
+  text-align: center;
+  @include glass-background-dark();
+  border-radius: 10px;
+  * {
+    margin: 0;
+  }
+  h2 {
+    font-size: 1.2rem;
+  }
+  p {
+    font-size: 2rem;
+  }
+}
+
+.my-pokemons {
+  width: 100vw;
+  margin: 0 auto 15%;
+  max-width: 1170px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+
+  .pokemon {
+    position: relative;
+    text-align: center;
+    img {
+      height: 90px;
+      width: auto;
+      @include glass-background;
+      border-radius: 50%;
+      padding: 1rem;
+    }
+    h2 {
+      @include emphasized-font;
+      position: absolute;
+      bottom: 10%;
+      right: 20%;
+      margin: 0;
+    }
+  }
+
+  @media (min-width: $breakpoint-md) {
+    width: 70vw;
+  }
+}
