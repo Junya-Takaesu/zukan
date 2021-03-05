@@ -67,11 +67,11 @@ html {
     left: 42%;
     &::before {
       content: "";
-      background: linear-gradient(to right bottom, rgba(246, 0, 2, 1), rgba(246, 0, 2, 0.1));
+      background: linear-gradient(to right bottom, rgba(255, 183, 183, 1), rgba(255, 183, 183, 0.6));
       border-radius: 50%;
       position: absolute;
-      top: 30%;
-      left: 30%;
+      top: 25%;
+      left: 25%;
       height: 1rem;
       width: 1rem;
     }
@@ -85,6 +85,8 @@ html {
       &::before{
         height: 1.3rem;
         width: 1.3rem;
+        top: 30%;
+        left: 30%;
       }
     }
   }
@@ -105,8 +107,11 @@ html {
 #monster-ball-1 {
   @include monster-ball();
   top: 10%;
-  left: 67%;
+  left: 59%;
   transform: rotate(10deg);
+  @media (min-width: $breakpoint-md) {
+    left: 67%;
+  }
 }
 
 #monster-ball-2 {
