@@ -1,4 +1,4 @@
-const utter = (text) => {
+const utter = (text, onendCallback) => {
   const utterance = new SpeechSynthesisUtterance();
   utterance.text = text
   utterance.volume = 1;
@@ -6,6 +6,7 @@ const utter = (text) => {
   utterance.pitch = 1;
   utterance.lang = "ja-JP";
   window.speechSynthesis.speak(utterance);
+  utterance.onend = onendCallback
 }
 
 export {utter}

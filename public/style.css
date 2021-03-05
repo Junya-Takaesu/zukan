@@ -368,6 +368,12 @@ footer .button.collection-button:active {
     grid-template-rows: 190px 1fr;
   }
 }
+.cards .card .audio-indicator {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 1rem;
+}
 .cards .card .image {
   grid-column: 1/2;
   grid-row: 1/2;
