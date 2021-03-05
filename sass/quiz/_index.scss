@@ -17,6 +17,10 @@
       max-width: 16rem;
     }
     .audio-indicator {
+      @include glass-background;
+      padding: 0.5rem;
+      border-radius: 50%;
+      box-shadow: 0 0 3px black;
       position: absolute;
       top: -10%;
       left: -10%;
@@ -35,6 +39,7 @@
 
     border-radius: 10px;
     width: 90%;
+    box-shadow: 0 0 7px rgba(0,0,0, 0.8);
 
     font-family: DotGothic16;
     .option {
@@ -50,6 +55,7 @@
 
   .summary {
     @include glass-background-dark;
+    box-shadow: 0 0 7px rgba(0,0,0, 0.8);
     border-radius: 10px;
     width: 90%;
     margin-top: 30%;

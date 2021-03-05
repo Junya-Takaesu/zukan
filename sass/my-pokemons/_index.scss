@@ -3,6 +3,7 @@
   margin: 5rem auto 2rem;
   text-align: center;
   @include glass-background-dark();
+  box-shadow: 0 0 7px rgba(0,0,0, 0.8);
   border-radius: 10px;
   * {
     margin: 0;
@@ -29,6 +30,7 @@
       height: 90px;
       width: auto;
       @include glass-background;
+      box-shadow: 0 0 7px rgba(0,0,0, 0.8);
       border-radius: 50%;
       padding: 1rem;
     }
