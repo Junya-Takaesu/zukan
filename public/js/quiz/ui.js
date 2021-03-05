@@ -112,13 +112,14 @@ export class UI {
       const speakerOffImg = "icons/no-audio.svg";
       const containerElement = event.currentTarget;
       const audioIndicator = containerElement.querySelector(".audio-indicator");
+      const utterable = containerElement.querySelector(".utterable");
       const onendCallback = () => {
         const indicatorImgSrc = audioIndicator.getAttribute("src")
         const src = indicatorImgSrc == speakerOnImg ? speakerOffImg : speakerOnImg;
         audioIndicator.setAttribute("src", src);
       }
       audioIndicator.setAttribute("src", speakerOnImg);
-      utter(event.target.dataset.utterableText, onendCallback);
+      utter(utterable.dataset.utterableText, onendCallback);
     });
   }
 
