@@ -1,5 +1,6 @@
 import {Quiz} from "./quiz.js";
 import {UI} from "./ui.js";
+import {utter} from "../common/utter.js";
 
 document.addEventListener("DOMContentLoaded", async ()=>{
   const ui = new UI();

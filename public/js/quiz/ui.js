@@ -1,3 +1,5 @@
+import {utter} from "../common/utter.js";
+
 export class UI {
   constructor(quiz) {
     this.quizSection = document.querySelector('.quiz');
@@ -95,6 +97,10 @@ export class UI {
     for (let key in dataSet) {
       quizImage.setAttribute(key, dataSet[key]);
     }
+
+    quizImage.addEventListener("click", (event) => {
+      utter(event.target.dataset.utterableText);
+    });
 
     this.quizSection.append(quizImage)
   }
