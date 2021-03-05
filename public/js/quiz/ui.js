@@ -86,10 +86,15 @@ export class UI {
   }
 
   renderQuizImage(src, classNames = [], dataSet = {}, width = "", height = "") {
+    const imageContainer = document.createElement("div");
     const quizImage = document.createElement("img");
+
+    imageContainer.classList.add("image-container");
+
     classNames.forEach(className => {
       quizImage.classList.add(className);
     })
+
     quizImage.src = src;
     quizImage.setAttribute("width", width);
     quizImage.setAttribute("height", height);
@@ -98,11 +103,32 @@ export class UI {
       quizImage.setAttribute(key, dataSet[key]);
     }
 
-    quizImage.addEventListener("click", (event) => {
-      utter(event.target.dataset.utterableText);
-    });
+    imageContainer.append(quizImage);
+    imageContainer.append(this.createAudioIndicator());
+    this.quizSection.append(imageContainer);
 
-    this.quizSection.append(quizImage)
+    imageContainer.addEventListener("click", (event) => {
+      const speakerOnImg = "icons/audio.svg";
+      const speakerOffImg = "icons/no-audio.svg";
+      const containerElement = event.currentTarget;
+      const audioIndicator = containerElement.querySelector(".audio-indicator");
+      const onendCallback = () => {
+        const indicatorImgSrc = audioIndicator.getAttribute("src")
+        const src = indicatorImgSrc == speakerOnImg ? speakerOffImg : speakerOnImg;
+        audioIndicator.setAttribute("src", src);
+      }
+      audioIndicator.setAttribute("src", speakerOnImg);
+      utter(event.target.dataset.utterableText, onendCallback);
+    });
+  }
+
+  createAudioIndicator() {
+    const speakerOffImg = "icons/no-audio.svg";
+    const audioIndicator = document.createElement("img");
+
+    audioIndicator.classList.add("audio-indicator");
+    audioIndicator.setAttribute("src", speakerOffImg);
+    return audioIndicator;
   }
 
   renderOptions(options, disabled = false) {

@@ -459,11 +459,20 @@ footer .button.collection-button:active {
   grid-template-rows: 60vh auto;
   justify-items: center;
 }
-.quiz .image {
-  max-height: 16rem;
-  max-width: 16rem;
+.quiz .image-container {
+  grid-row: 1/2;
   margin-top: 27%;
   align-self: center;
+  position: relative;
+}
+.quiz .image-container .image {
+  max-height: 16rem;
+  max-width: 16rem;
+}
+.quiz .image-container .audio-indicator {
+  position: absolute;
+  top: -10%;
+  left: -10%;
 }
 .quiz .options {
   grid-row: 2/3;
