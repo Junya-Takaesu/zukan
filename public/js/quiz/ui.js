@@ -10,13 +10,14 @@ export class UI {
   setup() {
     const loadingImgSrc = "icons/loading.svg"
     const classNames = ["image"]
-    const dataSet = {};
+    const dataSets = {};
     const width = "192";
     const height = "192";
-    const initialOptions = ["loading...", "loading...", "loading...", "loading..."];
+    const alt = "ロード画像";
+    const initialOptions = ["ロード中...", "ロード中...", "ロード中...", "ロード中..."];
     const anchorDisabled = true;
 
-    this.renderQuizImage(loadingImgSrc, classNames, dataSet, width, height);
+    this.renderQuizImage(loadingImgSrc, classNames, dataSets, width, height, alt);
     this.renderOptions(initialOptions, anchorDisabled)
   }
 
@@ -41,8 +42,11 @@ export class UI {
     const quizOptions = this.quiz.nextSet().getNames();
     const classNames = ["image", "utterable"];
     const dataSets = {"data-utterable-text": this.quiz.answerPokemonObj.name};
+    const width = "192";
+    const height = "192";
+    const alt = `${this.quiz.answerPokemonObj.name}の画像`;
     this.renderBreadCrumbs(currentTurn);
-    this.renderQuizImage(quizImageSrc, classNames, dataSets);
+    this.renderQuizImage(quizImageSrc, classNames, dataSets, width, height, alt);
     this.renderOptions(quizOptions);
   }
 
@@ -89,7 +93,7 @@ export class UI {
     this.breadCrumbsDiv.innerText = message;
   }
 
-  renderQuizImage(src, classNames = [], dataSet = {}, width = "", height = "") {
+  renderQuizImage(src, classNames = [], dataSets = {}, width = "", height = "", alt = "") {
     const imageContainer = document.createElement("div");
     const quizImage = document.createElement("img");
 
@@ -102,9 +106,10 @@ export class UI {
     quizImage.src = src;
     quizImage.setAttribute("width", width);
     quizImage.setAttribute("height", height);
+    quizImage.setAttribute("alt", alt);
 
-    for (let key in dataSet) {
-      quizImage.setAttribute(key, dataSet[key]);
+    for (let key in dataSets) {
+      quizImage.setAttribute(key, dataSets[key]);
     }
 
     imageContainer.append(quizImage);
@@ -133,6 +138,7 @@ export class UI {
 
     audioIndicator.classList.add("audio-indicator");
     audioIndicator.setAttribute("src", speakerOffImg);
+    audioIndicator.setAttribute("alt", "音声表示");
     return audioIndicator;
   }
 
