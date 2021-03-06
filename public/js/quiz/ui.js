@@ -42,8 +42,8 @@ export class UI {
     const quizOptions = this.quiz.nextSet().getNames();
     const classNames = ["image", "utterable"];
     const dataSets = {"data-utterable-text": this.quiz.answerPokemonObj.name};
-    const width = "192";
-    const height = "192";
+    const width = "";
+    const height = "";
     const alt = `${this.quiz.answerPokemonObj.name}の画像`;
     this.renderBreadCrumbs(currentTurn);
     this.renderQuizImage(quizImageSrc, classNames, dataSets, width, height, alt);

@@ -1,6 +1,6 @@
 .quiz {
-  display: grid;
   position: relative;
+  display: grid;
 
   grid-template-columns: 1fr;
   grid-template-rows: 60vh auto;
@@ -23,7 +23,7 @@
       box-shadow: 0 0 3px black;
       position: absolute;
       top: -10%;
-      left: -10%;
+      left: 0;
     }
   }
 
@@ -68,6 +68,46 @@
     align-items: center;
     flex-direction: column;
   }
+
+  @media (min-width: $breakpoint-md) {
+    .image-container {
+      .image {
+        max-height: 24rem;
+        max-width: 24rem;
+      }
+    }
+  }
+
+  @media (min-width: $breakpoint-lg) {
+    display: grid;
+
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 300px 1fr auto;
+    .image-container {
+      grid-column: 1 / 2;
+      grid-row: 1 / 3;
+      .image {
+        max-height: 34rem;
+        max-width: 34rem;
+      }
+    }
+    .options {
+      grid-column: 2 / 3;
+      grid-row: 2 / 3;
+      font-size: 2rem;
+    }
+    .summary {
+      grid-column: 1 / 3;
+      align-self: center;
+      max-width: 900px;
+      h1 {
+        font-size: 4rem;
+      }
+      p {
+        font-size: 2rem;
+      }
+    }
+  }
 }
 
 #result-lost {
@@ -86,4 +126,12 @@
   color: #000;
   font-family: DotGothic16;
   letter-spacing: 1px;
+  @media (min-width: $breakpoint-lg) {
+    h2 {
+      font-size: 3rem;
+    }
+    p {
+      font-size: 2rem;
+    }
+  }
 }

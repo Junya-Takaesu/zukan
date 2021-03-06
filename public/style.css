@@ -546,8 +546,8 @@ aside #info section p .audio-indicator {
   }
 }
 .quiz {
-  display: grid;
   position: relative;
+  display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 60vh auto;
   justify-items: center;
@@ -570,7 +570,7 @@ aside #info section p .audio-indicator {
   box-shadow: 0 0 3px black;
   position: absolute;
   top: -10%;
-  left: -10%;
+  left: 0;
 }
 .quiz .options {
   grid-row: 2/3;
@@ -608,6 +608,43 @@ aside #info section p .audio-indicator {
   align-items: center;
   flex-direction: column;
 }
+@media (min-width: 56em) {
+  .quiz .image-container .image {
+    max-height: 24rem;
+    max-width: 24rem;
+  }
+}
+@media (min-width: 67em) {
+  .quiz {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 300px 1fr auto;
+  }
+  .quiz .image-container {
+    grid-column: 1/2;
+    grid-row: 1/3;
+  }
+  .quiz .image-container .image {
+    max-height: 34rem;
+    max-width: 34rem;
+  }
+  .quiz .options {
+    grid-column: 2/3;
+    grid-row: 2/3;
+    font-size: 2rem;
+  }
+  .quiz .summary {
+    grid-column: 1/3;
+    align-self: center;
+    max-width: 900px;
+  }
+  .quiz .summary h1 {
+    font-size: 4rem;
+  }
+  .quiz .summary p {
+    font-size: 2rem;
+  }
+}
 
 #result-lost {
   color: #5477e7;
@@ -626,6 +663,14 @@ aside #info section p .audio-indicator {
   color: #000;
   font-family: DotGothic16;
   letter-spacing: 1px;
+}
+@media (min-width: 67em) {
+  .modal h2 {
+    font-size: 3rem;
+  }
+  .modal p {
+    font-size: 2rem;
+  }
 }
 
 .my-pokemon-stats {
