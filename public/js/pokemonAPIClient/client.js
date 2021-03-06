@@ -8,6 +8,10 @@ export class PokemonAPIClient {
     return this.fetchJson(`${this.API_URL}quiz_json`);
   }
 
+  async fetchPokemons(nos) {
+    return this.fetchJson(`${this.API_URL}pokemons?nos=${nos}`);
+  }
+
   async fetchJson(url) {
     try {
       let response = await fetch(url);
