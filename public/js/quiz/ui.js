@@ -10,9 +10,13 @@ export class UI {
   setup() {
     const loadingImgSrc = "icons/loading.svg"
     const classNames = ["image"]
+    const dataSet = {};
+    const width = "192";
+    const height = "192";
     const initialOptions = ["loading...", "loading...", "loading...", "loading..."];
     const anchorDisabled = true;
-    this.renderQuizImage(loadingImgSrc, classNames);
+
+    this.renderQuizImage(loadingImgSrc, classNames, dataSet, width, height);
     this.renderOptions(initialOptions, anchorDisabled)
   }
 
