@@ -11,16 +11,6 @@ export class Quiz {
     this.myPokemons = [];
   }
 
-  static async fetchJson() {
-    try {
-      let response = await fetch("https://thawing-mountain-93514.herokuapp.com/api/v1/quiz_json");
-      let json = await response.json();
-      return json;
-    } catch(error) {
-      console.log(error);
-    }
-  }
-
   getQuizImageURL() {
     const imgDir = "images";
     return `${imgDir}/${String(this.getAnswerPokemonObj().pokemon_no).padStart(3, "0")}.png`;
