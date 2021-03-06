@@ -1,13 +1,13 @@
-<section class="cards">
+<main class="cards">
   <% @pokemons.each do |pokemon| %>
-    <div class="card">
-      <div class="overlay">
-        <span>しらべる</span>
-      </div>
-      <img src="icons/no-audio.svg" class="audio-indicator">
-      <img class="image" loading="lazy" src="images/<%= "#{pokemon["pokemon_no"].to_s.rjust(3, "0")}.png" %>">
-      <div class="content">
-        <div class="name utterable" data-utterable-text="<%= pokemon["name"] %>"><%= pokemon["name"] %></div>
+    <article class="card">
+      <button class="overlay">
+        <a>しらべる</a>
+      </button>
+      <img class="audio-indicator" src="icons/no-audio.svg" alt="audio indicator icon" width="24" height="24">
+      <img class="image" loading="lazy" src="images/<%= "#{pokemon["pokemon_no"].to_s.rjust(3, "0")}.png" %>" alt="<%= "#{pokemon["name"]} の画像" %>" width="150" height="150">
+      <section class="content">
+        <h2 class="name utterable" data-utterable-text="<%= pokemon["name"] %>"><%= pokemon["name"] %></h2>
         <div class="attributes">
           <hr>
           <span class="attribute-header">のうりょく：</span>
@@ -26,9 +26,9 @@
             <% end %>
           </span>
         </div>
-      </div>
-    </div>
+      </section>
+    </article>
   <% end %>
-</section>
+</main>
 <script type="module" src="js/home/index.js"></script>
 <%= erb :footer %>

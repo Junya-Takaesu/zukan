@@ -54,15 +54,8 @@
       grid-column: 1 / 2;
       grid-row: 1 / 2;
 
-      height: 150px;
-      width: 150px;
       background: no-repeat center center/cover;
       margin: 0 auto;
-
-      @media (min-width: $breakpoint-xlg) {
-        height: 200px;
-        width: 200px;
-      }
     }
 
     .name {
@@ -70,6 +63,7 @@
       font-size: 2rem;
       letter-spacing: 0.4rem;
       text-shadow: 1px 1px rgba(255,255,255,0.6);
+      margin: 0;
     }
 
     .attributes {
@@ -104,12 +98,14 @@
         opacity: 1;
       }
       .overlay {
-        display: grid;
+        display: flex;
         justify-content: center;
         align-items: center;
 
         position: absolute;
         top: 0; right: 0; bottom: 0; left: 0;
+        width: 100%;
+        border: none;
 
         border-radius: 5%;
         opacity: 0;
@@ -117,7 +113,7 @@
 
         transition: opacity 200ms ease-in-out;
 
-        span {
+        a {
           border: 2px solid #ffffff;
           padding: 1rem 3rem ;
           color: #ffffff;
@@ -126,7 +122,7 @@
           background: rgba(0,0,0,0.5);
         }
 
-        span:hover {
+        a:hover {
           background: rgba(255,255,255,0.5);
           color: rgba(255,255,255,0.5);
           text-shadow: 1px 1px #000;

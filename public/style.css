@@ -382,22 +382,15 @@ footer .button.collection-button:active {
 .cards .card .image {
   grid-column: 1/2;
   grid-row: 1/2;
-  height: 150px;
-  width: 150px;
   background: no-repeat center center/cover;
   margin: 0 auto;
-}
-@media (min-width: 87.5em) {
-  .cards .card .image {
-    height: 200px;
-    width: 200px;
-  }
 }
 .cards .card .name {
   padding-bottom: 1rem;
   font-size: 2rem;
   letter-spacing: 0.4rem;
   text-shadow: 1px 1px rgba(255, 255, 255, 0.6);
+  margin: 0;
 }
 .cards .card .attributes {
   display: grid;
@@ -430,7 +423,7 @@ footer .button.collection-button:active {
     opacity: 1;
   }
   .cards .card .overlay {
-    display: grid;
+    display: flex;
     justify-content: center;
     align-items: center;
     position: absolute;
@@ -438,19 +431,21 @@ footer .button.collection-button:active {
     right: 0;
     bottom: 0;
     left: 0;
+    width: 100%;
+    border: none;
     border-radius: 5%;
     opacity: 0;
     background: rgba(0, 0, 0, 0.1);
     transition: opacity 200ms ease-in-out;
   }
-  .cards .card .overlay span {
+  .cards .card .overlay a {
     border: 2px solid #ffffff;
     padding: 1rem 3rem;
     color: #ffffff;
     font-weight: 700;
     background: rgba(0, 0, 0, 0.5);
   }
-  .cards .card .overlay span:hover {
+  .cards .card .overlay a:hover {
     background: rgba(255, 255, 255, 0.5);
     color: rgba(255, 255, 255, 0.5);
     text-shadow: 1px 1px #000;
