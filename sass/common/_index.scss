@@ -29,20 +29,22 @@ header {
   }
 }
 
-footer {
-  display: flex;
-  justify-content: space-around;
-  text-align: center;
+nav {
   position: fixed;
   bottom: 0;
   left: 0;
   right: 0;
+  display: flex;
+  justify-content: space-around;
+  text-align: center;
   height: 4rem;
+  max-width: 1000px;
+  transform: translate(calc(50vw - 50%));
   padding-bottom: 0.9rem;
   padding-top: 0.9rem;
 
   background: linear-gradient(to bottom right, rgba(255,255,255,0.6), rgba(255,255,255,0.9));
-  border-radius: 5%;
+  border-radius: 10px;
 
   .button {
     font-family: DotGothic16;
@@ -92,8 +94,26 @@ footer {
       }
     }
   }
+
   @media (min-width: $breakpoint-lg) {
-    display: none;
+    min-width: 181px;
+  }
+
+  @media (min-width: $breakpoint-xlg) {
+    transform: none;
+    flex-direction: column;
+    top: 1vh;
+    left: 1vw;
+    right: 85vw;
+
+    padding: 2rem 1rem;
+    margin: 0;
+
+    box-shadow: 0 0 10px rgba(0,0,0, 0.4);
+    .button {
+      padding: 0.2rem 0;
+      margin: 0.5rem 0;
+    }
   }
 }
 

@@ -13,10 +13,7 @@
   <link rel=”icon” href=“favicon.ico”>
 </head>
 <body>
-  <header>
-    <h1 class="page-title"><%= @page_title %></h1>
-    <div class="bread-crumbs"></div>
-  </header>
+  <%= erb :header %>
   <div id="monster-ball-1">
     <div class="monster-ball-button"></div>
   </div>
@@ -27,5 +24,6 @@
     <div class="monster-ball-button"></div>
   </div>
   <%= yield %>
+  <%= erb :footer %>
 </body>
 </html>

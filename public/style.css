@@ -45,21 +45,23 @@ header .page-title {
   margin: 1.1rem 0;
 }
 
-footer {
-  display: flex;
-  justify-content: space-around;
-  text-align: center;
+nav {
   position: fixed;
   bottom: 0;
   left: 0;
   right: 0;
+  display: flex;
+  justify-content: space-around;
+  text-align: center;
   height: 4rem;
+  max-width: 1000px;
+  transform: translate(calc(50vw - 50%));
   padding-bottom: 0.9rem;
   padding-top: 0.9rem;
   background: linear-gradient(to bottom right, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.9));
-  border-radius: 5%;
+  border-radius: 10px;
 }
-footer .button {
+nav .button {
   font-family: DotGothic16;
   color: #000;
   font-size: 1.1rem;
@@ -73,35 +75,51 @@ footer .button {
   display: flex;
   justify-content: center;
 }
-footer .button img {
+nav .button img {
   height: auto;
   align-self: start;
   margin-right: 1rem;
 }
-footer .button div {
+nav .button div {
   padding-top: 0.4rem;
 }
-footer .button.quiz-button {
+nav .button.quiz-button {
   background-color: #c8ffcb;
   border-bottom: 6px solid #8fb891;
 }
-footer .button.quiz-button:active {
+nav .button.quiz-button:active {
   margin-top: 7px;
   background: #c8ffcb;
   border-bottom: 2px solid #8fb891;
 }
-footer .button.collection-button {
+nav .button.collection-button {
   background-color: #f7ed94;
   border-bottom: 6px solid #b3aa62;
 }
-footer .button.collection-button:active {
+nav .button.collection-button:active {
   margin-top: 7px;
   background: #f7ed94;
   border-bottom: 2px solid #b3aa62;
 }
 @media (min-width: 67em) {
-  footer {
-    display: none;
+  nav {
+    min-width: 181px;
+  }
+}
+@media (min-width: 87.5em) {
+  nav {
+    transform: none;
+    flex-direction: column;
+    top: 1vh;
+    left: 1vw;
+    right: 85vw;
+    padding: 2rem 1rem;
+    margin: 0;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+  }
+  nav .button {
+    padding: 0.2rem 0;
+    margin: 0.5rem 0;
   }
 }
 
