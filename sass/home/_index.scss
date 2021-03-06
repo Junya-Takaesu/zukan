@@ -1,1 +1,81 @@
 @import "../cards/";
+
+aside {
+  padding: 0 2rem;
+  max-width: 1000px;
+  margin: 20% auto 0;
+
+  #info {
+    text-align: center;
+    letter-spacing: 1px;
+    position: relative;
+    @include glass-background-dark;
+    box-shadow: 0 0 10px rgba(0,0,0, 0.4);
+    border-radius: 10px;
+    .info-icon {
+      display: inline-block;
+      width: 50px;
+      height: 50px;
+      line-height: 50px;
+      color: rgb(218, 7, 7);
+      @include glass-background;
+      border-radius: 50%;
+    }
+    section {
+      padding: 0 10px 10px;
+      h2 {
+        margin: 0;
+      }
+      h3 {
+        text-align: start;
+        margin-left: 5px;
+      }
+      p {
+        text-align: start;
+        font-size: 1.1rem;
+        padding: 0 20px;
+        line-height: 25px;
+        .audio-indicator {
+          @include audio-indicator-style($margin: 0);
+          margin-bottom: -5px;
+          width: 18px;
+          height: 18px;
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: $breakpoint-md) {
+  aside {
+    margin-top: 10%;
+    #info {
+      section {
+        padding: 0 4rem 10px;
+        p {
+          font-size: 1.25rem;
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: $breakpoint-lg) {
+  aside {
+    #info {
+      section {
+        padding: 0 8rem 10px;
+        img {
+          height: 35px;
+          width: auto;
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: $breakpoint-xlg) {
+  aside {
+    margin-top: 5%;
+  }
+}

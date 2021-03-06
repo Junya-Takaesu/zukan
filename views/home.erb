@@ -1,10 +1,33 @@
+<aside>
+  <article id="info">
+    <h2 class="info-icon">i</h2>
+    <section>
+      <h2>あそびかた</h2>
+      <h3>1. ポケモンのなまえをおぼえよう！</h3>
+      <p>
+        このページをスクロール⬆️⬇️して、いろいろなポケモンのなまえをみてね！<br>
+        カードをタップすると、なまえをよみあげるよ！<img class="audio-indicator" src="icons/no-audio.svg" alt="音声表示例"> → <img class="audio-indicator" src="icons/audio.svg" alt="音声表示例">
+      </p>
+      <h3>2. クイズにちょうせんしよう！</h3>
+      <p>
+        <img src="info/quiz.png" alt="" height="30"> ボタンをタップして、クイズができるよ！<br>
+        3もんせいかいすると、ポケモン3匹ゲットできるよ！<br>
+      </p>
+      <h3>3. てもちポケモンをみてみよう！</h3>
+      <p>
+        <img src="info/my-pokemon.png" alt="" height="30"> ボタンをタップして、これまでクイズでゲットしてきたポケモンがかくにんできるよ！<br>
+        ポケモンぜんしゅるいゲットをめざそう！
+      </p>
+    </section>
+  </article>
+</aside>
 <main class="cards">
   <% @pokemons.each do |pokemon| %>
     <article class="card">
       <button class="overlay">
         <a>しらべる</a>
       </button>
-      <img class="audio-indicator" src="icons/no-audio.svg" alt="audio indicator icon" width="24" height="24">
+      <img class="audio-indicator" src="icons/no-audio.svg" alt="音声表示" width="24" height="24">
       <img class="image" loading="lazy" src="images/<%= "#{pokemon["pokemon_no"].to_s.rjust(3, "0")}.png" %>" alt="<%= "#{pokemon["name"]} の画像" %>" width="150" height="150">
       <section class="content">
         <h2 class="name utterable" data-utterable-text="<%= pokemon["name"] %>"><%= pokemon["name"] %></h2>

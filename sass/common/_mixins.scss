@@ -83,3 +83,11 @@
     }
   }
 }
+
+@mixin audio-indicator-style($padding: 0.3rem, $margin: 0.5rem) {
+  @include glass-background;
+  padding: $padding;
+  margin: $margin;
+  border-radius: 50%;
+  box-shadow: 0 0 3px black;
+}

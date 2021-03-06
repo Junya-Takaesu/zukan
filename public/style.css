@@ -327,12 +327,11 @@ footer .button.collection-button:active {
   display: grid;
   gap: 2rem;
   max-width: 1000px;
-  margin: 20% auto 0;
+  margin: 0 auto;
   padding: 2rem 2rem 8rem;
 }
 @media (min-width: 41em) {
   .cards {
-    margin: 15% auto 0;
     grid-template-columns: repeat(2, 1fr);
     justify-content: center;
   }
@@ -345,7 +344,6 @@ footer .button.collection-button:active {
 @media (min-width: 67em) {
   .cards {
     grid-template-columns: repeat(4, 1fr);
-    margin-top: 5%;
   }
 }
 .cards .card {
@@ -452,6 +450,83 @@ footer .button.collection-button:active {
   }
 }
 
+aside {
+  padding: 0 2rem;
+  max-width: 1000px;
+  margin: 20% auto 0;
+}
+aside #info {
+  text-align: center;
+  letter-spacing: 1px;
+  position: relative;
+  background: linear-gradient(to bottom right, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.5));
+  backdrop-filter: blur(10px);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+  border-radius: 10px;
+}
+aside #info .info-icon {
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  line-height: 50px;
+  color: #da0707;
+  background: linear-gradient(to right bottom, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.9));
+  backdrop-filter: blur(3px);
+  border-radius: 50%;
+}
+aside #info section {
+  padding: 0 10px 10px;
+}
+aside #info section h2 {
+  margin: 0;
+}
+aside #info section h3 {
+  text-align: start;
+  margin-left: 5px;
+}
+aside #info section p {
+  text-align: start;
+  font-size: 1.1rem;
+  padding: 0 20px;
+  line-height: 25px;
+}
+aside #info section p .audio-indicator {
+  background: linear-gradient(to right bottom, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.9));
+  backdrop-filter: blur(3px);
+  padding: 0.3rem;
+  margin: 0;
+  border-radius: 50%;
+  box-shadow: 0 0 3px black;
+  margin-bottom: -5px;
+  width: 18px;
+  height: 18px;
+}
+
+@media (min-width: 56em) {
+  aside {
+    margin-top: 10%;
+  }
+  aside #info section {
+    padding: 0 4rem 10px;
+  }
+  aside #info section p {
+    font-size: 1.25rem;
+  }
+}
+@media (min-width: 67em) {
+  aside #info section {
+    padding: 0 8rem 10px;
+  }
+  aside #info section img {
+    height: 35px;
+    width: auto;
+  }
+}
+@media (min-width: 87.5em) {
+  aside {
+    margin-top: 5%;
+  }
+}
 .quiz {
   display: grid;
   position: relative;

@@ -3,11 +3,10 @@
   gap: 2rem;
 
   max-width: 1000px;
-  margin: 20% auto 0;
+  margin: 0 auto;
   padding: 2rem 2rem 8rem;
 
   @media (min-width: $breakpoint-sm) {
-    margin: 15% auto 0;
     grid-template-columns: repeat(2, 1fr);
     justify-content: center;
   }
@@ -16,7 +15,6 @@
   }
   @media (min-width: $breakpoint-lg) {
     grid-template-columns: repeat(4, 1fr);
-    margin-top: 5%;
   }
 
   .card {
@@ -40,11 +38,7 @@
     }
 
     .audio-indicator {
-      @include glass-background;
-      padding: 0.3rem;
-      margin: 0.5rem;
-      border-radius: 50%;
-      box-shadow: 0 0 3px black;
+      @include audio-indicator-style;
       position: absolute;
       top: 0;
       left: 0;
