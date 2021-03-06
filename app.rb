@@ -85,7 +85,7 @@ namespace "/api/v1" do
       quiz_results: []
     }
 
-    pokemon_options = Pokemon.where("pokemon_no < 809").order("random()").take(options_limit*turn_limit).as_json
+    pokemon_options = Pokemon.where("pokemon_no < ?", POKEMON_NO_LIMIT).order("random()").take(options_limit*turn_limit).as_json
 
     pokemon_options.each_slice(options_limit) do |options|
       options.map {|option| option["isAnswer"] = false}
@@ -95,5 +95,13 @@ namespace "/api/v1" do
 
     turn_limit.times {quiz_hash[:quiz_results].push nil}
     quiz_hash.to_json
+  end
+
+  get "/pokemons" do
+    headers \
+      "Access-Control-Allow-Origin" => "http://localhost:4567"
+    pokemon_nos = params["nos"].split("-")
+    @pokemons = Pokemon.where(pokemon_no: pokemon_nos)
+    @pokemons.to_json
   end
 end
