@@ -37,7 +37,7 @@ end
 
 get "/" do
   @page_title = "ポケモンずかん"
-  @pokemons = Pokemon.where("pokemon_no < #{POKEMON_NO_LIMIT}").order("random()").take(30)
+  @pokemons = Pokemon.where("pokemon_no < ?", POKEMON_NO_LIMIT).order("random()").take(30)
   erb :home
 end
 
