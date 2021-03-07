@@ -14,7 +14,7 @@ export class CustomModal {
     pokemonsJson.forEach(pokemon => {
       const stringifiedId = String(pokemon.pokemon_no).padStart(3, "0");
       const pokemonTile = document.getElementById(stringifiedId);
-      pokemonTile.addEventListener("click", (event)=> {
+      pokemonTile.addEventListener("click", ()=> {
         $(this.createCard(pokemon)).modal();
         $(".modal").on($.modal.BEFORE_CLOSE, function () {$(".modal").remove();});
       });
@@ -24,22 +24,24 @@ export class CustomModal {
   createCard(pokemon) {
     const pokemonName = pokemon.name;
     const pokemonImg = String(pokemon.pokemon_no).padStart(3, "0") + ".png";
-    const pokemonAbilities = "";
-    const pokemonTypes = "";
-    const pokemonMoves = "";
+    const pokemonAbilities = ""; //pokemon から取れるようにする
+    const pokemonTypes = ""; //pokemon から取れるようにする
+    const pokemonMoves = ""; //pokemon から取れるようにする
+    const containerArticle = document.createElement("article");
 
-    const article = document.createElement("article");
-    article.classList.add("card");
-
+    let toLeftDiv, toRightDiv;
     let excludeElements = [];
+
     for (let i in this.ARROW_TYPES) {
       excludeElements = excludeElements.concat([this.ARROW_TYPES[i].arrowId, this.ARROW_TYPES[i].captionId]);
     }
 
-    article.addEventListener("click", (event)=> {
+    containerArticle.classList.add("card");
+    containerArticle.addEventListener("click", (event)=> {
       if(excludeElements.includes(event.target.id)) {
         return;
       }
+
       const speakerOnImg = "icons/audio.svg";
       const speakerOffImg = "icons/no-audio.svg";
       const containerElement = event.currentTarget;
@@ -50,13 +52,13 @@ export class CustomModal {
         const src = indicatorImgSrc == speakerOnImg ? speakerOffImg : speakerOnImg;
 
         audioIndicator.setAttribute("src", src);
-
       }
+
       audioIndicator.setAttribute("src", speakerOnImg);
       utter(pokemonName, onendCallback);
     });
 
-    article.innerHTML = `
+    containerArticle.innerHTML = `
       <img class="audio-indicator" src="icons/no-audio.svg" alt="音声表示" width="24" height="24">
       <img class="image" loading="lazy" src="images/${pokemonImg}" alt="${pokemonName} の画像" width="150" height="150">
       <section class="content">
@@ -72,13 +74,11 @@ export class CustomModal {
       </section>
     `;
 
-    let toLeftDiv, toRightDiv;
     [toLeftDiv, toRightDiv] = this.createArrows();
+    containerArticle.append(toLeftDiv);
+    containerArticle.append(toRightDiv);
 
-    article.append(toLeftDiv);
-    article.append(toRightDiv);
-
-    return article;
+    return containerArticle;
   }
 
   createArrows() {
@@ -92,6 +92,19 @@ export class CustomModal {
     const captionTextRight = "技をみる";
     const toRightDiv = this.createArrowDiv(arrowTypeRight, captionTextRight);
     toRightDiv.id = "to-right";
+
+    toRightDiv.addEventListener("click", (event)=>{
+      if(event.currentTarget.id == "to-right") {
+        event.currentTarget.style.display = "none";
+        toLeftDiv.style.display = "block";
+      }
+    });
+    toLeftDiv.addEventListener("click", (event)=>{
+      if(event.currentTarget.id == "to-left") {
+        event.currentTarget.style.display = "none";
+        toRightDiv.style.display = "block";
+      }
+    });
 
     return [toLeftDiv, toRightDiv]
   }
