@@ -659,16 +659,16 @@ aside #info section p .audio-indicator {
   text-align: center;
 }
 
-.modal {
+.modal .result {
   color: #000;
   font-family: DotGothic16;
   letter-spacing: 1px;
 }
 @media (min-width: 67em) {
-  .modal h2 {
+  .modal .result h2 {
     font-size: 3rem;
   }
-  .modal p {
+  .modal .result p {
     font-size: 2rem;
   }
 }

@@ -123,15 +123,17 @@
 }
 
 .modal {
-  color: #000;
-  font-family: DotGothic16;
-  letter-spacing: 1px;
-  @media (min-width: $breakpoint-lg) {
-    h2 {
-      font-size: 3rem;
-    }
-    p {
-      font-size: 2rem;
+  .result {
+    color: #000;
+    font-family: DotGothic16;
+    letter-spacing: 1px;
+    @media (min-width: $breakpoint-lg) {
+      h2 {
+        font-size: 3rem;
+      }
+      p {
+        font-size: 2rem;
+      }
     }
   }
 }
