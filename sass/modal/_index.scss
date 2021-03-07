@@ -16,6 +16,8 @@
   }
 
   &.card {
+    $card-breakpoint-sm: 31em;
+
     @include card;
     position: relative;
     .tab-button-bar {
@@ -24,28 +26,52 @@
     #to-left-arrow {
       @include card-arrow;
       position: absolute;
-      top: 20%;
+      top: 40%;
       left: 0;
     }
     #to-right-arrow {
       @include card-arrow;
       position: absolute;
-      top: 20%;
+      top: 40%;
       right: 0;
     }
-    #to-left-caption {
-      position: absolute;
-      top: 80%;
-      left: 9%;
-      color: #867a7a;
-      text-shadow: 0px 1px #bdbdbd;
+    @media (min-width: $card-breakpoint-sm) {
+      #to-left-arrow {
+        left: 8%;
+      }
+      #to-right-arrow {
+        right: 8%;
+      }
     }
-    #to-right-caption {
-      position: absolute;
-      top: 80%;
-      right: 9%;
-      color: #867a7a;
-      text-shadow: 0px 1px #bdbdbd;
+    @media (min-width: $breakpoint-md) {
+      #to-left-arrow {
+        top: 30%;
+        left: 4%;
+      }
+      #to-right-arrow {
+        top: 30%;
+        right: 4%;
+      }
+    }
+    @media (min-width: $breakpoint-lg) {
+      #to-left-arrow {
+        top: 20%;
+        left: 2%;
+      }
+      #to-right-arrow {
+        top: 20%;
+        right: 2%;
+      }
+    }
+    @media (min-width: $breakpoint-xlg) {
+      #to-left-arrow {
+        top: 15%;
+        left: 2%;
+      }
+      #to-right-arrow {
+        top: 15%;
+        right: 2%;
+      }
     }
   }
 }

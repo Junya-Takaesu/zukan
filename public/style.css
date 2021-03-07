@@ -442,48 +442,108 @@ nav .button.collection-button:active {
   pointer-events: none;
 }
 .modal.card #to-left-arrow {
-  font-size: 20vh;
+  font-size: 7vh;
   cursor: pointer;
   font-weight: 100;
   color: #f7ed94;
-  text-shadow: 0 6px #b3aa62;
+  text-shadow: 0 4px #b3aa62;
   transition: all 0.1s;
   position: absolute;
-  top: 20%;
+  top: 40%;
   left: 0;
 }
 .modal.card #to-left-arrow:active {
   margin-top: 5px;
   text-shadow: 0 1px #b3aa62;
 }
+@media (min-width: 56em) {
+  .modal.card #to-left-arrow {
+    font-size: 12vh;
+    text-shadow: 0 6px #b3aa62;
+  }
+}
+@media (min-width: 67em) {
+  .modal.card #to-left-arrow {
+    font-size: 17vh;
+    text-shadow: 0 6px #b3aa62;
+  }
+}
+@media (min-width: 87.5em) {
+  .modal.card #to-left-arrow {
+    font-size: 18vh;
+    text-shadow: 0 6px #b3aa62;
+  }
+}
 .modal.card #to-right-arrow {
-  font-size: 20vh;
+  font-size: 7vh;
   cursor: pointer;
   font-weight: 100;
   color: #f7ed94;
-  text-shadow: 0 6px #b3aa62;
+  text-shadow: 0 4px #b3aa62;
   transition: all 0.1s;
   position: absolute;
-  top: 20%;
+  top: 40%;
   right: 0;
 }
 .modal.card #to-right-arrow:active {
   margin-top: 5px;
   text-shadow: 0 1px #b3aa62;
 }
-.modal.card #to-left-caption {
-  position: absolute;
-  top: 80%;
-  left: 9%;
-  color: #867a7a;
-  text-shadow: 0px 1px #bdbdbd;
+@media (min-width: 56em) {
+  .modal.card #to-right-arrow {
+    font-size: 12vh;
+    text-shadow: 0 6px #b3aa62;
+  }
 }
-.modal.card #to-right-caption {
-  position: absolute;
-  top: 80%;
-  right: 9%;
-  color: #867a7a;
-  text-shadow: 0px 1px #bdbdbd;
+@media (min-width: 67em) {
+  .modal.card #to-right-arrow {
+    font-size: 17vh;
+    text-shadow: 0 6px #b3aa62;
+  }
+}
+@media (min-width: 87.5em) {
+  .modal.card #to-right-arrow {
+    font-size: 18vh;
+    text-shadow: 0 6px #b3aa62;
+  }
+}
+@media (min-width: 31em) {
+  .modal.card #to-left-arrow {
+    left: 8%;
+  }
+  .modal.card #to-right-arrow {
+    right: 8%;
+  }
+}
+@media (min-width: 56em) {
+  .modal.card #to-left-arrow {
+    top: 30%;
+    left: 4%;
+  }
+  .modal.card #to-right-arrow {
+    top: 30%;
+    right: 4%;
+  }
+}
+@media (min-width: 67em) {
+  .modal.card #to-left-arrow {
+    top: 20%;
+    left: 2%;
+  }
+  .modal.card #to-right-arrow {
+    top: 20%;
+    right: 2%;
+  }
+}
+@media (min-width: 87.5em) {
+  .modal.card #to-left-arrow {
+    top: 15%;
+    left: 2%;
+  }
+  .modal.card #to-right-arrow {
+    top: 15%;
+    right: 2%;
+  }
 }
 
 .cards {

@@ -33,7 +33,7 @@ export class CustomModal {
     let excludeElements = [];
 
     for (let i in this.ARROW_TYPES) {
-      excludeElements = excludeElements.concat([this.ARROW_TYPES[i].arrowId, this.ARROW_TYPES[i].captionId]);
+      excludeElements.push(this.ARROW_TYPES[i].arrowId);
     }
 
     containerArticle.classList.add("card");
@@ -83,14 +83,12 @@ export class CustomModal {
 
   createArrows() {
     const arrowTypeLeft = "1";
-    const captionTextLeft = "ポケモンをみる";
-    const toLeftDiv = this.createArrowDiv(arrowTypeLeft, captionTextLeft);
+    const toLeftDiv = this.createArrowDiv(arrowTypeLeft);
     toLeftDiv.id = "to-left";
     toLeftDiv.style.display = "none";
 
     const arrowTypeRight = "2";
-    const captionTextRight = "技をみる";
-    const toRightDiv = this.createArrowDiv(arrowTypeRight, captionTextRight);
+    const toRightDiv = this.createArrowDiv(arrowTypeRight);
     toRightDiv.id = "to-right";
 
     toRightDiv.addEventListener("click", (event)=>{
@@ -109,17 +107,13 @@ export class CustomModal {
     return [toLeftDiv, toRightDiv]
   }
 
-  createArrowDiv(arrowType, captionText) {
+  createArrowDiv(arrowType) {
     const arrowDiv = document.createElement("div");
     const arrowSpan = document.createElement("span");
-    const captionSpan = document.createElement("span");
 
     arrowSpan.innerText = this.ARROW_TYPES[arrowType].text;
     arrowSpan.id = this.ARROW_TYPES[arrowType].arrowId;
-    captionSpan.innerText = captionText;
-    captionSpan.id = this.ARROW_TYPES[arrowType].captionId;
     arrowDiv.append(arrowSpan);
-    arrowDiv.append(captionSpan);
     return arrowDiv;
   }
 
@@ -128,12 +122,10 @@ export class CustomModal {
       "1": {
         "text": "<",
         "arrowId": "to-left-arrow",
-        "captionId": "to-left-caption"
       },
       "2": {
         "text": ">",
         "arrowId": "to-right-arrow",
-        "captionId": "to-right-caption"
       }
     };
   }

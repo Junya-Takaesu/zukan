@@ -67,14 +67,26 @@
 }
 
 @mixin card-arrow {
-  font-size: 20vh;
+  font-size: 7vh;
   cursor: pointer;
   font-weight: 100;
   color: #f7ed94;
-  text-shadow: 0 6px #b3aa62;
+  text-shadow: 0 4px #b3aa62;
   transition: all 0.1s;
   &:active {
     margin-top: 5px;
     text-shadow: 0 1px #b3aa62;
+  }
+  @media (min-width: $breakpoint-md) {
+    font-size: 12vh;
+    text-shadow: 0 6px #b3aa62;
+  }
+  @media (min-width: $breakpoint-lg) {
+    font-size: 17vh;
+    text-shadow: 0 6px #b3aa62;
+  }
+  @media (min-width: $breakpoint-xlg) {
+    font-size: 18vh;
+    text-shadow: 0 6px #b3aa62;
   }
 }
