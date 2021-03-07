@@ -179,6 +179,7 @@ export class UI {
   }
 
   createResultDiv(userPick){
+    const parentDiv = document.createElement("div");
     const resultDiv = document.createElement("div");
     const messageHeader = document.createElement("h2");
     const detailParagraph = document.createElement("p");
@@ -195,8 +196,11 @@ export class UI {
       こたえは「<strong>${this.quiz.getAnswerPokemonObj().name}</strong>」です。<br>
       あなたは「<strong>${userPick}</strong>」をえらびました。
     `
+
+    resultDiv.classList.add("result")
     resultDiv.append(messageHeader);
     resultDiv.append(detailParagraph);
-    return resultDiv
+    parentDiv.append(resultDiv);
+    return parentDiv
   }
 }
