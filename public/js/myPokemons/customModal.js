@@ -15,10 +15,37 @@ export class CustomModal {
       const stringifiedId = String(pokemon.pokemon_no).padStart(3, "0");
       const pokemonTile = document.getElementById(stringifiedId);
       pokemonTile.addEventListener("click", ()=> {
-        $(this.createCard(pokemon)).modal();
-        $(".modal").on($.modal.BEFORE_CLOSE, function () {$(".modal").remove();});
+        this.populateModal(pokemon);
       });
     });
+  }
+
+  populateModal(pokemon) {
+    const card = this.createCard(pokemon);
+    let toLeftDiv, toRightDiv;
+
+    $(card).modal();
+    $(".modal").on($.modal.BEFORE_CLOSE, function () {$(".modal").remove();});
+
+    [toLeftDiv, toRightDiv] = this.createArrows();
+
+    toRightDiv.addEventListener("click", (event)=>{
+      if(event.currentTarget.id == "to-right") {
+        event.currentTarget.style.display = "none";
+        toLeftDiv.style.display = "block";
+      }
+      $(".modal .content").empty();
+    });
+    toLeftDiv.addEventListener("click", (event)=>{
+      if(event.currentTarget.id == "to-left") {
+        event.currentTarget.style.display = "none";
+        toRightDiv.style.display = "block";
+      }
+      this.populateModal(pokemon);
+    });
+
+    card.append(toLeftDiv);
+    card.append(toRightDiv);
   }
 
   createCard(pokemon) {
@@ -29,7 +56,6 @@ export class CustomModal {
     const pokemonMoves = ""; //pokemon から取れるようにする
     const containerArticle = document.createElement("article");
 
-    let toLeftDiv, toRightDiv;
     let excludeElements = [];
 
     for (let i in this.ARROW_TYPES) {
@@ -74,10 +100,6 @@ export class CustomModal {
       </section>
     `;
 
-    [toLeftDiv, toRightDiv] = this.createArrows();
-    containerArticle.append(toLeftDiv);
-    containerArticle.append(toRightDiv);
-
     return containerArticle;
   }
 
@@ -90,19 +112,6 @@ export class CustomModal {
     const arrowTypeRight = "2";
     const toRightDiv = this.createArrowDiv(arrowTypeRight);
     toRightDiv.id = "to-right";
-
-    toRightDiv.addEventListener("click", (event)=>{
-      if(event.currentTarget.id == "to-right") {
-        event.currentTarget.style.display = "none";
-        toLeftDiv.style.display = "block";
-      }
-    });
-    toLeftDiv.addEventListener("click", (event)=>{
-      if(event.currentTarget.id == "to-left") {
-        event.currentTarget.style.display = "none";
-        toRightDiv.style.display = "block";
-      }
-    });
 
     return [toLeftDiv, toRightDiv]
   }
