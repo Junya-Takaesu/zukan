@@ -167,6 +167,7 @@ export class UI {
       event.preventDefault;
       this.quiz.evaluate(event.target.innerText);
       $(this.createResultDiv(event.target.innerText)).modal();
+      $(".modal").on($.modal.BEFORE_CLOSE, function () {$(".modal").remove();});
 
       const quizJson = JSON.stringify(this.quiz.json);
       localStorage.setItem("quizJson", quizJson);
