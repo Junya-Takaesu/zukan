@@ -1,3 +1,5 @@
+@import "../cards/mixins";
+
 .modal {
   .result {
     color: #000;
@@ -10,6 +12,40 @@
       p {
         font-size: 2rem;
       }
+    }
+  }
+
+  &.card {
+    @include card;
+    position: relative;
+    .tab-button-bar {
+      pointer-events: none;
+    }
+    #to-left-arrow {
+      @include card-arrow;
+      position: absolute;
+      top: 20%;
+      left: 0;
+    }
+    #to-right-arrow {
+      @include card-arrow;
+      position: absolute;
+      top: 20%;
+      right: 0;
+    }
+    #to-left-caption {
+      position: absolute;
+      top: 80%;
+      left: 9%;
+      color: #867a7a;
+      text-shadow: 0px 1px #bdbdbd;
+    }
+    #to-right-caption {
+      position: absolute;
+      top: 80%;
+      right: 9%;
+      color: #867a7a;
+      text-shadow: 0px 1px #bdbdbd;
     }
   }
 }

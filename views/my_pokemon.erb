@@ -6,9 +6,9 @@
   <% @pokemon_count.times do |index| %>
     <%= next if index == 0 %>
     <div class="pokemon" id="<%= "#{index.to_s.rjust(3, "0")}" %>">
-      <img src="icons/unknown.svg" alt="ポケモン画像">
+      <img src="icons/unknown.svg" loading="lazy" alt="ポケモン画像">
       <h2><%= index %></h2>
     </div>
   <% end %>
 </section>
-<script src="js/myPokemons.js"></script>
+<script type="module" src="js/myPokemons/index.js"></script>
