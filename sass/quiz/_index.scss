@@ -18,9 +18,7 @@
     }
     .audio-indicator {
       @include glass-background;
-      padding: 0.5rem;
-      border-radius: 50%;
-      box-shadow: 0 0 3px black;
+      @include audio-indicator-style($padding: 0.5rem, $margin: 0.5rem);
       position: absolute;
       top: -10%;
       left: 0;
