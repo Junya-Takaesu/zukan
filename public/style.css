@@ -583,6 +583,7 @@ nav .button.collection-button:active {
   font-size: 1rem;
   font-weight: 700;
   border-radius: 5%;
+  transition: all 0.1s;
 }
 @media (min-width: 87.5em) {
   .cards .card {
@@ -636,41 +637,9 @@ nav .button.collection-button:active {
     max-width: 170px;
   }
 }
-.cards .card .overlay {
-  display: none;
-}
-@media (min-width: 56em) {
-  .cards .card:hover > .overlay {
-    opacity: 1;
-  }
-  .cards .card .overlay {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    border: none;
-    border-radius: 5%;
-    opacity: 0;
-    background: rgba(0, 0, 0, 0.1);
-    transition: opacity 200ms ease-in-out;
-  }
-  .cards .card .overlay a {
-    border: 2px solid #ffffff;
-    padding: 1rem 3rem;
-    color: #ffffff;
-    font-weight: 700;
-    background: rgba(0, 0, 0, 0.5);
-  }
-  .cards .card .overlay a:hover {
-    background: rgba(255, 255, 255, 0.5);
-    color: rgba(255, 255, 255, 0.5);
-    text-shadow: 1px 1px #000;
-  }
+.cards .card:hover {
+  box-shadow: none;
+  transform: scale(1.1);
 }
 
 #how-to {
@@ -728,7 +697,7 @@ nav .button.collection-button:active {
 #type-tags {
   padding: 0 2rem;
   max-width: 1000px;
-  margin: 5% auto;
+  margin: 5% auto 0;
   position: relative;
   display: flex;
   flex-wrap: wrap;

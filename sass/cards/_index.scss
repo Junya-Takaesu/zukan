@@ -22,44 +22,10 @@
   .card {
     @include card;
     border-radius: 5%;
-    .overlay {
-      display: none;
-    }
-    @media (min-width: $breakpoint-md) {
-      &:hover > .overlay {
-        opacity: 1;
-      }
-      .overlay {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-
-        position: absolute;
-        top: 0; right: 0; bottom: 0; left: 0;
-        width: 100%;
-        border: none;
-
-        border-radius: 5%;
-        opacity: 0;
-        background: rgba(0,0,0,0.1);
-
-        transition: opacity 200ms ease-in-out;
-
-        a {
-          border: 2px solid #ffffff;
-          padding: 1rem 3rem ;
-          color: #ffffff;
-          font-weight: 700;
-
-          background: rgba(0,0,0,0.5);
-        }
-
-        a:hover {
-          background: rgba(255,255,255,0.5);
-          color: rgba(255,255,255,0.5);
-          text-shadow: 1px 1px #000;
-        }
-      }
+    transition: all 0.1s;
+    &:hover {
+      box-shadow: none;
+      transform: scale(1.1);
     }
   }
 }
