@@ -22,7 +22,7 @@ if Pokemon.all.count == 0 && Ability.all.count == 0 && Type.all.count == 0 && Mo
   db_booter.migrate
 end
 
-POKEMON_NO_LIMIT = 809 unless POKEMON_NO_LIMIT
+POKEMON_NO_LIMIT = 809
 
 before do
   session[:my_pokemons] = [] unless session[:my_pokemons]
