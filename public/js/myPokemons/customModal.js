@@ -12,7 +12,7 @@ export class CustomModal {
     const pokemonsJson = await apiClient.fetchPokemons(myPokemonString);
 
     pokemonsJson.forEach(pokemon => {
-      const stringifiedId = String(pokemon.pokemon_no).padStart(3, "0");
+      const stringifiedId = String(pokemon.pokemon.pokemon_no).padStart(3, "0");
       const pokemonTile = document.getElementById(stringifiedId);
       pokemonTile.addEventListener("click", ()=> {
         this.populateModal(pokemon);
@@ -30,11 +30,25 @@ export class CustomModal {
     [toLeftDiv, toRightDiv] = this.createArrows();
 
     toRightDiv.addEventListener("click", (event)=>{
+      const modalTitle = document.querySelector(".modal-title");
+      const modalContent = document.querySelector(".modal .content");
+      const pokemonImage = document.querySelector("article.card.modal > img.image");;
+
       if(event.currentTarget.id == "to-right") {
         event.currentTarget.style.display = "none";
         toLeftDiv.style.display = "block";
       }
-      $(".modal .content").empty();
+
+      pokemonImage.remove();
+      modalContent.innerHTML = ""
+      pokemonImage.innerHTML = ""
+
+      modalTitle.innerText = "わざ"
+      modalContent.innerHTML = `
+        <div class="moves">
+          ${pokemon.moves.join("<br>")}
+        </div>
+      `;
     });
     toLeftDiv.addEventListener("click", (event)=>{
       if(event.currentTarget.id == "to-left") {
@@ -49,11 +63,11 @@ export class CustomModal {
   }
 
   createCard(pokemon) {
-    const pokemonName = pokemon.name;
-    const pokemonImg = String(pokemon.pokemon_no).padStart(3, "0") + ".png";
-    const pokemonAbilities = ""; //pokemon から取れるようにする
-    const pokemonTypes = ""; //pokemon から取れるようにする
-    const pokemonMoves = ""; //pokemon から取れるようにする
+    const pokemonName = pokemon.pokemon.name;
+    const pokemonImg = String(pokemon.pokemon.pokemon_no).padStart(3, "0") + ".png";
+    const pokemonAbilities = pokemon.abilities;
+    const pokemonTypes = pokemon.types;
+    const pokemonMoves = pokemon.moves;
     const containerArticle = document.createElement("article");
 
     let excludeElements = [];
@@ -85,6 +99,7 @@ export class CustomModal {
     });
 
     containerArticle.innerHTML = `
+      <h2 class="modal-title">ポケモン</h2>
       <img class="audio-indicator" src="icons/no-audio.svg" alt="音声表示" width="24" height="24">
       <img class="image" loading="lazy" src="images/${pokemonImg}" alt="${pokemonName} の画像" width="150" height="150">
       <section class="content">
@@ -92,10 +107,10 @@ export class CustomModal {
         <div class="attributes">
           <hr>
           <span class="attribute-header">のうりょく：</span>
-          <span class="attribute-value">${pokemonAbilities}</span>
+          <span class="attribute-value">${pokemonAbilities.join("<br>")}</span>
           <hr>
           <span class="attribute-header">タイプ：</span>
-          <span class="attribute-value">${pokemonTypes}</span>
+          <span class="attribute-value">${pokemonTypes.join("<br>")}</span>
         </div>
       </section>
     `;
