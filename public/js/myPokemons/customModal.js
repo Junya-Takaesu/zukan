@@ -91,9 +91,11 @@ export class CustomModal {
         const indicatorImgSrc = audioIndicator.getAttribute("src")
         const src = indicatorImgSrc == speakerOnImg ? speakerOffImg : speakerOnImg;
 
+        audioIndicator.style.transform = "rotate(0deg)";
         audioIndicator.setAttribute("src", src);
       }
 
+      audioIndicator.style.transform = "rotate(-7deg)";
       audioIndicator.setAttribute("src", speakerOnImg);
       utter(pokemonName, onendCallback);
     });
