@@ -22,10 +22,7 @@ if Pokemon.all.count == 0 && Ability.all.count == 0 && Type.all.count == 0 && Mo
   db_booter.migrate
 end
 
-set :static_cache_control, [:public, :max_age => 31536000]
-enable :sessions
-
-POKEMON_NO_LIMIT = 809;
+POKEMON_NO_LIMIT = 809 unless POKEMON_NO_LIMIT
 
 before do
   session[:my_pokemons] = [] unless session[:my_pokemons]
@@ -33,6 +30,7 @@ end
 
 get "/" do
   @page_title = "ポケモンずかん"
+  # Eager loadgin が必要
   @pokemons = Pokemon.where("pokemon_no < ?", POKEMON_NO_LIMIT).order("random()").take(30)
   erb :home
 end
