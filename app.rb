@@ -2,11 +2,7 @@ require "sinatra"
 require "sinatra/cookies"
 require "sinatra/namespace"
 require "json"
-require_relative "models/pokemon"
-require_relative "models/ability"
-require_relative "models/type"
-require_relative "models/move"
-require_relative "db/database_booter.rb"
+require_relative "models/application_record"
 
 # heroku 環境と、ローカル環境で設定を変える
 if development?

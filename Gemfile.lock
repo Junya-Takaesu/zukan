@@ -56,6 +56,7 @@ DEPENDENCIES
   puma
   sinatra
   sinatra-contrib
+  zeitwerk
 
 RUBY VERSION
    ruby 3.0.0p0

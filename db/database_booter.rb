@@ -1,9 +1,5 @@
 require "json"
-require_relative "schema"
-require_relative "../models/pokemon"
-require_relative "../models/ability"
-require_relative "../models/type"
-require_relative "../models/move"
+require_relative "../models/application_record.rb"
 
 class DatabaseBooter
 

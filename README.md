@@ -31,3 +31,8 @@ $ ruby db/database_booter.rb
 * 最終的に、下記のようなリレーションが作成される
 
 <img src="https://raw.githubusercontent.com/Junya-Takaesu/zukan/main/ER.png?raw=true" alt="ER diagram" width="450px">
+
+## 各ファイルのローディング
+* `zeitwerk` gem を使ってローディングする
+* `zeitwerk` を使ってローディングをする処理は `models/application_record.rb` に書いている
+* `app.rb` で `require_relative "models/application_record.rb"` しているので、`ruby app.rb` で sinatra を起動したときに、必要なファイルがロードされる
