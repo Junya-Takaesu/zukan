@@ -94,8 +94,40 @@ namespace "/api/v1" do
   get "/pokemons" do
     headers \
       "Access-Control-Allow-Origin" => "http://localhost:4567"
-    pokemon_nos = params["nos"].split("-")
-    @pokemons = Pokemon.where(pokemon_no: pokemon_nos)
-    @pokemons.to_json
+
+    if params["nos"]
+      pokemon_nos = params["nos"].split("-")
+      pokemons = Pokemon.includes(:abilities, :moves, :types).where(pokemon_no: pokemon_nos)
+    else
+      pokemons = Pokemon.includes(:abilities, :moves, :types).all
+    end
+
+    response = []
+    pokemons.each do |pokemon|
+      pokemon_record = {
+        pokemon: {},
+        abilities: [],
+        moves: [],
+        types: []
+      }
+
+      pokemon_record[:pokemon] = pokemon
+
+      pokemon.abilities.each do |ability|
+        pokemon_record[:abilities].push ability.ability_name
+      end
+
+      pokemon.moves.each do |move|
+        pokemon_record[:moves].push move.move_name
+      end
+
+      pokemon.types.each do |type|
+        pokemon_record[:types].push type.type_name
+      end
+
+      response.push pokemon_record
+    end
+
+    response.to_json
   end
 end
