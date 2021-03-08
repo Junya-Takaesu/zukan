@@ -1,6 +1,6 @@
 @import "../cards/";
 
-aside {
+#how-to {
   padding: 0 2rem;
   max-width: 1000px;
   margin: 20% auto 0;
@@ -46,8 +46,38 @@ aside {
   }
 }
 
+
+#type-tags {
+  padding: 0 2rem;
+  max-width: 1000px;
+  margin: 5% auto;
+
+  position: relative;
+
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+
+  .type-tag {
+    font-size: 1rem;
+    padding: 0.1rem 0.5rem;
+    margin: 0.2rem 0.1rem;
+    border: 2px solid rgba(255,255,255,0.6);
+    border-radius: 10px;
+    transition: all 0.2s;
+    cursor: pointer;
+    &:hover {
+      color: rgb(71, 69, 69);
+      @include glass-background;
+    }
+  }
+  .selected {
+    @include glass-background-dark;
+  }
+}
+
 @media (min-width: $breakpoint-md) {
-  aside {
+  #how-to {
     margin-top: 10%;
     #info {
       section {
@@ -61,7 +91,7 @@ aside {
 }
 
 @media (min-width: $breakpoint-lg) {
-  aside {
+  #how-to {
     #info {
       section {
         padding: 0 8rem 10px;
@@ -75,7 +105,7 @@ aside {
 }
 
 @media (min-width: $breakpoint-xlg) {
-  aside {
+  #how-to {
     margin-top: 5%;
   }
 }
