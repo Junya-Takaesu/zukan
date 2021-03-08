@@ -134,7 +134,7 @@ nav .button.collection-button:active {
     transition: all 0.1s;
   }
   nav .button.collection-button:active {
-    margin-top: 7px;
+    margin-top: 10px;
     background: #f7ed94;
     border-bottom: 2px solid #b3aa62;
   }
