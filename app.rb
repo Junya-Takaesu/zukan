@@ -130,4 +130,16 @@ namespace "/api/v1" do
 
     response.to_json
   end
+
+  get "/types" do
+    headers \
+      "Access-Control-Allow-Origin" => "http://localhost:4567"
+
+    response = []
+    Type.select(:type_name).distinct.each do |type|
+      response.push type.type_name
+    end
+
+    response.to_json
+  end
 end
