@@ -786,7 +786,7 @@ nav .button.collection-button:active {
   box-shadow: 0 0 3px black;
   position: absolute;
   top: 0;
-  left: 0;
+  left: -20%;
 }
 .quiz .options {
   grid-row: 2/3;
