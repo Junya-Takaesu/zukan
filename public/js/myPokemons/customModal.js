@@ -32,7 +32,8 @@ export class CustomModal {
     toRightDiv.addEventListener("click", (event)=>{
       const modalTitle = document.querySelector(".modal-title");
       const modalContent = document.querySelector(".modal .content");
-      const pokemonImage = document.querySelector("article.card.modal > img.image");;
+      const pokemonImage = document.querySelector("article.card.modal > img.image");
+      const audioIndicator = document.querySelector(".audio-indicator");
 
       if(event.currentTarget.id == "to-right") {
         event.currentTarget.style.display = "none";
@@ -40,6 +41,7 @@ export class CustomModal {
       }
 
       pokemonImage.remove();
+      audioIndicator.remove();
       modalContent.innerHTML = ""
       pokemonImage.innerHTML = ""
 
@@ -75,10 +77,12 @@ export class CustomModal {
     for (let i in this.ARROW_TYPES) {
       excludeElements.push(this.ARROW_TYPES[i].arrowId);
     }
+    excludeElements.push("close-modal");
+    excludeElements.push("moves");
 
     containerArticle.classList.add("card");
     containerArticle.addEventListener("click", (event)=> {
-      if(excludeElements.includes(event.target.id)) {
+      if(excludeElements.includes(event.target.id) || excludeElements.includes(event.target.className.trim())) {
         return;
       }
 
