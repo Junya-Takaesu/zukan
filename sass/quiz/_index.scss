@@ -9,18 +9,18 @@
 
   .image-container {
     grid-row: 1 / 2;
-    margin-top: 27%;
+    margin-top: 32%;
     align-self: center;
     position: relative;
     .image {
-      max-height: 16rem;
-      max-width: 16rem;
+      max-height: 12rem;
+      max-width: 12rem;
     }
     .audio-indicator {
       @include glass-background;
       @include audio-indicator-style($padding: 0.5rem, $margin: 0.5rem);
       position: absolute;
-      top: -10%;
+      top: 0;
       left: 0;
     }
   }
@@ -31,7 +31,6 @@
     display: grid;
     grid-template-rows: repeat(4, auto);
 
-    margin-top: 3vh;
     margin-bottom: 30vh;
 
     @include glass-background-dark;
@@ -43,6 +42,7 @@
     font-family: DotGothic16;
     .option {
       padding: 1.2vh 0 1.2vh 3vh;
+      font-size: 1rem;
       color: white;
       letter-spacing: 2px;
       &:active {
@@ -57,14 +57,24 @@
     box-shadow: 0 0 7px rgba(0,0,0, 0.8);
     border-radius: 10px;
     width: 90%;
-    margin-top: 30%;
+    margin-top: 40%;
     font-family: DotGothic16;
     letter-spacing: 2px;
 
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
     flex-direction: column;
+
+    & > * {
+      margin: 0;
+    }
+    h1 {
+      font-size: 1.1rem;
+    }
+    p {
+      font-size: 0.9rem;
+    }
   }
 
   @media (min-width: $breakpoint-md) {
@@ -118,4 +128,5 @@
 .bread-crumbs {
   color: rgb(27, 26, 26);
   text-align: center;
+  @include emphasized-font;
 }
