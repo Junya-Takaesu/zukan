@@ -95,14 +95,22 @@ namespace "/api/v1" do
     headers \
       "Access-Control-Allow-Origin" => "http://localhost:4567"
 
+    sort_column = (params["sort_column"] && Pokemon.column_names.include?(params["sort_column"])) ? params["sort_column"] : "pokemon_no"
+    order = (params["order"] && ["desc", "asc"].include?(params["order"])) ? params["order"] : "asc"
+
     if params["nos"]
       pokemon_nos = params["nos"].split("-")
-      pokemons = Pokemon.includes(:abilities, :moves, :types).where(pokemon_no: pokemon_nos)
+      pokemons = Pokemon.includes(:abilities, :moves, :types).where(pokemon_no: pokemon_nos).order(sort_column.to_sym => order.to_sym)
     else
-      if params["limit"]
-        pokemons = Pokemon.includes(:abilities, :moves, :types).all.take(params["limit"].to_i);
+      if params["types"]
+        types = params["types"].split("-")
+        pokemons = Pokemon.includes(:abilities, :moves, :types).where("types.type_name" => types).order(sort_column.to_sym => order.to_sym)
       else
-        pokemons = Pokemon.includes(:abilities, :moves, :types).all
+        pokemons = Pokemon.includes(:abilities, :moves, :types).all.order(sort_column.to_sym => order.to_sym)
+      end
+
+      if params["limit"]
+        pokemons = pokemons.limit(params["limit"].to_i)
       end
     end
 
