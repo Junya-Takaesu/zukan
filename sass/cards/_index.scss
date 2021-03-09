@@ -23,6 +23,7 @@
     @include card;
     border-radius: 5%;
     transition: all 0.1s;
+    padding: 10px 20px;
     &:hover {
       box-shadow: 0 0 10px rgba(0,0,0,0.8);
       transform: scale(1.1);
