@@ -627,9 +627,11 @@ nav .button.collection-button:active {
   max-width: 100%;
   width: 100%;
 }
-.cards .card:hover {
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
-  transform: scale(1.1);
+@media (min-width: 67em) {
+  .cards .card:hover {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+    transform: scale(1.1);
+  }
 }
 
 #how-to {
