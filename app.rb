@@ -99,7 +99,11 @@ namespace "/api/v1" do
       pokemon_nos = params["nos"].split("-")
       pokemons = Pokemon.includes(:abilities, :moves, :types).where(pokemon_no: pokemon_nos)
     else
-      pokemons = Pokemon.includes(:abilities, :moves, :types).all
+      if params["limit"]
+        pokemons = Pokemon.includes(:abilities, :moves, :types).all.take(params["limit"].to_i);
+      else
+        pokemons = Pokemon.includes(:abilities, :moves, :types).all
+      end
     end
 
     response = []
