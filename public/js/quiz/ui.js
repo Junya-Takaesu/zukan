@@ -86,10 +86,10 @@ export class UI {
   }
 
   renderBreadCrumbs(index) {
-    if (!index) {
-      index = 0;
+    let message = ""
+    if (typeof index !== 'undefined') {
+      message = `だい　${index+1}　もん`
     }
-    const message = `だい　${index+1}　もん`;
     this.breadCrumbsDiv.innerText = message;
   }
 
