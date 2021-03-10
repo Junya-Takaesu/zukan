@@ -30,8 +30,6 @@ end
 
 get "/" do
   @page_title = "ポケモンずかん"
-  # Eager loadgin が必要
-  @pokemons = Pokemon.where("pokemon_no < ?", POKEMON_NO_LIMIT).order("random()").take(30)
   erb :home
 end
 
@@ -113,6 +111,8 @@ namespace "/api/v1" do
         pokemons = pokemons.limit(params["limit"].to_i)
       end
     end
+
+    pokemons = pokemons.where("pokemons.pokemon_no < ?", POKEMON_NO_LIMIT);
 
     response = []
     pokemons.each do |pokemon|
