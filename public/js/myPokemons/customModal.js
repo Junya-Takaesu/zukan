@@ -8,8 +8,10 @@ export class CustomModal {
 
   async initializeModals() {
     const apiClient = new PokemonAPIClient();
-    const myPokemonString = this.pokemonNos.join("-");
-    const pokemonsJson = await apiClient.fetchPokemons(myPokemonString);
+    const params = {
+      "nos": this.pokemonNos.join("-"),
+    }
+    const pokemonsJson = await apiClient.fetchPokemons(params);
 
     pokemonsJson.forEach(pokemon => {
       const stringifiedId = String(pokemon.pokemon.pokemon_no).padStart(3, "0");
@@ -69,7 +71,6 @@ export class CustomModal {
     const pokemonImg = String(pokemon.pokemon.pokemon_no).padStart(3, "0") + ".png";
     const pokemonAbilities = pokemon.abilities;
     const pokemonTypes = pokemon.types;
-    const pokemonMoves = pokemon.moves;
     const containerArticle = document.createElement("article");
 
     let excludeElements = [];

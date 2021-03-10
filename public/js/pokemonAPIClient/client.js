@@ -8,8 +8,28 @@ export class PokemonAPIClient {
     return this.fetchJson(`${this.API_URL}quiz_json`);
   }
 
-  async fetchPokemons(nos) {
-    return this.fetchJson(`${this.API_URL}pokemons?nos=${nos}`);
+  async fetchPokemons(params = {}) {
+    let queryParameters = []
+    if(params.nos) {
+      queryParameters.push(`nos=${params.nos}`);
+    }
+    if(params.types) {
+      queryParameters.push(`types=${params.types}`);
+    }
+    if(params.limit) {
+      queryParameters.push(`limit=${params.limit}`);
+    }
+    if(params.sort_column) {
+      queryParameters.push(`sort_column=${params.sort_column}`);
+    }
+    if(params.order) {
+      queryParameters.push(`order=${params.order}`);
+    }
+    return this.fetchJson(`${this.API_URL}pokemons?${queryParameters.join("&")}`);
+  }
+
+  async fetchTypes() {
+    return this.fetchJson(`${this.API_URL}types`);
   }
 
   async fetchJson(url) {

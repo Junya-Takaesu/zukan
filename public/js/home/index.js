@@ -1,26 +1,20 @@
-import {utter} from "../common/utter.js";
+import { UI } from "./ui.js";
+import {PokemonAPIClient} from "../pokemonAPIClient/client.js";
 
-const pokemonCards = document.querySelectorAll(".card");
+document.addEventListener("DOMContentLoaded", async ()=>{
+  const apiClient = new PokemonAPIClient();
+  const ui = new UI();
+  const params = {
+    "limit": 30
+  };
 
-pokemonCards.forEach(card => {
-  const utterable = card.querySelector(".utterable");
+  apiClient.fetchTypes()
+    .then(typesJson => {
+      ui.renderTypeTags(typesJson);
+    });
 
-  card.addEventListener("click", (event)=>{
-    const speakerOnImg = "icons/audio.svg";
-    const speakerOffImg = "icons/no-audio.svg";
-    const containerElement = event.currentTarget;
-    const audioIndicator = containerElement.querySelector(".audio-indicator");
-
-    const onendCallback = () => {
-      const indicatorImgSrc = audioIndicator.getAttribute("src")
-      const src = indicatorImgSrc == speakerOnImg ? speakerOffImg : speakerOnImg;
-
-      audioIndicator.style.transform = "rotate(0deg)";
-      audioIndicator.setAttribute("src", src);
-    }
-
-    audioIndicator.style.transform = "rotate(-7deg)";
-    audioIndicator.setAttribute("src", speakerOnImg);
-    utter(utterable.dataset.utterableText, onendCallback);
-  });
-});
+  apiClient.fetchPokemons(params)
+    .then(pokemonsJson => {
+      ui.renderCards(pokemonsJson);
+    });
+})

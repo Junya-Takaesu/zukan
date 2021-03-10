@@ -21,53 +21,6 @@
     </section>
   </article>
 </aside>
-<aside id="type-tags">
-  <a class="type-tag selected">いわ</a>
-  <a class="type-tag">ゴースト</a>
-  <a class="type-tag">ノーマル</a>
-  <a class="type-tag">ひこう</a>
-  <a class="type-tag">くさ</a>
-  <a class="type-tag">ほのお</a>
-  <a class="type-tag">フェアリー</a>
-  <a class="type-tag">むし</a>
-  <a class="type-tag">はがね</a>
-  <a class="type-tag">こおり</a>
-  <a class="type-tag">じめん</a>
-  <a class="type-tag">かくとう</a>
-  <a class="type-tag">エスパー</a>
-  <a class="type-tag">あく</a>
-  <a class="type-tag">どく</a>
-  <a class="type-tag">ドラゴン</a>
-  <a class="type-tag">でんき</a>
-  <a class="type-tag">みず</a>
-</aside>
-<main class="cards">
-  <% @pokemons.each do |pokemon| %>
-    <article class="card">
-      <img class="audio-indicator" src="icons/no-audio.svg" alt="音声表示" width="24" height="24">
-      <img class="image" loading="lazy" src="images/<%= "#{pokemon["pokemon_no"].to_s.rjust(3, "0")}.png" %>" alt="<%= "#{pokemon["name"]} の画像" %>" width="150" height="150">
-      <section class="content">
-        <h2 class="name utterable" data-utterable-text="<%= pokemon["name"] %>"><%= pokemon["name"] %></h2>
-        <div class="attributes">
-          <hr>
-          <span class="attribute-header">のうりょく：</span>
-          <span class="attribute-value">
-            <% pokemon.abilities.each do |ability| %>
-              <%= ability.ability_name %>
-              <br>
-            <% end %>
-          </span>
-          <hr>
-          <span class="attribute-header">タイプ：</span>
-          <span class="attribute-value">
-            <% pokemon.types.each do |type| %>
-              <%= type.type_name %>
-              <br>
-            <% end %>
-          </span>
-        </div>
-      </section>
-    </article>
-  <% end %>
-</main>
+<aside id="type-tags"></aside>
+<main class="cards"></main>
 <script type="module" src="js/home/index.js"></script>
