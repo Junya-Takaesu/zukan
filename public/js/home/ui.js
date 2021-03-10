@@ -1,13 +1,33 @@
 import {utter} from "../common/utter.js";
+import {PokemonAPIClient} from "../pokemonAPIClient/client.js";
 
 export class UI {
 
   renderTypeTags(types) {
+    const apiClient = new PokemonAPIClient();
+
     const typeTagsAside = document.querySelector("#type-tags");
     types.forEach(type => {
       const typeAnchor = document.createElement("a");
       typeAnchor.classList.add("type-tag");
       typeAnchor.innerText = type;
+
+      typeAnchor.addEventListener("click", event => {
+        const params = {};
+        let selectedTags;
+
+        document.querySelector(".cards").innerHTML = "";
+
+        event.target.classList.toggle("selected");
+        selectedTags = [...document.querySelectorAll(".selected")].map(tag => {return tag.innerText});
+        params.types = selectedTags.join("-");
+
+        apiClient.fetchPokemons(params)
+          .then(pokemons => {
+            this.renderCards(pokemons);
+          });
+      });
+
       typeTagsAside.append(typeAnchor);
     });
   }
