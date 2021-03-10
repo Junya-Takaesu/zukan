@@ -15,6 +15,7 @@ document.addEventListener("DOMContentLoaded", async ()=>{
 
   apiClient.fetchPokemons(params)
     .then(pokemonsJson => {
+      ui.renderPokemonCountHeader(pokemonsJson.length);
       ui.renderCards(pokemonsJson);
     });
 })

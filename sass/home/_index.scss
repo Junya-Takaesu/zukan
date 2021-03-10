@@ -54,7 +54,7 @@
 #type-tags {
   padding: 0 2rem;
   max-width: 1000px;
-  margin: 5% auto 0;
+  margin: 0 auto;
 
   position: relative;
 
@@ -64,7 +64,7 @@
 
   #filter-header {
     flex: 0 0 100%;
-    font-size: 1.5rem;
+    font-size: 1rem;
     @include emphasized-font;
   }
 
@@ -83,6 +83,34 @@
   }
   .selected {
     @include glass-background-dark;
+  }
+}
+
+#pokemon-count {
+  text-align: center;
+  margin: 0;
+  font-size: 1.2rem;
+  position: relative;
+  #count-number {
+    @include emphasized-font;
+    font-size: 1.5rem;
+  }
+}
+
+@media (min-width: $breakpoint-sm) {
+  #how-to {
+    margin-top: 15%;
+  }
+  #type-tags {
+    #filter-header {
+      font-size: 1.2rem;
+    }
+  }
+  #pokemon-count {
+    font-size: 1.5rem;
+    #count-number {
+      font-size: 1.9rem;
+    }
   }
 }
 
@@ -110,6 +138,11 @@
           width: auto;
         }
       }
+    }
+  }
+  #type-tags {
+    #filter-header {
+      font-size: 1.5rem;
     }
   }
 }

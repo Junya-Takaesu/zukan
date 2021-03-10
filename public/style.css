@@ -549,7 +549,7 @@ nav .button.collection-button:active {
   gap: 2rem;
   max-width: 1000px;
   margin: 0 auto;
-  padding: 2rem 2rem 8rem;
+  padding: 0.5rem 2rem 8rem;
 }
 @media (min-width: 31em) {
   .cards {
@@ -693,7 +693,7 @@ nav .button.collection-button:active {
 #type-tags {
   padding: 0 2rem;
   max-width: 1000px;
-  margin: 5% auto 0;
+  margin: 0 auto;
   position: relative;
   display: flex;
   flex-wrap: wrap;
@@ -701,7 +701,7 @@ nav .button.collection-button:active {
 }
 #type-tags #filter-header {
   flex: 0 0 100%;
-  font-size: 1.5rem;
+  font-size: 1rem;
   color: #ffffff;
   letter-spacing: 4px;
   text-shadow: 0px 2px 1px #003366, 0px -2px 1px #003366, -2px -2px 1px #003366, -2px 2px 1px #003366, 2px -2px 1px #003366, 2px 2px 1px #003366;
@@ -725,6 +725,35 @@ nav .button.collection-button:active {
   backdrop-filter: blur(10px);
 }
 
+#pokemon-count {
+  text-align: center;
+  margin: 0;
+  font-size: 1.2rem;
+  position: relative;
+}
+#pokemon-count #count-number {
+  color: #ffffff;
+  letter-spacing: 4px;
+  text-shadow: 0px 2px 1px #003366, 0px -2px 1px #003366, -2px -2px 1px #003366, -2px 2px 1px #003366, 2px -2px 1px #003366, 2px 2px 1px #003366;
+  font-size: 1.5rem;
+}
+
+@media (min-width: 31em) {
+  #how-to {
+    margin-top: 15%;
+  }
+
+  #type-tags #filter-header {
+    font-size: 1.2rem;
+  }
+
+  #pokemon-count {
+    font-size: 1.5rem;
+  }
+  #pokemon-count #count-number {
+    font-size: 1.9rem;
+  }
+}
 @media (min-width: 56em) {
   #how-to {
     margin-top: 10%;
@@ -743,6 +772,10 @@ nav .button.collection-button:active {
   #how-to #info section img {
     height: 35px;
     width: auto;
+  }
+
+  #type-tags #filter-header {
+    font-size: 1.5rem;
   }
 }
 @media (min-width: 87.5em) {
@@ -942,5 +975,3 @@ nav .button.collection-button:active {
     width: 70vw;
   }
 }
-
-/*# sourceMappingURL=style.css.map */

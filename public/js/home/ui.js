@@ -24,6 +24,7 @@ export class UI {
 
         apiClient.fetchPokemons(params)
           .then(pokemons => {
+            this.renderPokemonCountHeader(pokemons.length);
             this.renderCards(pokemons);
           });
       });
@@ -38,6 +39,22 @@ export class UI {
     pokemonsJson.forEach(pokemon => {
       cardsMain.append(this.createCardArticle(pokemon));
     });
+  }
+
+  renderPokemonCountHeader(length) {
+    let pokemonCountHeader = document.querySelector("#pokemon-count");
+
+    if (pokemonCountHeader) {
+      pokemonCountHeader.remove();
+    }
+
+    pokemonCountHeader = document.createElement("h2");
+    const typeTags = document.querySelector("#type-tags");
+
+    pokemonCountHeader.id = "pokemon-count";
+    pokemonCountHeader.innerHTML = `<span id="count-number">${length}</span> 匹 のポケモンを表示中`
+
+    document.querySelector("body").insertBefore(pokemonCountHeader, typeTags.nextSibling);
   }
 
   createCardArticle(pokemon) {
