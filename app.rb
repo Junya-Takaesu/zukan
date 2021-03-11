@@ -3,6 +3,7 @@ require "sinatra/cookies"
 require "sinatra/namespace"
 require "json"
 require_relative "models/application_record"
+require 'benchmark'
 
 # heroku 環境と、ローカル環境で設定を変える
 if development?
@@ -51,6 +52,7 @@ end
 namespace "/api/v1" do
   before do
     content_type "application/json"
+    headers "Access-Control-Allow-Origin" => "http://localhost:4567"
   end
 
   helpers do
@@ -68,8 +70,6 @@ namespace "/api/v1" do
   end
 
   get "/quiz_json" do
-    headers \
-      "Access-Control-Allow-Origin" => "http://localhost:4567"
     options_limit = 4
     turn_limit = 3
     quiz_hash = {
@@ -90,9 +90,6 @@ namespace "/api/v1" do
   end
 
   get "/pokemons" do
-    headers \
-      "Access-Control-Allow-Origin" => "http://localhost:4567"
-
     sort_column = (params["sort_column"] && Pokemon.column_names.include?(params["sort_column"])) ? params["sort_column"] : "pokemon_no"
     order = (params["order"] && ["desc", "asc"].include?(params["order"])) ? params["order"] : "asc"
 
@@ -144,9 +141,6 @@ namespace "/api/v1" do
   end
 
   get "/types" do
-    headers \
-      "Access-Control-Allow-Origin" => "http://localhost:4567"
-
     response = []
     Type.select(:type_name).distinct.each do |type|
       response.push type.type_name
