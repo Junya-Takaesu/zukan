@@ -6,6 +6,7 @@ require "zeitwerk"
 loader = Zeitwerk::Loader.new
 loader.push_dir(File.expand_path __dir__)
 loader.push_dir(File.expand_path "db")
+loader.push_dir(File.expand_path "lib")
 loader.setup
 
 class ApplicationRecord < ActiveRecord::Base
