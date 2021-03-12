@@ -13,29 +13,47 @@ class Schema < ActiveRecord::Migration[6.0]
 
     unless table_exists?(:moves)
       create_table :moves, force: :cascade do |t|
-        t.integer :pokemon_no
         t.string  :move_type
         t.string  :move_name
       end
     end
 
+    unless table_exists?(:pokemons_moves)
+      create_table :pokemons_moves, id: false do |t|
+        t.integer :pokemon_no
+        t.integer :move_id
+      end
+    end
+
     unless table_exists?(:abilities)
       create_table :abilities, force: :cascade do |t|
-        t.integer :pokemon_no
         t.string  :ability_name
+      end
+    end
+
+    unless table_exists?(:pokemons_abilities)
+      create_table :pokemons_abilities, id: false do |t|
+        t.integer :pokemon_no
+        t.integer :ability_id
       end
     end
 
     unless table_exists?(:types)
       create_table :types, force: :cascade do |t|
-        t.integer :pokemon_no
         t.string  :type_name
       end
     end
 
-    unless foreign_key_exists?(:moves, name: "fk_pokemon_no")
+    unless table_exists?(:pokemons_types)
+      create_table :pokemons_types, id: false do |t|
+        t.integer :pokemon_no
+        t.integer :type_id
+      end
+    end
+
+    unless foreign_key_exists?(:pokemons_moves, name: "fk_pokemon_no")
       alter_table_add_foreign_key = %(
-        ALTER TABLE moves
+        ALTER TABLE pokemons_moves
         ADD CONSTRAINT fk_pokemon_no
         FOREIGN KEY (pokemon_no)
         REFERENCES pokemons(pokemon_no)
@@ -43,9 +61,21 @@ class Schema < ActiveRecord::Migration[6.0]
       )
       ActiveRecord::Base.connection.execute(alter_table_add_foreign_key)
     end
-    unless foreign_key_exists?(:abilities, name: "fk_pokemon_no")
+
+    unless foreign_key_exists?(:pokemons_moves, name: "fk_move_id")
       alter_table_add_foreign_key = %(
-        ALTER TABLE abilities
+        ALTER TABLE pokemons_moves
+        ADD CONSTRAINT fk_move_id
+        FOREIGN KEY (move_id)
+        REFERENCES moves(id)
+        ON DELETE CASCADE;
+      )
+      ActiveRecord::Base.connection.execute(alter_table_add_foreign_key)
+    end
+
+    unless foreign_key_exists?(:pokemons_abilities, name: "fk_pokemon_no")
+      alter_table_add_foreign_key = %(
+        ALTER TABLE pokemons_abilities
         ADD CONSTRAINT fk_pokemon_no
         FOREIGN KEY (pokemon_no)
         REFERENCES pokemons(pokemon_no)
@@ -53,12 +83,35 @@ class Schema < ActiveRecord::Migration[6.0]
       )
       ActiveRecord::Base.connection.execute(alter_table_add_foreign_key)
     end
-    unless foreign_key_exists?(:types, name: "fk_pokemon_no")
+
+    unless foreign_key_exists?(:pokemons_abilities, name: "fk_ability_id")
       alter_table_add_foreign_key = %(
-        ALTER TABLE types
+        ALTER TABLE pokemons_abilities
+        ADD CONSTRAINT fk_ability_id
+        FOREIGN KEY (ability_id)
+        REFERENCES abilities(id)
+        ON DELETE CASCADE;
+      )
+      ActiveRecord::Base.connection.execute(alter_table_add_foreign_key)
+    end
+
+    unless foreign_key_exists?(:pokemons_types, name: "fk_pokemon_no")
+      alter_table_add_foreign_key = %(
+        ALTER TABLE pokemons_types
         ADD CONSTRAINT fk_pokemon_no
         FOREIGN KEY (pokemon_no)
         REFERENCES pokemons(pokemon_no)
+        ON DELETE CASCADE;
+      )
+      ActiveRecord::Base.connection.execute(alter_table_add_foreign_key)
+    end
+
+    unless foreign_key_exists?(:pokemons_types, name: "fk_type_id")
+      alter_table_add_foreign_key = %(
+        ALTER TABLE pokemons_types
+        ADD CONSTRAINT fk_type_id
+        FOREIGN KEY (type_id)
+        REFERENCES types(id)
         ON DELETE CASCADE;
       )
       ActiveRecord::Base.connection.execute(alter_table_add_foreign_key)
@@ -68,8 +121,11 @@ class Schema < ActiveRecord::Migration[6.0]
   def down
     ActiveRecord::Base.connection.execute("drop table pokemons cascade")
     ActiveRecord::Base.connection.execute("drop table moves cascade")
+    ActiveRecord::Base.connection.execute("drop table pokemons_moves cascade")
     ActiveRecord::Base.connection.execute("drop table abilities cascade")
+    ActiveRecord::Base.connection.execute("drop table pokemons_abilities cascade")
     ActiveRecord::Base.connection.execute("drop table types cascade")
+    ActiveRecord::Base.connection.execute("drop table pokemons_types cascade")
   end
 end
 
