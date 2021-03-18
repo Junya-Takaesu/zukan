@@ -44,7 +44,7 @@ class PokemonApi
       end
     end
 
-    pokemons = pokemons.where("pokemons.pokemon_no < ?", POKEMON_NO_LIMIT);
+    pokemons = pokemons.where("pokemons.pokemon_no < ?", POKEMON_NO_LIMIT)
     response = prepare_pokemons(pokemons)
 
     response.to_json
