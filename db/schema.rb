@@ -13,7 +13,6 @@ class Schema < ActiveRecord::Migration[6.0]
 
     unless table_exists?(:moves)
       create_table :moves, force: :cascade do |t|
-        t.string  :move_type
         t.string  :move_name
       end
     end
@@ -21,6 +20,7 @@ class Schema < ActiveRecord::Migration[6.0]
     unless table_exists?(:pokemons_moves)
       create_table :pokemons_moves, id: false do |t|
         t.integer :pokemon_no
+        t.string  :move_type
         t.integer :move_id
       end
     end

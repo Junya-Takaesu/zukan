@@ -13,14 +13,14 @@ class DatabaseBooter
   end
 
   def migrate
+    pokemons = []
+    abilities = []
+    types = []
+    moves = []
+
     @json_files.each do |json_file|
       json = File.read json_file
       parsed_json = JSON.parse json
-
-      pokemons = []
-      abilities = []
-      types = []
-      moves = []
 
       parsed_json.each do |pokemon|
         pokemons.push({
@@ -31,49 +31,33 @@ class DatabaseBooter
 
         pokemon["abilities"].each do |ability|
           abilities.push({
-            pokemon_no: pokemon["no"],
             ability_name: ability
           })
         end
 
         pokemon["types"].each do |type|
           types.push({
-            pokemon_no: pokemon["no"],
             type_name: type
           })
         end
 
-        Move::TYPES.each do |type|
-          pokemon[type].each do |move|
+        Move::TYPES.each do |move_type|
+          pokemon[move_type].each do |move|
             (index, move_name) = move
             moves.push({
-              pokemon_no: pokemon["no"],
-              move_type: type,
               move_name: move_name
             })
           end
         end
-
-        if BULK_INSERT_MAX <= pokemons.length
-          announce_bulk_insert("pokemons", pokemons.length, json_file)
-          announce_bulk_insert("abilities", abilities.length, json_file)
-          announce_bulk_insert("types", types.length, json_file)
-          announce_bulk_insert("moves", moves.length, json_file)
-          buffers = {Pokemon: pokemons, Ability: abilities, Type: types,  Move: moves}
-          insert_buffers buffers
-
-          pokemons = []
-          abilities = []
-          types = []
-          moves = []
-        end
-      end
-
-      if 0 < pokemons.length
-        Pokemon.insert_all(pokemons)
-        Move.insert_all(moves)
       end
     end
+
+    abilities = abilities.index_by {|row| row[:ability_name]}.values
+    types = types.index_by {|row| row[:type_name]}.values
+    moves = moves.index_by {|row| row[:move_name]}.values
+
+    buffers = {Pokemon: pokemons, Ability: abilities, Type: types,  Move: moves}
+    insert_buffers buffers
   end
 
   def insert_buffers(buffers = {})
@@ -81,10 +65,6 @@ class DatabaseBooter
       model = Module.const_get class_name
       model.insert_all(buffer)
     end
-  end
-
-  def announce_bulk_insert(table_name, records_count, file_name)
-    puts "[#{__FILE__}] Inserting into #{table_name}: #{records_count} records from #{file_name}"
   end
 end
 
