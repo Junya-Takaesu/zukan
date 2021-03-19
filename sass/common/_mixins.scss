@@ -20,27 +20,27 @@
        2px  2px 1px $color;
 }
 
-@mixin monster-ball {
+@mixin monster-ball($size: 1) {
   background: linear-gradient(to right, rgba(#f60002, 1), rgba(#f60002, 0.4));
-  height: 10rem;
-  width: 10rem;
+  height: 10rem * $size;
+  width: 10rem * $size;
   position: fixed;
   border-radius: 50%;
   overflow: hidden;
   &::before {
     content: "";
-    border: rgb(27, 26, 26) 10px solid;
+    border: rgb(27, 26, 26) 10px * $size solid;
     background: linear-gradient(to right bottom, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.1));
     position: absolute;
     top: 50%;
-    left: -10%;
+    left: -30%;
     height: 100vh;
     width: 100vw;
   }
   .monster-ball-button {
     background: rgb(27, 26, 26);
-    height: 2rem;
-    width: 2rem;
+    height: 2rem * $size;
+    width: 2rem * $size;
     border-radius: 50%;
     position: absolute;
     top: 42%;
@@ -52,33 +52,33 @@
       position: absolute;
       top: 25%;
       left: 25%;
-      height: 1rem;
-      width: 1rem;
+      height: 1rem * $size;
+      width: 1rem * $size;
     }
   }
   @media (min-width: $breakpoint-md) {
-    height: 15rem;
-    width: 15rem;
+    height: 15rem * $size;
+    width: 15rem * $size;
     .monster-ball-button {
-      height: 3rem;
-      width: 3rem;
+      height: 3rem * $size;
+      width: 3rem * $size;
       &::before{
-        height: 1.3rem;
-        width: 1.3rem;
+        height: 1.3rem * $size;
+        width: 1.3rem * $size;
         top: 30%;
         left: 30%;
       }
     }
   }
   @media (min-width: $breakpoint-lg) {
-    height: 20rem;
-    width: 20rem;
+    height: 20rem * $size;
+    width: 20rem * $size;
     .monster-ball-button {
-      height: 4rem;
-      width: 4rem;
+      height: 4rem* $size;
+      width: 4rem* $size;
       &::before{
-        height: 1.7rem;
-        width: 1.7rem;
+        height: 1.7rem * $size;
+        width: 1.7rem * $size;
       }
     }
   }

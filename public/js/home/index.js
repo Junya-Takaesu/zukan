@@ -8,6 +8,8 @@ document.addEventListener("DOMContentLoaded", async ()=>{
     "limit": 30
   };
 
+  ui.renderGoToTopAnchor();
+
   apiClient.fetchTypes()
     .then(typesJson => {
       ui.renderTypeTags(typesJson);

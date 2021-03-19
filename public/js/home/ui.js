@@ -1,5 +1,6 @@
 import {utter} from "../common/utter.js";
 import {PokemonAPIClient} from "../pokemonAPIClient/client.js";
+import {createGoToTopAnchor} from "../common/goToTopButton.js";
 
 export class UI {
 
@@ -39,6 +40,10 @@ export class UI {
     pokemonsJson.forEach(pokemon => {
       cardsMain.append(this.createCardArticle(pokemon));
     });
+  }
+
+  renderGoToTopAnchor() {
+    document.querySelector("body").append(createGoToTopAnchor());
   }
 
   renderPokemonCountHeader(length) {
