@@ -1,6 +1,12 @@
-#go-to-top {
+#go-to-top-container {
   @include monster-ball(0.3);
-  // right: -50px;
   right: 1rem;
   bottom: 5rem;
+
+  #go-to-top-label {
+    @include emphasized-font($letter-spaceing: 0);
+    font-size: 0.5rem;
+    line-height: 1.1rem;
+    text-align: center;
+  }
 }

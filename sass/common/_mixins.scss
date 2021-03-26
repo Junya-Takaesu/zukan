@@ -8,9 +8,9 @@
   backdrop-filter: blur(3px);
 }
 
-@mixin emphasized-font($color: #003366) {
+@mixin emphasized-font($color: #003366, $letter-spaceing: 4px) {
   color: #ffffff;
-  letter-spacing: 4px;
+  letter-spacing: $letter-spaceing;
   text-shadow:
        0px  2px 1px $color,
        0px -2px 1px $color,

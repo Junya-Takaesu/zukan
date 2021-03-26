@@ -14,7 +14,7 @@ html {
   font-weight: normal;
   src: url(DotGothic16-Regular.ttf);
 }
-#go-to-top {
+#go-to-top-container {
   background: linear-gradient(to right, #f60002, rgba(246, 0, 2, 0.4));
   height: 3rem;
   width: 3rem;
@@ -24,7 +24,7 @@ html {
   right: 1rem;
   bottom: 5rem;
 }
-#go-to-top::before {
+#go-to-top-container::before {
   content: "";
   border: #1b1a1a 3px solid;
   background: linear-gradient(to right bottom, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.1));
@@ -34,7 +34,7 @@ html {
   height: 100vh;
   width: 100vw;
 }
-#go-to-top .monster-ball-button {
+#go-to-top-container .monster-ball-button {
   background: #1b1a1a;
   height: 0.6rem;
   width: 0.6rem;
@@ -43,7 +43,7 @@ html {
   top: 42%;
   left: 42%;
 }
-#go-to-top .monster-ball-button::before {
+#go-to-top-container .monster-ball-button::before {
   content: "";
   background: linear-gradient(to right bottom, #ffb7b7, rgba(255, 183, 183, 0.6));
   border-radius: 50%;
@@ -54,15 +54,15 @@ html {
   width: 0.3rem;
 }
 @media (min-width: 56em) {
-  #go-to-top {
+  #go-to-top-container {
     height: 4.5rem;
     width: 4.5rem;
   }
-  #go-to-top .monster-ball-button {
+  #go-to-top-container .monster-ball-button {
     height: 0.9rem;
     width: 0.9rem;
   }
-  #go-to-top .monster-ball-button::before {
+  #go-to-top-container .monster-ball-button::before {
     height: 0.39rem;
     width: 0.39rem;
     top: 30%;
@@ -70,20 +70,27 @@ html {
   }
 }
 @media (min-width: 67em) {
-  #go-to-top {
+  #go-to-top-container {
     height: 6rem;
     width: 6rem;
   }
-  #go-to-top .monster-ball-button {
+  #go-to-top-container .monster-ball-button {
     height: 1.2rem;
     width: 1.2rem;
   }
-  #go-to-top .monster-ball-button::before {
+  #go-to-top-container .monster-ball-button::before {
     height: 0.51rem;
     width: 0.51rem;
   }
 }
-
+#go-to-top-container #go-to-top-label {
+  color: #ffffff;
+  letter-spacing: 0;
+  text-shadow: 0px 2px 1px #003366, 0px -2px 1px #003366, -2px -2px 1px #003366, -2px 2px 1px #003366, 2px -2px 1px #003366, 2px 2px 1px #003366;
+  font-size: 0.5rem;
+  line-height: 1.1rem;
+  text-align: center;
+}
 body {
   height: 100%;
   margin: 0;
