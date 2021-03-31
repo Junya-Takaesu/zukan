@@ -1,7 +1,7 @@
 export class PokemonAPIClient {
 
   get API_URL() {
-    return location.hostname == "localhost" ? "http://localhost:4567/api/v1/" : "https://thawing-mountain-93514.herokuapp.com/api/v1/";
+    return location.hostname == "localhost" ? "http://localhost:4567/api/v1/" : "http://pokemon-zukan.fun/api/v1/";
   }
 
   async fetchQuiz() {
