@@ -1,4 +1,5 @@
 import {CustomModal} from "./customModal.js";
+import {createGoToTopAnchor} from "../common/goToTopButton.js";
 
 document.addEventListener("DOMContentLoaded", ()=>{
   const pokemonNos = JSON.parse(localStorage.getItem("myPokemons"));
@@ -15,4 +16,5 @@ document.addEventListener("DOMContentLoaded", ()=>{
     img.src = `images/${id}.png`;
   })
   customModal.initializeModals();
+  document.querySelector("body").append(createGoToTopAnchor());
 })
