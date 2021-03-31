@@ -4,7 +4,6 @@ require_relative "../models/application_record"
 class DatabaseBooter
 
   JSONS_GLOB = "db/jsons/*.json"
-  BULK_INSERT_MAX = 100;
 
   def initialize
     schema = Schema.new
@@ -53,9 +52,9 @@ class DatabaseBooter
         end
       end
 
-      abilities = abilities.index_by {|row| row[:ability_name]}.values
-      types = types.index_by {|row| row[:type_name]}.values
-      moves = moves.index_by {|row| row[:move_name]}.values
+      abilities = distinct_by_key(abilities, :ability_name);
+      types = distinct_by_key(types, :type_name);
+      moves = distinct_by_key(moves, :move_name);
 
       buffers = {Pokemon: pokemons, Ability: abilities, Type: types,  Move: moves}
       insert_buffers buffers
@@ -135,6 +134,10 @@ class DatabaseBooter
 
   def get_keys(rows)
     (rows.index_by {|r| r.keys}.values)[0].keys
+  end
+
+  def distinct_by_key(hash, key)
+    hash.index_by {|row| row[key]}.values
   end
 end
 
