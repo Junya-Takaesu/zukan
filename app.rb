@@ -48,7 +48,6 @@ namespace "/api/v1" do
 
   before do
     content_type "application/json"
-    headers "Access-Control-Allow-Origin" => "http://localhost:4567"
   end
 
   get "/quiz_json" do
