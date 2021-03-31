@@ -1,11 +1,9 @@
 const createGoToTopAnchor = () => {
-  const containerDiv = document.createElement("div");
   const goToTopAnchor = document.createElement("a");
   const switchDrawing = document.createElement("div");
   const buttonLabel = document.createElement("p");
 
-  containerDiv.id = "go-to-top-container"
-  goToTopAnchor.id = "go-to-top";
+  goToTopAnchor.id = "go-to-top-container"
   goToTopAnchor.href = "#";
   switchDrawing.classList.add("monster-ball-button");
   buttonLabel.id = "go-to-top-label";
@@ -18,9 +16,8 @@ const createGoToTopAnchor = () => {
   })
 
   goToTopAnchor.append(switchDrawing);
-  containerDiv.append(buttonLabel);
-  containerDiv.append(goToTopAnchor);
-  return containerDiv;
+  goToTopAnchor.append(buttonLabel);
+  return goToTopAnchor;
 }
 
 export {createGoToTopAnchor}
