@@ -11,7 +11,9 @@ const createGoToTopAnchor = () => {
 
   document.addEventListener("scroll", () => {
     if(100 < window.scrollY) {
-
+      goToTopAnchor.classList.add("show");
+    } else {
+      goToTopAnchor.classList.remove("show");
     }
   })
 

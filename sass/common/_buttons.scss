@@ -2,11 +2,17 @@
   @include monster-ball(0.3);
   right: 1rem;
   bottom: 5rem;
+  transform: translateX(200%);
+  transition: 0.4s;
 
   #go-to-top-label {
     @include emphasized-font($letter-spaceing: 0);
     font-size: 0.5rem;
     line-height: 1.1rem;
     text-align: center;
+  }
+
+  &.show {
+    transform: translateX(0%);
   }
 }
