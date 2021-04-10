@@ -1,7 +1,8 @@
 export class PokemonAPIClient {
 
   get API_URL() {
-    return location.hostname == "localhost" ? "http://localhost:4567/api/v1/" : "http://pokemon-zukan.fun/api/v1/";
+    const port = location.port ? ":" + location.port : "";
+    return `http://${location.hostname}${port}/api/v1/`;
   }
 
   async fetchQuiz() {
