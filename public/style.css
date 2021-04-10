@@ -452,10 +452,16 @@ nav .button.collection-button:active {
   letter-spacing: 1px;
 }
 .modal .result h2 {
-  font-size: 1.1rem;
+  text-align: center;
 }
 .modal .result p {
   font-size: 0.9rem;
+}
+.modal .result #result-lost {
+  color: #5477e7;
+}
+.modal .result #result-won {
+  color: #61e261;
 }
 @media (min-width: 67em) {
   .modal .result h2 {
@@ -939,6 +945,12 @@ nav .button.collection-button:active {
   justify-content: space-around;
   align-items: center;
 }
+.quiz .summary #result-lost {
+  color: #5477e7;
+}
+.quiz .summary #result-won {
+  color: #61e261;
+}
 @media (min-width: 56em) {
   .quiz {
     max-width: 1000px;
@@ -968,16 +980,6 @@ nav .button.collection-button:active {
     margin-left: 100px;
     width: 80%;
   }
-}
-
-#result-lost {
-  color: #5477e7;
-  font-weight: bold;
-}
-
-#result-won {
-  color: #61e261;
-  font-weight: bold;
 }
 
 .bread-crumbs {

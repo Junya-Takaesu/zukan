@@ -67,6 +67,14 @@
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
+
+    #result-lost {
+      color: $color-of-failure;
+    }
+
+    #result-won {
+      color: $color-of-success;
+    }
   }
 
   @media (min-width: $breakpoint-md) {
@@ -101,15 +109,6 @@
       width: 80%;
     }
   }
-}
-
-#result-lost {
-  color: #5477e7;
-  font-weight: bold;
-}
-#result-won {
-  color: rgb(97, 226, 97);
-  font-weight: bold;
 }
 
 .bread-crumbs {

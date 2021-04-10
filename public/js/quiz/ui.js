@@ -192,11 +192,13 @@ export class UI {
     const messageHeader = document.createElement("h2");
     const detailParagraph = document.createElement("p");
 
+    messageHeader.classList.add("result-header");
+
     if(this.quiz.getLastResult()) {
-      messageHeader.innerText = "せいかい！";
+      messageHeader.innerHTML = "&#9711; せいかい！";
       messageHeader.id = "result-won";
     } else {
-      messageHeader.innerText = "ざんねん...";
+      messageHeader.innerHTML = "&#215; ざんねん...";
       messageHeader.id = "result-lost";
     }
 
