@@ -53,6 +53,22 @@ export class Quiz {
     return count;
   }
 
+  generateBreadCrumbs() {
+    const spaceBetween = " ";
+    const resultSymbs = this.results.map((result => {
+      switch (result) {
+        case false:
+          return '<span class="result-lost">X<span>';
+        case true:
+          return '<span class="result-won">&#9711;<span>';
+        default:
+          return "<span>-</span>";
+      }
+    }));
+
+    return resultSymbs.join(spaceBetween);
+  }
+
   isPerfect() {
     return this.countCorrectAnswers() === this.results.length
   }

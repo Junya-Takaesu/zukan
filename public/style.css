@@ -457,12 +457,6 @@ nav .button.collection-button:active {
 .modal .result p {
   font-size: 0.9rem;
 }
-.modal .result #result-lost {
-  color: #5477e7;
-}
-.modal .result #result-won {
-  color: #61e261;
-}
 @media (min-width: 67em) {
   .modal .result h2 {
     font-size: 3rem;
@@ -945,12 +939,6 @@ nav .button.collection-button:active {
   justify-content: space-around;
   align-items: center;
 }
-.quiz .summary #result-lost {
-  color: #5477e7;
-}
-.quiz .summary #result-won {
-  color: #61e261;
-}
 @media (min-width: 56em) {
   .quiz {
     max-width: 1000px;
@@ -971,6 +959,9 @@ nav .button.collection-button:active {
     font-size: 1.6rem;
     letter-spacing: 0.5rem;
   }
+  .quiz .summary #result-symbol {
+    font-size: 6rem;
+  }
 }
 @media (min-width: 67em) {
   .quiz .image-container .image {
@@ -982,12 +973,38 @@ nav .button.collection-button:active {
   }
 }
 
+.result-lost {
+  color: #5477e7;
+}
+
+.result-won {
+  color: #61e261;
+}
+
 .bread-crumbs {
-  color: #1b1a1a;
-  text-align: center;
   color: #ffffff;
   letter-spacing: 4px;
   text-shadow: 0px 2px 1px #003366, 0px -2px 1px #003366, -2px -2px 1px #003366, -2px 2px 1px #003366, 2px -2px 1px #003366, 2px 2px 1px #003366;
+  text-align: center;
+  font-size: 2rem;
+}
+.bread-crumbs .result-lost {
+  color: #5477e7;
+  letter-spacing: 4px;
+  text-shadow: 0px 2px 1px #fff, 0px -2px 1px #fff, -2px -2px 1px #fff, -2px 2px 1px #fff, 2px -2px 1px #fff, 2px 2px 1px #fff;
+}
+.bread-crumbs .result-won {
+  color: #61e261;
+  letter-spacing: 4px;
+  text-shadow: 0px 2px 1px #fff, 0px -2px 1px #fff, -2px -2px 1px #fff, -2px 2px 1px #fff, 2px -2px 1px #fff, 2px 2px 1px #fff;
+}
+@media (min-width: 56em) {
+  .bread-crumbs {
+    font-size: 5rem;
+  }
+  .bread-crumbs span {
+    margin: 0 1rem;
+  }
 }
 
 .my-pokemon-stats {

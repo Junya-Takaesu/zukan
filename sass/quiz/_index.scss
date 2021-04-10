@@ -67,14 +67,6 @@
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
-
-    #result-lost {
-      color: $color-of-failure;
-    }
-
-    #result-won {
-      color: $color-of-success;
-    }
   }
 
   @media (min-width: $breakpoint-md) {
@@ -96,6 +88,12 @@
         letter-spacing: 0.5rem;
       }
     }
+
+    .summary {
+      #result-symbol {
+        font-size: 6rem;
+      }
+    }
   }
 
   @media (min-width: $breakpoint-lg) {
@@ -111,8 +109,30 @@
   }
 }
 
+.result-lost {
+  color: $color-of-failure;
+}
+
+.result-won {
+  color: $color-of-success;
+}
+
 .bread-crumbs {
-  color: rgb(27, 26, 26);
-  text-align: center;
   @include emphasized-font;
+  text-align: center;
+  font-size: 2rem;
+
+  .result-lost {
+    @include emphasized-font($color: #fff, $fill-color: $color-of-failure);
+  }
+  .result-won {
+    @include emphasized-font($color: #fff, $fill-color: $color-of-success);
+  }
+
+  @media (min-width: $breakpoint-md) {
+    font-size: 5rem;
+    span {
+      margin: 0 1rem;
+    }
+  }
 }

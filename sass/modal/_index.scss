@@ -13,14 +13,6 @@
       font-size: 0.9rem;
     }
 
-    #result-lost {
-      color: $color-of-failure;
-    }
-
-    #result-won {
-      color: $color-of-success;
-    }
-
     @media (min-width: $breakpoint-lg) {
       h2 {
         font-size: 3rem;

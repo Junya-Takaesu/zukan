@@ -54,33 +54,36 @@ export class UI {
     this.renderBreadCrumbs();
 
     const correctAnswerCount = this.quiz.countCorrectAnswers();
+    const breadCrumbs = document.querySelector(".bread-crumbs");
+    const messageParagrah = document.createElement("p");
     const summaryDiv = document.createElement("div");
     summaryDiv.classList.add("summary");
 
     let icon;
     let messageText;
-    let cssId;
+    let cssClass;
 
     if (correctAnswerCount < 3) {
       icon = "😥";
       messageText = "ポケモンゲットならず・・・";
-      cssId = "result-lost";
+      cssClass = "result-lost";
     } else {
       icon = "😎"
       messageText = `${correctAnswerCount} 匹のポケモンをゲット！`;
-      cssId = "result-won";
+      cssClass = "result-won";
     }
 
     summaryDiv.innerHTML = `
       <h1>おしまい</h1>
       <p>けっか</p>
-      <p id="${cssId}"> ${correctAnswerCount} / ${this.quiz.results.length} </p>
+      <p id="result-symbol">${this.quiz.generateBreadCrumbs()}</p>
+      <p id="${cssClass}"> ${correctAnswerCount} / ${this.quiz.results.length} </p>
     `
 
-    const messageParagrah = document.createElement("p");
     messageParagrah.innerText = icon + messageText;
-
     summaryDiv.append(messageParagrah);
+
+    breadCrumbs.remove();
 
     this.quizSection.append(summaryDiv);
   }
@@ -90,7 +93,7 @@ export class UI {
     if (typeof index !== 'undefined') {
       message = `だい　${index+1}　もん`
     }
-    this.breadCrumbsDiv.innerText = message;
+    this.breadCrumbsDiv.innerHTML = this.quiz.generateBreadCrumbs();
   }
 
   renderQuizImage(src, classNames = [], dataSets = {}, width = "", height = "", alt = "") {
@@ -196,10 +199,10 @@ export class UI {
 
     if(this.quiz.getLastResult()) {
       messageHeader.innerHTML = "&#9711; せいかい！";
-      messageHeader.id = "result-won";
+      messageHeader.classList.add("result-won");
     } else {
       messageHeader.innerHTML = "&#215; ざんねん...";
-      messageHeader.id = "result-lost";
+      messageHeader.classList.add("result-lost");
     }
 
     detailParagraph.innerHTML = `
