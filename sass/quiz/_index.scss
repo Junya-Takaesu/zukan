@@ -1,50 +1,52 @@
 .quiz {
+  height: 100vh;
   position: relative;
-  display: grid;
 
-  grid-template-columns: 1fr;
-  grid-template-rows: 60vh auto;
-
-  justify-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 
   .image-container {
-    grid-row: 1 / 2;
-    margin-top: 32%;
-    align-self: center;
     position: relative;
+    height: 30%;
+    margin-top: 20%;
+
     .image {
-      max-height: 12rem;
-      max-width: 12rem;
+      height: 100%;
     }
     .audio-indicator {
       @include glass-background;
-      @include audio-indicator-style($padding: 0.5rem, $margin: 0.5rem);
+      @include audio-indicator-style($padding: 0.3rem, $margin: 0.3rem);
       position: absolute;
       top: 0;
-      left: -20%;
+      left: 0;
     }
   }
 
   .options {
-    grid-row: 2 / 3;
-
     display: grid;
-    grid-template-rows: repeat(4, auto);
-
-    margin-bottom: 30vh;
-
-    @include glass-background-dark;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
 
     border-radius: 10px;
+    overflow: hidden;
     width: 90%;
+    height: 30%;
+    margin-top: 6%;
     box-shadow: 0 0 7px rgba(0,0,0, 0.8);
+    text-align: center;
 
-    font-family: DotGothic16;
     .option {
-      padding: 1.2vh 0 1.2vh 3vh;
+      @include glass-background-dark;
       font-size: 1rem;
       color: white;
       letter-spacing: 2px;
+      height: 100%;
+
+      display: grid;
+      align-content: center;
+
       &:active {
         background: linear-gradient(to bottom right, rgba(255,255,255,0.8), rgba(255,255,255,0.5));;
         color: black;
@@ -57,72 +59,57 @@
     box-shadow: 0 0 7px rgba(0,0,0, 0.8);
     border-radius: 10px;
     width: 90%;
-    margin-top: 40%;
+    max-width: 1000px;
     font-family: DotGothic16;
     letter-spacing: 2px;
 
     display: flex;
+    flex-direction: column;
     justify-content: space-around;
     align-items: center;
-    flex-direction: column;
-
-    & > * {
-      margin: 0;
-    }
-    h1 {
-      font-size: 1.1rem;
-    }
-    p {
-      font-size: 0.9rem;
-    }
   }
 
   @media (min-width: $breakpoint-md) {
+    max-width: 1000px;
+    margin: 0 auto;
+
+    flex-direction: row;
+    justify-content: space-evenly;
     .image-container {
+      margin-top: 0;
       .image {
-        max-height: 24rem;
-        max-width: 24rem;
+        height: 110%;
+      }
+    }
+    .options {
+      width: 50%;
+      .option {
+        font-size: 1.6rem;
+        letter-spacing: 0.5rem;
       }
     }
   }
 
   @media (min-width: $breakpoint-lg) {
-    display: grid;
-
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: 300px 1fr auto;
     .image-container {
-      grid-column: 1 / 2;
-      grid-row: 1 / 3;
       .image {
-        max-height: 34rem;
-        max-width: 34rem;
+        height: 130%;
       }
     }
     .options {
-      grid-column: 2 / 3;
-      grid-row: 2 / 3;
-      font-size: 2rem;
-    }
-    .summary {
-      grid-column: 1 / 3;
-      align-self: center;
-      max-width: 900px;
-      h1 {
-        font-size: 4rem;
-      }
-      p {
-        font-size: 2rem;
-      }
+      margin-left: 100px;
+      width: 80%;
     }
   }
 }
 
 #result-lost {
   color: #5477e7;
+  font-weight: bold;
 }
 #result-won {
   color: rgb(97, 226, 97);
+  font-weight: bold;
 }
 
 .bread-crumbs {

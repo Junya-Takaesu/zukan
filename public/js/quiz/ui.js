@@ -164,8 +164,11 @@ export class UI {
 
   createOptionAnchor(text) {
     const optionAnchor = document.createElement("a");
+    const innerDiv = document.createElement("div");
+
+    innerDiv.innerText = text;
     optionAnchor.classList.add("option");
-    optionAnchor.innerText = text;
+    optionAnchor.append(innerDiv);
 
     optionAnchor.addEventListener("click", (event)=>{
       event.preventDefault;
