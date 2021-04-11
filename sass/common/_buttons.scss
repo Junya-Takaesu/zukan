@@ -1,5 +1,5 @@
 #go-to-top-container {
-  @include monster-ball(0.3);
+  @include monster-ball(0.5);
   right: 1rem;
   bottom: 5rem;
   transform: translateX(200%);
@@ -7,12 +7,30 @@
 
   #go-to-top-label {
     @include emphasized-font($letter-spaceing: 0);
-    font-size: 0.5rem;
-    line-height: 1.1rem;
+    font-size: 1rem;
+    line-height: 1.7rem;
     text-align: center;
   }
 
   &.show {
     transform: translateX(0%);
+  }
+
+  @media (min-width: $breakpoint-md) {
+    @include monster-ball(0.4);
+    right: 3rem;
+    #go-to-top-label {
+      line-height: 2.2rem;
+    }
+  }
+
+  @media (min-width: $breakpoint-lg) {
+    @include monster-ball(0.3);
+    right: 7rem;
+    bottom: 1rem;
+    transform: translateX(300%);
+    #go-to-top-label {
+      line-height: 2.2rem;
+    }
   }
 }
