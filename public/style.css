@@ -877,12 +877,13 @@ nav .button.collection-button:active {
 }
 
 #how-to {
-  width: 90%;
+  width: 85%;
   max-width: 1000px;
   margin: 25% auto 0;
   height: 6rem;
   overflow: hidden;
   border-radius: 10px;
+  transition: 0.2s;
 }
 #how-to #info {
   text-align: center;
@@ -890,6 +891,7 @@ nav .button.collection-button:active {
   position: relative;
   background: linear-gradient(to bottom right, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.5));
   backdrop-filter: blur(10px);
+  border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
 }
 #how-to #info .info-icon {
@@ -947,6 +949,22 @@ nav .button.collection-button:active {
   top: 2rem;
   right: 0;
   transform: rotate(90deg);
+}
+#how-to.how-to-expanded {
+  height: 46rem;
+}
+#how-to.how-to-expanded .indicator {
+  display: none;
+}
+@media (min-width: 375px) {
+  #how-to.how-to-expanded {
+    height: 40rem;
+  }
+}
+@media (min-width: 495px) {
+  #how-to.how-to-expanded {
+    height: 36rem;
+  }
 }
 
 #type-tags {

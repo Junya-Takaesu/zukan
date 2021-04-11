@@ -168,4 +168,11 @@ export class UI {
 
     return [attributeHeaderSpan, attributeValueSpan];
   }
+
+  toggleHowToSectionExpansion() {
+    const howToSection = document.querySelector("#how-to");
+    howToSection.addEventListener("click", () => {
+      howToSection.classList.toggle("how-to-expanded");
+    });
+  }
 }

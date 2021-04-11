@@ -1,18 +1,20 @@
 @import "../cards/";
 
 #how-to {
-  width: 90%;
+  width: 85%;
   max-width: 1000px;
   margin: 25% auto 0;
   height: 6rem;
   overflow: hidden;
   border-radius: 10px;
+  transition: 0.2s;
 
   #info {
     text-align: center;
     letter-spacing: 1px;
     position: relative;
     @include glass-background-dark;
+    border-radius: 10px;
     box-shadow: 0 0 10px rgba(0,0,0, 0.4);
     .info-icon {
       display: inline-block;
@@ -68,8 +70,20 @@
       }
     }
   }
-}
 
+  &.how-to-expanded {
+    height: 46rem;
+    .indicator {
+      display: none;
+    }
+    @media (min-width: 375px) {
+      height: 40rem;
+    }
+    @media (min-width: 495px) {
+      height: 36rem;
+    }
+  }
+}
 
 #type-tags {
   padding: 0 2rem;

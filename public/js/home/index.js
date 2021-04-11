@@ -8,6 +8,7 @@ document.addEventListener("DOMContentLoaded", async ()=>{
     "limit": 30
   };
 
+  ui.toggleHowToSectionExpansion();
   ui.renderGoToTopAnchor();
 
   apiClient.fetchTypes()
