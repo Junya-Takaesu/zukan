@@ -877,9 +877,12 @@ nav .button.collection-button:active {
 }
 
 #how-to {
-  padding: 0 2rem;
+  width: 90%;
   max-width: 1000px;
   margin: 25% auto 0;
+  height: 6rem;
+  overflow: hidden;
+  border-radius: 10px;
 }
 #how-to #info {
   text-align: center;
@@ -888,7 +891,6 @@ nav .button.collection-button:active {
   background: linear-gradient(to bottom right, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.5));
   backdrop-filter: blur(10px);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
-  border-radius: 10px;
 }
 #how-to #info .info-icon {
   display: inline-block;
@@ -901,6 +903,7 @@ nav .button.collection-button:active {
   background: linear-gradient(to right bottom, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.9));
   backdrop-filter: blur(3px);
   border-radius: 50%;
+  margin-bottom: 0;
 }
 #how-to #info section {
   padding: 0 10px 10px;
@@ -930,6 +933,20 @@ nav .button.collection-button:active {
   margin-bottom: -5px;
   width: 18px;
   height: 18px;
+}
+#how-to #info section .indicator {
+  position: absolute;
+  color: rgba(255, 255, 240, 0.705);
+}
+#how-to #info section #indicator-1 {
+  top: 2rem;
+  left: 0;
+  transform: rotate(90deg);
+}
+#how-to #info section #indicator-2 {
+  top: 2rem;
+  right: 0;
+  transform: rotate(90deg);
 }
 
 #type-tags {

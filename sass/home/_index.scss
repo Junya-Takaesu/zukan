@@ -1,9 +1,12 @@
 @import "../cards/";
 
 #how-to {
-  padding: 0 2rem;
+  width: 90%;
   max-width: 1000px;
   margin: 25% auto 0;
+  height: 6rem;
+  overflow: hidden;
+  border-radius: 10px;
 
   #info {
     text-align: center;
@@ -11,7 +14,6 @@
     position: relative;
     @include glass-background-dark;
     box-shadow: 0 0 10px rgba(0,0,0, 0.4);
-    border-radius: 10px;
     .info-icon {
       display: inline-block;
       width: 32px;
@@ -22,6 +24,7 @@
       text-shadow: 0 0 8px rgba(216, 176, 176, 0.8);
       @include glass-background;
       border-radius: 50%;
+      margin-bottom: 0;
     }
     section {
       padding: 0 10px 10px;
@@ -45,6 +48,23 @@
           width: 18px;
           height: 18px;
         }
+      }
+
+      .indicator {
+        position: absolute;
+        color: rgba(255, 255, 240, 0.705);
+      }
+
+      #indicator-1 {
+        top: 2rem;
+        left: 0;
+        transform: rotate(90deg);
+      }
+
+      #indicator-2 {
+        top: 2rem;
+        right: 0;
+        transform: rotate(90deg);
       }
     }
   }
