@@ -1,84 +1,87 @@
 @import "../cards/mixins";
 
-.modal {
-  .result {
-    color: #000;
-    font-family: DotGothic16;
-    letter-spacing: 1px;
+.blocker {
+  z-index: 10 !important;
+  .modal {
+    .result {
+      color: #000;
+      font-family: DotGothic16;
+      letter-spacing: 1px;
 
-    h2 {
-      text-align: center;
-    }
-    p {
-      font-size: 0.9rem;
-    }
-
-    @media (min-width: $breakpoint-lg) {
       h2 {
-        font-size: 3rem;
+        text-align: center;
       }
       p {
-        font-size: 2rem;
+        font-size: 0.9rem;
       }
-    }
-  }
 
-  &.card {
-    $card-breakpoint-sm: 31em;
+      @media (min-width: $breakpoint-lg) {
+        h2 {
+          font-size: 3rem;
+        }
+        p {
+          font-size: 2rem;
+        }
+      }
+    }
 
-    @include card;
-    position: relative;
-    .tab-button-bar {
-      pointer-events: none;
-    }
-    #to-left-arrow {
-      @include card-arrow;
-      position: absolute;
-      top: 40%;
-      left: 0;
-    }
-    #to-right-arrow {
-      @include card-arrow;
-      position: absolute;
-      top: 40%;
-      right: 0;
-    }
-    @media (min-width: $card-breakpoint-sm) {
+    &.card {
+      $card-breakpoint-sm: 31em;
+
+      @include card;
+      position: relative;
+      .tab-button-bar {
+        pointer-events: none;
+      }
       #to-left-arrow {
-        left: 8%;
+        @include card-arrow;
+        position: absolute;
+        top: 40%;
+        left: 0;
       }
       #to-right-arrow {
-        right: 8%;
+        @include card-arrow;
+        position: absolute;
+        top: 40%;
+        right: 0;
       }
-    }
-    @media (min-width: $breakpoint-md) {
-      #to-left-arrow {
-        top: 30%;
-        left: 4%;
+      @media (min-width: $card-breakpoint-sm) {
+        #to-left-arrow {
+          left: 8%;
+        }
+        #to-right-arrow {
+          right: 8%;
+        }
       }
-      #to-right-arrow {
-        top: 30%;
-        right: 4%;
+      @media (min-width: $breakpoint-md) {
+        #to-left-arrow {
+          top: 30%;
+          left: 4%;
+        }
+        #to-right-arrow {
+          top: 30%;
+          right: 4%;
+        }
       }
-    }
-    @media (min-width: $breakpoint-lg) {
-      #to-left-arrow {
-        top: 20%;
-        left: 2%;
+      @media (min-width: $breakpoint-lg) {
+        #to-left-arrow {
+          top: 20%;
+          left: 2%;
+        }
+        #to-right-arrow {
+          top: 20%;
+          right: 2%;
+        }
       }
-      #to-right-arrow {
-        top: 20%;
-        right: 2%;
-      }
-    }
-    @media (min-width: $breakpoint-xlg) {
-      #to-left-arrow {
-        top: 15%;
-        left: 2%;
-      }
-      #to-right-arrow {
-        top: 15%;
-        right: 2%;
+      @media (min-width: $breakpoint-xlg) {
+        #to-left-arrow {
+          top: 15%;
+          left: 2%;
+        }
+        #to-right-arrow {
+          top: 15%;
+          right: 2%;
+        }
       }
     }
   }
