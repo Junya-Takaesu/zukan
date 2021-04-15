@@ -9,7 +9,7 @@ services:
     web:
         build: .
         volumes:
-            - .:/myapp
+            - .:/zukan
         ports:
             - "4567:4567"
         depends_on:
