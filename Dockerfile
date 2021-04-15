@@ -1,5 +1,5 @@
 FROM ruby:3.0
-RUN apt-get update -qq && apt-get install -y nodejs postgresql-client
+RUN apt-get update -qq && apt-get install -y postgresql-client
 WORKDIR /zukan
 COPY Gemfile /zukan/Gemfile
 COPY Gemfile.lock /zukan/Gemfile.lock
