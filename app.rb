@@ -6,6 +6,7 @@ require_relative "models/application_record"
 # heroku 環境と、ローカル環境で設定を変える
 if development?
   require "sinatra/reloader"
+  set :bind, '0.0.0.0'
 else
   unless ENV["PORT"].nil?
     set :port, ENV["PORT"]
