@@ -4,6 +4,11 @@ services:
         image: postgres
         volumes:
             - ./tmp/db:/var/lib/postgresql/data
+        healthcheck:
+            test: ["CMD-SHELL", "pg_isready"]
+            interval: 10s
+            timeout: 5s
+            retries: 5
     web:
         build: .
         volumes:
@@ -11,4 +16,5 @@ services:
         ports:
             - "4567:4567"
         depends_on:
-            - db
+            db:
+                condition: service_healthy
