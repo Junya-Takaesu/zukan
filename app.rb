@@ -6,18 +6,13 @@ require_relative "models/application_record"
 # heroku 環境と、ローカル環境で設定を変える
 if development?
   require "sinatra/reloader"
-  set :bind, '0.0.0.0'
+  set :bind, "0.0.0.0"
 else
-  unless ENV["PORT"].nil?
-    set :port, ENV["PORT"]
-  end
+  set :port, ENV["PORT"] unless ENV["PORT"].nil?
 end
 
 db_booter = DatabaseBooter.new
-if Pokemon.all.count == 0 && Ability.all.count == 0 && Type.all.count == 0 && Move.all.count == 0
-  db_booter.migrate
-end
-
+db_booter.migrate if Pokemon.all.count == 0 && Ability.all.count == 0 && Type.all.count == 0 && Move.all.count == 0
 
 get "/" do
   @page_title = "ポケモンずかん"
