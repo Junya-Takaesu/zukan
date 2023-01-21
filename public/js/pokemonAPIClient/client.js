@@ -2,7 +2,7 @@ export class PokemonAPIClient {
 
   get API_URL() {
     const port = location.port ? ":" + location.port : "";
-    return `http://${location.hostname}${port}/api/v1/`;
+    return `${location.protocol}//${location.hostname}${port}/api/v1/`;
   }
 
   async fetchQuiz() {
