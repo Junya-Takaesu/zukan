@@ -15,7 +15,6 @@ db_booter = DatabaseBooter.new
 db_booter.migrate if Pokemon.all.count == 0 && Ability.all.count == 0 && Type.all.count == 0 && Move.all.count == 0
 
 get "/" do
-  @page_title = "ポケモンずかん"
   erb :home
 end
 
